@@ -1,0 +1,93 @@
+/* App specific styles */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-standard);
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--color-forest-green);
+  color: var(--color-cloud);
+}
+
+.btn-primary:hover {
+  background-color: #384532; /* Darker shade */
+}
+
+.btn-secondary {
+  background-color: var(--color-cloud);
+  color: var(--color-forest-green);
+  border-color: var(--color-forest-green);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-fog);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--color-cloud);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: var(--transition-standard);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  padding-right: var(--space-md);
+  padding-left: var(--space-md);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+}
