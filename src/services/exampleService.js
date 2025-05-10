@@ -24,10 +24,12 @@ class ExampleService {
    * @returns {Promise<Object|null>} Example object or null if not found
    */
   async findById(id) {
+    const { BadRequestError } = require('../utils/errors');
+
     if (!id) {
-      throw new Error('ID is required');
+      throw new BadRequestError('ID is required');
     }
-    
+
     // In a real implementation, this would use the repository to get data
     return Promise.resolve({ id, name: 'Example', createdAt: new Date() });
   }
@@ -38,8 +40,10 @@ class ExampleService {
    * @returns {Promise<Object>} Created example
    */
   async create(data) {
+    const { BadRequestError } = require('../utils/errors');
+
     if (!data || !data.name) {
-      throw new Error('Name is required');
+      throw new BadRequestError('Name is required');
     }
     
     // In a real implementation, this would use the repository to save data

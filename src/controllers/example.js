@@ -1,4 +1,5 @@
 const ExampleService = require('../services/exampleService');
+const { NotFoundError } = require('../utils/errors');
 
 // Create an instance of the service
 const exampleService = new ExampleService();
@@ -11,7 +12,11 @@ const exampleController = {
   getAll: async (req, res, next) => {
     try {
       const examples = await exampleService.findAll();
-      return res.json(examples);
+      return res.json({
+        status: 'success',
+        results: examples.length,
+        data: examples
+      });
     } catch (error) {
       next(error);
     }
@@ -22,12 +27,15 @@ const exampleController = {
     try {
       const id = req.params.id;
       const example = await exampleService.findById(id);
-
+      
       if (!example) {
-        return res.status(404).json({ message: 'Example not found' });
+        return next(new NotFoundError('Example not found'));
       }
-
-      return res.json(example);
+      
+      return res.json({
+        status: 'success',
+        data: example
+      });
     } catch (error) {
       next(error);
     }
@@ -37,11 +45,13 @@ const exampleController = {
   create: async (req, res, next) => {
     try {
       const example = await exampleService.create(req.body);
-      return res.status(201).json(example);
+      
+      return res.status(201).json({
+        status: 'success',
+        data: example
+      });
     } catch (error) {
-      if (error.message === 'Name is required') {
-        return res.status(400).json({ message: error.message });
-      }
+      // The validation middleware will catch validation errors before they reach here
       next(error);
     }
   }
