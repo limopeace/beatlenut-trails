@@ -9,8 +9,10 @@ const config = require('../config/default');
 const routes = require('./routes');
 const logger = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
+const { responseTime, healthCheck } = require('./middleware/monitor');
 const { NotFoundError } = require('./utils/errors');
 const { connectDB } = require('./utils/database');
+const setupSwagger = require('./utils/swagger');
 
 // Set environment variable if not set
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -27,9 +29,18 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-// Security middleware
+// Security and monitoring middleware
 // Set security HTTP headers
 app.use(helmet());
+
+// Response time tracking
+app.use(responseTime);
+
+// Health check endpoint
+app.use(healthCheck({
+  path: '/health',
+  detailed: process.env.NODE_ENV === 'development'
+}));
 
 // Enable CORS
 app.use(cors({
@@ -52,6 +63,9 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // Custom middleware
 app.use(logger);
+
+// Setup Swagger documentation
+setupSwagger(app);
 
 // Routes
 app.use('/', routes);
