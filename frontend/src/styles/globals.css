@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-opensans text-dark-grey bg-off-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-bold;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded font-montserrat font-semibold transition-all duration-300 inline-block text-center;
+  }
+  
+  .btn-primary {
+    @apply bg-sunrise-orange text-off-white hover:bg-vibrant-teal;
+  }
+  
+  .btn-secondary {
+    @apply border border-deep-forest-green text-deep-forest-green hover:bg-deep-forest-green hover:text-off-white;
+  }
+  
+  .btn-tertiary {
+    @apply text-deep-forest-green hover:underline;
+  }
+  
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .section-title {
+    @apply text-center mb-12;
+  }
+  
+  .section-title h2 {
+    @apply text-3xl md:text-4xl font-bold mb-4 text-deep-forest-green;
+  }
+  
+  .section-title p {
+    @apply text-lg max-w-3xl mx-auto text-earthy-brown;
+  }
+}
