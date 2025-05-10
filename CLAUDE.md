@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Beatlenuts-GR is a Node.js-based API server application using Express.
+Beatlenuts-GR is a Node.js-based API server application using Express, following a modular architecture with MVC pattern.
 
 ### Key Technologies
 - **Node.js** - JavaScript runtime
@@ -16,6 +16,9 @@ Beatlenuts-GR is a Node.js-based API server application using Express.
 ### Architecture
 The application follows a modular architecture with separation of concerns:
 - Express for HTTP handling
+- Controllers for request processing
+- Services for business logic
+- Models for data representation
 - Configuration management using config modules
 - Potential for database integration (MongoDB configuration included)
 
@@ -43,6 +46,9 @@ npm test
 
 # Run specific test file
 npx jest tests/specific-file.test.js
+
+# Run tests with coverage
+npx jest --coverage
 ```
 
 ### Code Quality
@@ -57,15 +63,46 @@ npm run format
 ## Code Organization
 
 ### Directory Structure
-- `/src` - Source code
-  - `index.js` - Application entry point
-- `/tests` - Test files
-- `/config` - Configuration files
-- `/docs` - Documentation
+```
+beatlenuts-gr/
+├── config/             # Configuration files
+├── src/                # Source code
+│   ├── controllers/    # Request handlers
+│   ├── middleware/     # Express middleware
+│   ├── models/         # Data models
+│   ├── routes/         # API routes
+│   ├── services/       # Business logic
+│   ├── utils/          # Utility functions
+│   └── index.js        # Application entry point
+├── tests/              # Test files
+│   ├── controllers/    # Controller tests
+│   ├── services/       # Service tests
+│   └── utils/          # Utility tests
+├── docs/               # Documentation
+├── .eslintrc.js        # ESLint configuration
+├── jest.config.js      # Jest configuration
+├── package.json        # npm package configuration
+└── README.md           # Project documentation
+```
 
 ### Key Components
-- Express application setup in `src/index.js`
-- Configuration in `config/default.js`
+- **Application Setup**: `src/index.js` - Sets up Express app, middleware, and error handling
+- **Routes**: `src/routes/index.js` - Main router that includes all route modules
+- **Controllers**: `src/controllers/` - Handle HTTP requests and delegate to services
+- **Services**: `src/services/` - Contain business logic and interact with models
+- **Models**: `src/models/` - Define data structures and validation
+- **Middleware**: `src/middleware/` - Custom Express middleware
+- **Utils**: `src/utils/` - Helper functions and utilities
+- **Configuration**: `config/default.js` - Application configuration
+
+## API Structure
+
+### RESTful Endpoints
+The API follows RESTful conventions:
+- `GET /` - Welcome message
+- `GET /examples` - Get all examples
+- `GET /examples/:id` - Get example by ID
+- `POST /examples` - Create a new example
 
 ## Best Practices
 
@@ -76,7 +113,22 @@ npm run format
 ### Testing
 - Write tests for all new features
 - Maintain good test coverage
+- Follow the existing test patterns for controllers, services, and utilities
+
+### Error Handling
+- Use try/catch blocks in async functions
+- Pass errors to Express error middleware using `next(error)`
+- Handle expected errors with appropriate status codes
 
 ### Configuration
 - Use the config module for managing environment-specific settings
 - Never hardcode sensitive values
+
+### Documentation
+- Add JSDoc comments to functions and classes
+- Keep API documentation in `docs/API.md` up to date
+
+### Git Workflow
+- Create feature branches from main
+- Write meaningful commit messages
+- Keep commits focused on single changes
