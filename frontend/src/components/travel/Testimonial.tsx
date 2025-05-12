@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import SectionTitle from '../common/SectionTitle';
+import { FadeIn } from '../animations';
+import NextImage from '../common/NextImage';
 
 const testimonials = [
   {
@@ -11,6 +12,7 @@ const testimonials = [
     author: 'Priya Sharma',
     location: 'Mumbai',
     rating: 5,
+    imageSrc: '/images/testimonial-placeholder.jpg',
   },
   {
     id: 2,
@@ -19,6 +21,7 @@ const testimonials = [
     author: 'Rajiv Mehta',
     location: 'Bangalore',
     rating: 5,
+    imageSrc: '/images/testimonial-placeholder.jpg',
   },
   {
     id: 3,
@@ -27,6 +30,7 @@ const testimonials = [
     author: 'Ananya Gupta',
     location: 'Delhi',
     rating: 4,
+    imageSrc: '/images/testimonial-placeholder.jpg',
   },
 ];
 
@@ -42,102 +46,108 @@ const Testimonial = () => {
   };
 
   return (
-    <section className="section relative bg-deep-forest-green text-off-white">
-      <div className="absolute inset-0 bg-[url('/images/testimonial-placeholder.jpg')] bg-cover bg-center opacity-20"></div>
-      <div className="container-custom relative z-10">
-        <SectionTitle
-          title="What Our Travelers Say"
-          subtitle="Discover why our guests keep coming back for more adventures"
-          className="text-off-white"
-        />
+    <section className="py-16 relative bg-gray-50">
+      <div className="container mx-auto px-4 relative z-10">
+        <FadeIn>
+          <div className="text-center mb-12">
+            <span className="text-deep-forest-green font-script text-2xl">Testimonials</span>
+            <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">What Our Travelers Say</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Discover why our guests keep coming back for more adventures
+            </p>
+          </div>
+        </FadeIn>
 
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-5xl mx-auto">
           {/* Testimonial Card */}
-          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8 border border-white border-opacity-20">
-            <div className="flex justify-center mb-6">
-              {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-6 h-6 text-golden-ochre"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
+          <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div className="md:flex">
+              {/* Left side - Image */}
+              <div className="md:w-1/3 relative h-64 md:h-auto">
+                <NextImage
+                  src={testimonials[activeIndex].imageSrc}
+                  alt={`${testimonials[activeIndex].author} testimonial`}
+                  fallbackSrc="/images/testimonial-placeholder.jpg"
+                  fill
+                  className="object-cover"
+                  shimmer={true}
+                />
+                <div className="absolute inset-0 bg-deep-forest-green bg-opacity-20"></div>
+              </div>
 
-            <blockquote className="text-xl italic mb-6 text-center">
-              "{testimonials[activeIndex].content}"
-            </blockquote>
+              {/* Right side - Content */}
+              <div className="md:w-2/3 p-8 md:p-12">
+                <div className="flex mb-6">
+                  {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-5 h-5 text-yellow-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
 
-            <div className="text-center">
-              <p className="font-montserrat font-semibold text-lg">
-                {testimonials[activeIndex].author}
-              </p>
-              <p className="text-misty-blue">
-                {testimonials[activeIndex].location}
-              </p>
+                <div className="relative">
+                  <svg className="text-deep-forest-green opacity-20 w-16 h-16 absolute -top-6 -left-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <blockquote className="text-lg text-gray-700 mb-6 z-10 relative">
+                    {testimonials[activeIndex].content}
+                  </blockquote>
+                </div>
+
+                <div className="mt-8 border-t pt-4 border-gray-100">
+                  <p className="font-semibold text-deep-forest-green text-lg">
+                    {testimonials[activeIndex].author}
+                  </p>
+                  <p className="text-gray-500">
+                    {testimonials[activeIndex].location}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 md:-translate-x-12 bg-sunrise-orange text-off-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-vibrant-teal transition-colors"
-            aria-label="Previous testimonial"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+          {/* Navigation Controls */}
+          <div className="flex justify-between items-center mt-8">
+            <button
+              onClick={handlePrev}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-deep-forest-green text-white hover:bg-opacity-90 transition"
+              aria-label="Previous testimonial"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 md:translate-x-12 bg-sunrise-orange text-off-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-vibrant-teal transition-colors"
-            aria-label="Next testimonial"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-          {/* Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === activeIndex
-                    ? 'bg-sunrise-orange'
-                    : 'bg-white bg-opacity-30'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+            <div className="flex justify-center space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === activeIndex
+                      ? 'bg-deep-forest-green'
+                      : 'bg-gray-300'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-deep-forest-green text-white hover:bg-opacity-90 transition"
+              aria-label="Next testimonial"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

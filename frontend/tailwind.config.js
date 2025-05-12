@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -16,11 +18,6 @@ module.exports = {
         'light-grey': '#E5E7EB',
         'dark-grey': '#374151',
       },
-      fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],
-        opensans: ['Open Sans', 'sans-serif'],
-        merriweather: ['Merriweather', 'serif'],
-      },
       backgroundImage: {
         'hero-pattern': "url('/images/hero-bg.jpg')",
         'testimonial-pattern': "url('/images/testimonial-bg.jpg')",
@@ -32,4 +29,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

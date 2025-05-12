@@ -1,9 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../common/Button';
+import NextImage from '../common/NextImage';
 
 const ESMPromotion = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  // Only run client-side code after component mounts
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <section className="section bg-deep-forest-green">
       <div className="container-custom">
@@ -38,12 +46,23 @@ const ESMPromotion = () => {
             </div>
           </div>
           
-          {/* Image */}
+          {/* Image with enhanced loading and fallback */}
           <div className="relative h-96 rounded-lg overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/images/esm-placeholder.jpg')] bg-cover bg-center">
-              <div className="absolute inset-0 bg-gradient-to-r from-deep-forest-green/60 to-transparent"></div>
-            </div>
-            <div className="absolute top-4 left-4 bg-sunrise-orange text-off-white py-2 px-6 rounded-full font-montserrat font-semibold">
+            {isClient ? (
+              <NextImage
+                src="/images/esm-placeholder.jpg"
+                alt="Ex-Servicemen Marketplace"
+                fallbackSrc="/images/placeholder.jpg"
+                containerClassName="absolute inset-0"
+                fill
+                className="object-cover object-center"
+                shimmer={true}
+              />
+            ) : (
+              <div className="absolute inset-0 bg-[url('/images/esm-placeholder.jpg')] bg-cover bg-center"></div>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-r from-deep-forest-green/60 to-transparent z-10"></div>
+            <div className="absolute top-4 left-4 bg-sunrise-orange text-off-white py-2 px-6 rounded-full font-montserrat font-semibold z-20">
               By Army Veterans, For Army Veterans
             </div>
           </div>

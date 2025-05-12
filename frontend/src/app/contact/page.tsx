@@ -64,7 +64,7 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -73,10 +73,21 @@ export default function Contact() {
     setSubmitError('');
 
     try {
-      // In a real application, this would be an API call
-      // For demo purposes, we'll simulate success after a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Call the API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit contact form');
+      }
+
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -86,7 +97,8 @@ export default function Contact() {
         message: '',
       });
     } catch (error) {
-      setSubmitError('There was a problem submitting your form. Please try again.');
+      console.error('Contact form submission error:', error);
+      setSubmitError(error instanceof Error ? error.message : 'There was a problem submitting your form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

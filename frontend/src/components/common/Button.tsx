@@ -30,19 +30,41 @@ const Button = ({
     disabled ? 'opacity-50 cursor-not-allowed' : ''
   } ${className}`;
 
+  // If we have onClick but no href, or if we have both onClick and href,
+  // render a button element
+  if ((onClick && !href) || (onClick && href)) {
+    return (
+      <button
+        type={type}
+        className={baseClasses}
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  // If we only have href, render a link
   if (href) {
     return (
-      <Link href={href} className={baseClasses} aria-label={ariaLabel}>
+      <Link 
+        href={href} 
+        className={baseClasses} 
+        aria-label={ariaLabel}
+        prefetch={false} // Disable prefetching to prevent hydration issues
+      >
         {children}
       </Link>
     );
   }
 
+  // Default to button if neither onClick nor href is provided
   return (
     <button
       type={type}
       className={baseClasses}
-      onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}
     >
