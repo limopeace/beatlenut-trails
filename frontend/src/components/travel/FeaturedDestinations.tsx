@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const destinations = [
   {
@@ -72,11 +71,10 @@ const FeaturedDestinations = () => {
             <div key={destination.id} className="group overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 hover:-translate-y-2">
               <Link href={destination.href} className="block">
                 <div className="relative h-64 overflow-hidden">
-                  <Image
+                  <img
                     src={destination.imageSrc}
                     alt={destination.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   <div className="absolute top-4 right-4 bg-deep-forest-green text-white text-xs font-bold px-3 py-1 rounded">

@@ -2,19 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const Hero = () => {
   return (
     <section className="relative h-screen">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <Image
+        <img
           src="/images/hero-placeholder.jpg"
           alt="Northeast India Landscape"
-          fill
-          priority
-          className="object-cover"
+          className="absolute w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       </div>
@@ -28,7 +25,7 @@ const Hero = () => {
           </p>
           <Link 
             href="/services" 
-            className="bg-deep-forest-green hover:bg-green-700 text-white px-8 py-3 rounded-full transition-colors duration-300"
+            className="bg-deep-forest-green hover:bg-green-700 text-white px-8 py-3 rounded-full inline-block transition-colors duration-300"
           >
             BOOK NOW
           </Link>

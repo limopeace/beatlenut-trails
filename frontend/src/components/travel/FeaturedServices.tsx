@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const services = [
   {
@@ -57,11 +56,10 @@ const FeaturedServices = () => {
               <Link href={service.href} className="block">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
-                    <Image
+                    <img
                       src={service.imageSrc}
                       alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30"></div>
                     <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-deep-forest-green bg-opacity-80 flex items-center justify-center text-white text-2xl">

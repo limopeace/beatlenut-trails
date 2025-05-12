@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FadeIn } from '../animations';
-import NextImage from '../common/NextImage';
 
 const testimonials = [
   {
@@ -48,15 +46,13 @@ const Testimonial = () => {
   return (
     <section className="py-16 relative bg-gray-50">
       <div className="container mx-auto px-4 relative z-10">
-        <FadeIn>
-          <div className="text-center mb-12">
-            <span className="text-deep-forest-green font-script text-2xl">Testimonials</span>
-            <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">What Our Travelers Say</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Discover why our guests keep coming back for more adventures
-            </p>
-          </div>
-        </FadeIn>
+        <div className="text-center mb-12">
+          <span className="text-deep-forest-green text-2xl">Testimonials</span>
+          <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">What Our Travelers Say</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Discover why our guests keep coming back for more adventures
+          </p>
+        </div>
 
         <div className="max-w-5xl mx-auto">
           {/* Testimonial Card */}
@@ -64,17 +60,14 @@ const Testimonial = () => {
             <div className="md:flex">
               {/* Left side - Image */}
               <div className="md:w-1/3 relative h-64 md:h-auto">
-                <NextImage
+                <img
                   src={testimonials[activeIndex].imageSrc}
                   alt={`${testimonials[activeIndex].author} testimonial`}
-                  fallbackSrc="/images/testimonial-placeholder.jpg"
-                  fill
-                  className="object-cover"
-                  shimmer={true}
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-deep-forest-green bg-opacity-20"></div>
               </div>
-
+              
               {/* Right side - Content */}
               <div className="md:w-2/3 p-8 md:p-12">
                 <div className="flex mb-6">
@@ -123,7 +116,7 @@ const Testimonial = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-
+            
             <div className="flex justify-center space-x-2">
               {testimonials.map((_, index) => (
                 <button
@@ -138,7 +131,7 @@ const Testimonial = () => {
                 />
               ))}
             </div>
-
+            
             <button
               onClick={handleNext}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-deep-forest-green text-white hover:bg-opacity-90 transition"
