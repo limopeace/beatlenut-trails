@@ -2,8 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import NextImage from '../common/NextImage';
-import { FadeIn, StaggerContainer, StaggerItem } from '../animations';
+import Image from 'next/image';
 
 const services = [
   {
@@ -44,29 +43,25 @@ const FeaturedServices = () => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <FadeIn>
-          <div className="text-center mb-12">
-            <span className="text-deep-forest-green font-script text-2xl">Our Services</span>
-            <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">Flavors of Northeast</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Discover the unique services we offer to make your Northeast India journey memorable
-            </p>
-          </div>
-        </FadeIn>
-
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="text-center mb-12">
+          <span className="text-deep-forest-green text-2xl">Our Services</span>
+          <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">Flavors of Northeast</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Discover the unique services we offer to make your Northeast India journey memorable
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
-            <StaggerItem key={service.id}>
-              <Link href={service.href} className="group block transform transition duration-300 hover:-translate-y-2">
+            <div key={service.id} className="group block transform transition duration-300 hover:-translate-y-2">
+              <Link href={service.href} className="block">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
-                    <NextImage
+                    <Image
                       src={service.imageSrc}
                       alt={service.title}
-                      fallbackSrc="/images/hero-placeholder.jpg"
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      shimmer={true}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30"></div>
                     <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-deep-forest-green bg-opacity-80 flex items-center justify-center text-white text-2xl">
@@ -74,12 +69,12 @@ const FeaturedServices = () => {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-deep-forest-green mb-2" style={{ fontFamily: 'var(--font-clash), sans-serif' }}>
+                    <h3 className="text-xl font-semibold text-deep-forest-green mb-2">
                       {service.title}
                     </h3>
                     <p className="text-gray-600 mb-4">{service.description}</p>
                     <div className="text-deep-forest-green font-medium group-hover:underline inline-flex items-center">
-                      Learn More
+                      Learn More 
                       <svg className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -87,18 +82,18 @@ const FeaturedServices = () => {
                   </div>
                 </div>
               </Link>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
-
-        <FadeIn className="mt-12 text-center">
-          <Link
-            href="/services"
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Link 
+            href="/services" 
             className="inline-block px-8 py-3 border-2 border-deep-forest-green text-deep-forest-green font-medium rounded hover:bg-deep-forest-green hover:text-white transition duration-300"
           >
             View All Services
           </Link>
-        </FadeIn>
+        </div>
       </div>
     </section>
   );

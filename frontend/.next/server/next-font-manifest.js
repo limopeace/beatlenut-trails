@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/src/app/layout\":[\"static/media/07a54048a9278940-s.p.woff2\",\"static/media/7cba1811e3c25a15-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
