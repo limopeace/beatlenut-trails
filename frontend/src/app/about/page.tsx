@@ -1,7 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
-import SectionTitle from '@/components/common/SectionTitle';
-import Button from '@/components/common/Button';
+import SectionContainer from '@/components/common/SectionContainer';
+import FadeIn from '@/components/animations/FadeIn';
+import StaggerContainer, { StaggerItem } from '@/components/animations/StaggerContainer';
 
 export default function About() {
   // Team members data
@@ -79,264 +79,291 @@ export default function About() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:py-32 bg-deep-forest-green text-off-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="relative h-96 md:h-128 overflow-hidden">
+        <div className="absolute inset-0 bg-deep-forest/70 z-10"></div>
+        <div className="absolute inset-0 bg-[url('/images/about-hero-placeholder.jpg')] bg-cover bg-center"></div>
+        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-pale-straw mb-6 font-clash">Our Story</h1>
+          <p className="text-xl text-pale-straw/90 max-w-2xl">
+            Founded by Army veterans with a deep love for Northeast India, BeatlenutTrails was born from a vision to share the region's beauty while creating opportunities for ex-servicemen.
+          </p>
+        </div>
+      </div>
+
+      {/* About Section */}
+      <SectionContainer
+        background="pale-straw"
+        className="relative overflow-hidden"
+        id="about-section"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <FadeIn direction="right">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Story</h1>
-              <p className="text-xl mb-8">
-                Founded by Army veterans with a deep love for Northeast India, BeatlenutTrails was born from a vision to share the region's unparalleled beauty while creating opportunities for ex-servicemen.
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-deep-forest font-clash">Our Mission</h2>
+              <p className="text-lg mb-6 text-deep-forest/90">
+                To showcase the unparalleled beauty and cultural richness of Northeast India through authentic, sustainable travel experiences while creating meaningful opportunities for ex-servicemen.
               </p>
-              <Button 
-                href="#team" 
-                variant="primary"
-              >
-                Meet Our Team
-              </Button>
-            </div>
-            <div className="relative h-96 rounded-lg overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/images/about-hero-placeholder.jpg')] bg-cover bg-center">
-                <div className="absolute inset-0 bg-gradient-to-r from-deep-forest-green/40 to-transparent"></div>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="w-6 h-6 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-deep-forest/80">Providing exceptional travel experiences that highlight the region's natural wonders and cultural heritage</p>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-6 h-6 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-deep-forest/80">Supporting ex-servicemen in their transition to civilian careers through our ESM marketplace</p>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-6 h-6 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-deep-forest/80">Promoting sustainable tourism practices that benefit local communities and preserve the environment</p>
+                </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
+          
+          <FadeIn direction="left">
+            <div className="relative h-96 rounded-lg overflow-hidden shadow-lg border border-moss-green/10">
+              <img 
+                src="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg" 
+                alt="Our mission"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/60 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 w-full">
+                <h3 className="text-2xl font-bold text-pale-straw mb-2 font-clash">Our Vision</h3>
+                <p className="text-pale-straw/90">To be the leading sustainable tourism provider in Northeast India while empowering ex-servicemen and local communities.</p>
+              </div>
+            </div>
+          </FadeIn>
         </div>
-      </section>
+
+        {/* Decorative elements */}
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10"></div>
+        <div className="absolute top-0 left-0 w-64 h-64 bg-forest-green/5 rounded-full -ml-16 -mt-16 -z-10"></div>
+      </SectionContainer>
 
       {/* Our Journey Section */}
-      <section className="section bg-off-white">
-        <div className="container-custom">
-          <SectionTitle
-            title="Our Journey"
-            subtitle="How BeatlenutTrails evolved from a dream to reality"
-          />
-          
-          <div className="relative border-l-4 border-deep-forest-green ml-6 md:ml-0 md:mx-auto md:max-w-4xl pl-6 md:pl-0">
-            {/* Timeline items */}
-            <div className="mb-16 md:grid md:grid-cols-2 md:gap-12">
-              <div className="md:text-right md:pr-10 relative">
-                <div className="absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green md:left-auto md:right-0 transform md:translate-x-1/2"></div>
-                <h3 className="text-xl font-bold text-deep-forest-green mb-2">2018</h3>
-                <p className="text-dark-grey">
-                  After retiring from the Indian Army, Col. Arjun Sharma begins conducting small group tours in Meghalaya for friends and family.
-                </p>
-              </div>
-              <div className="mt-8 md:mt-0 md:pl-10 relative">
-                <div className="hidden md:block absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green transform translate-x-1/2"></div>
-              </div>
-            </div>
+      <SectionContainer
+        background="moss-green"
+        className="relative overflow-hidden"
+        id="journey-section"
+      >
+        <FadeIn direction="up" className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-deep-forest font-clash">Our Journey</h2>
+          <p className="text-deep-forest/80 max-w-3xl mx-auto">
+            How BeatlenutTrails evolved from a dream to reality
+          </p>
+        </FadeIn>
+        
+        <div className="relative max-w-4xl mx-auto mt-16">
+          {/* Timeline container */}
+          <div className="relative border-l-4 border-deep-forest ml-6 md:ml-[50%] pl-6">
+            <TimelineItem 
+              year="2018"
+              content="After retiring from the Indian Army, Col. Arjun Sharma begins conducting small group tours in Meghalaya for friends and family."
+              isLeft={true}
+              delay={0.1}
+            />
             
-            <div className="mb-16 md:grid md:grid-cols-2 md:gap-12">
-              <div className="md:text-right md:pr-10 relative md:col-start-1 md:row-start-2">
-                <div className="absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green md:left-auto md:right-0 transform md:translate-x-1/2"></div>
-              </div>
-              <div className="mt-8 md:mt-0 md:pl-10 relative md:col-start-2 md:row-start-2">
-                <div className="hidden md:block absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green transform translate-x-1/2"></div>
-                <h3 className="text-xl font-bold text-deep-forest-green mb-2">2019</h3>
-                <p className="text-dark-grey">
-                  The team expands as more ex-servicemen join, bringing expertise in logistics, operations, and local knowledge. First official tours launched.
-                </p>
-              </div>
-            </div>
+            <TimelineItem 
+              year="2019"
+              content="The team expands as more ex-servicemen join, bringing expertise in logistics, operations, and local knowledge. First official tours launched."
+              isLeft={false}
+              delay={0.3}
+            />
             
-            <div className="mb-16 md:grid md:grid-cols-2 md:gap-12">
-              <div className="md:text-right md:pr-10 relative">
-                <div className="absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green md:left-auto md:right-0 transform md:translate-x-1/2"></div>
-                <h3 className="text-xl font-bold text-deep-forest-green mb-2">2020-21</h3>
-                <p className="text-dark-grey">
-                  During the pandemic, the team pivots to develop sustainable tourism models and strengthens connections with local communities.
-                </p>
-              </div>
-              <div className="mt-8 md:mt-0 md:pl-10 relative">
-                <div className="hidden md:block absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green transform translate-x-1/2"></div>
-              </div>
-            </div>
+            <TimelineItem 
+              year="2020-21"
+              content="During the pandemic, the team pivots to develop sustainable tourism models and strengthens connections with local communities."
+              isLeft={true}
+              delay={0.5}
+            />
             
-            <div className="mb-16 md:grid md:grid-cols-2 md:gap-12">
-              <div className="md:text-right md:pr-10 relative md:col-start-1 md:row-start-4">
-                <div className="absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green md:left-auto md:right-0 transform md:translate-x-1/2"></div>
-              </div>
-              <div className="mt-8 md:mt-0 md:pl-10 relative md:col-start-2 md:row-start-4">
-                <div className="hidden md:block absolute top-0 -left-10 w-6 h-6 rounded-full bg-deep-forest-green transform translate-x-1/2"></div>
-                <h3 className="text-xl font-bold text-deep-forest-green mb-2">2022</h3>
-                <p className="text-dark-grey">
-                  BeatlenutTrails officially launches with expanded services across Northeast India. The ESM marketplace initiative begins.
-                </p>
-              </div>
-            </div>
+            <TimelineItem 
+              year="2022"
+              content="BeatlenutTrails officially launches with expanded services across Northeast India. The ESM marketplace initiative begins."
+              isLeft={false}
+              delay={0.7}
+            />
             
-            <div className="md:grid md:grid-cols-2 md:gap-12">
-              <div className="md:text-right md:pr-10 relative">
-                <div className="absolute top-0 -left-10 w-6 h-6 rounded-full bg-sunrise-orange md:left-auto md:right-0 transform md:translate-x-1/2"></div>
-                <h3 className="text-xl font-bold text-deep-forest-green mb-2">Today</h3>
-                <p className="text-dark-grey">
-                  With a growing team of ex-servicemen and local experts, we offer comprehensive travel experiences and a thriving marketplace supporting veteran entrepreneurs.
-                </p>
-              </div>
-              <div className="mt-8 md:mt-0 md:pl-10 relative">
-                <div className="hidden md:block absolute top-0 -left-10 w-6 h-6 rounded-full bg-sunrise-orange transform translate-x-1/2"></div>
-              </div>
-            </div>
+            <TimelineItem 
+              year="Today"
+              content="With a growing team of ex-servicemen and local experts, we offer comprehensive travel experiences and a thriving marketplace supporting veteran entrepreneurs."
+              isLeft={true}
+              delay={0.9}
+              isHighlighted={true}
+            />
           </div>
         </div>
-      </section>
+
+        {/* Decorative elements */}
+        <div className="absolute bottom-0 left-0 w-full h-12 bg-forest-green/10 -z-10"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pale-straw/10 rounded-full -mr-32 -mt-16 -z-10"></div>
+      </SectionContainer>
 
       {/* Our Team Section */}
-      <section id="team" className="section bg-white">
-        <div className="container-custom">
-          <SectionTitle
-            title="Meet Our Team"
-            subtitle="Ex-servicemen with a passion for Northeast India and expert local knowledge"
-          />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.id} className="card p-6 text-center">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 relative">
-                  <div className="absolute inset-0 bg-gray-300">
-                    {/* Placeholder or actual image */}
-                    <div className="w-full h-full flex items-center justify-center text-deep-forest-green">
-                      Photo
-                    </div>
+      <SectionContainer
+        background="pale-straw"
+        className="relative overflow-hidden"
+        id="team-section"
+      >
+        <FadeIn direction="up" className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-deep-forest font-clash">Meet Our Team</h2>
+          <p className="text-deep-forest/80 max-w-3xl mx-auto">
+            Ex-servicemen with a passion for Northeast India and expert local knowledge
+          </p>
+        </FadeIn>
+        
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member) => (
+            <StaggerItem key={member.id}>
+              <div className="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-moss-green/10 p-6 text-center h-full flex flex-col">
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-moss-green/20 bg-moss-green/20 flex items-center justify-center">
+                  <div className="text-4xl text-forest-green">
+                    {member.name.charAt(0)}
+                    {member.name.split(' ')[1]?.charAt(0)}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-deep-forest-green mb-1">{member.name}</h3>
-                <p className="text-sunrise-orange font-medium mb-3">{member.role}</p>
-                <p className="text-dark-grey">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="section bg-deep-forest-green text-off-white">
-        <div className="container-custom">
-          <SectionTitle
-            title="Our Values"
-            subtitle="The principles that guide us in everything we do"
-            className="text-off-white"
-          />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((value) => (
-              <div key={value.id} className="bg-white bg-opacity-10 p-6 rounded-lg">
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                <p>{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Mission Section */}
-      <section className="section bg-off-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            <div className="lg:col-span-2">
-              <div className="relative h-96 lg:h-full rounded-lg overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/mission-placeholder.jpg')] bg-cover bg-center">
-                  <div className="absolute inset-0 bg-gradient-to-t from-deep-forest-green/60 to-transparent"></div>
+                <h3 className="text-xl font-semibold text-deep-forest mb-1 font-clash">{member.name}</h3>
+                <p className="text-forest-green font-medium mb-3">{member.role}</p>
+                <p className="text-deep-forest/70 flex-grow">{member.bio}</p>
+                <div className="mt-4 pt-4 border-t border-moss-green/20 flex justify-center space-x-3">
+                  <a href="#" className="text-forest-green hover:text-deep-forest transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-forest-green hover:text-deep-forest transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-forest-green hover:text-deep-forest transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
                 </div>
               </div>
-            </div>
-            <div className="lg:col-span-3">
-              <div className="mb-10">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-deep-forest-green">Our Mission</h2>
-                <p className="text-lg mb-6">
-                  To showcase the unparalleled beauty and cultural richness of Northeast India through authentic, sustainable travel experiences while creating meaningful opportunities for ex-servicemen.
-                </p>
-                <p className="mb-6">
-                  We are committed to:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Providing exceptional travel experiences that highlight the region's natural wonders and cultural heritage</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Supporting ex-servicemen in their transition to civilian careers through our ESM marketplace</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Promoting sustainable tourism practices that benefit local communities and preserve the environment</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Building bridges between travelers and local communities for authentic cultural exchanges</span>
-                  </li>
-                </ul>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
+        {/* Decorative elements */}
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10"></div>
+      </SectionContainer>
+
+      {/* Our Values */}
+      <SectionContainer
+        background="deep-forest"
+        className="relative overflow-hidden"
+        id="values-section"
+      >
+        <FadeIn direction="up" className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pale-straw font-clash">Our Values</h2>
+          <p className="text-pale-straw/80 max-w-3xl mx-auto">
+            The principles that guide us in everything we do
+          </p>
+        </FadeIn>
+        
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {values.map((value) => (
+            <StaggerItem key={value.id}>
+              <div className="bg-pale-straw/10 p-6 rounded-lg border border-pale-straw/10 hover:bg-pale-straw/20 transition-colors duration-300">
+                <div className="text-4xl mb-4">{value.icon}</div>
+                <h3 className="text-xl font-semibold mb-3 text-pale-straw font-clash">{value.title}</h3>
+                <p className="text-pale-straw/90">{value.description}</p>
               </div>
-              
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-deep-forest-green">Our Vision</h2>
-                <p className="text-lg mb-6">
-                  To be the leading sustainable tourism provider in Northeast India while creating a thriving ecosystem that empowers ex-servicemen and local communities.
-                </p>
-                <p>
-                  We envision a future where:
-                </p>
-                <ul className="space-y-3 mt-3">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Northeast India is recognized globally for its unique natural beauty and cultural heritage</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Ex-servicemen have thriving second careers in tourism and related industries</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-sunrise-orange mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Sustainable tourism practices benefit local economies while preserving natural resources</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
+        {/* Decorative elements */}
+        <div className="absolute bottom-0 left-0 w-full h-12 bg-moss-green/10 -z-10"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pale-straw/5 rounded-full -mr-32 -mt-16 -z-10"></div>
+      </SectionContainer>
 
       {/* Call to Action */}
-      <section className="py-20 bg-sunrise-orange text-off-white">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Us on This Journey</h2>
-          <p className="text-xl max-w-3xl mx-auto mb-10">
+      <SectionContainer
+        background="forest-green"
+        className="relative overflow-hidden text-center"
+        id="cta-section"
+      >
+        <FadeIn direction="up">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-pale-straw font-clash">Join Us on This Journey</h2>
+          <p className="text-xl max-w-3xl mx-auto mb-10 text-pale-straw/90">
             Experience Northeast India with those who know it best, while supporting a meaningful mission.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
+          <div className="flex flex-wrap justify-center gap-6">
+            <a
               href="/services"
-              variant="secondary"
-              className="border-2 border-off-white text-off-white hover:bg-off-white hover:text-sunrise-orange"
+              className="px-8 py-3 bg-transparent border-2 border-pale-straw text-pale-straw font-medium rounded-md hover:bg-pale-straw hover:text-forest-green transition-colors duration-300"
             >
               Explore Our Services
-            </Button>
-            <Button
+            </a>
+            <a
               href="/contact"
-              variant="primary"
-              className="bg-deep-forest-green hover:bg-vibrant-teal"
+              className="px-8 py-3 bg-deep-forest text-pale-straw font-medium rounded-md hover:bg-deep-forest/80 transition-colors duration-300"
             >
               Contact Us
-            </Button>
+            </a>
           </div>
-        </div>
-      </section>
+        </FadeIn>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-12 bg-pale-straw/10 -z-10"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-deep-forest/40 rounded-full -mr-32 -mb-16 -z-10"></div>
+      </SectionContainer>
     </>
+  );
+}
+
+// Timeline Item Component
+function TimelineItem({ 
+  year, 
+  content, 
+  isLeft = true,
+  delay = 0,
+  isHighlighted = false
+}: { 
+  year: string; 
+  content: string; 
+  isLeft?: boolean;
+  delay?: number;
+  isHighlighted?: boolean;
+}) {
+  return (
+    <div className="mb-12 relative">
+      <div className={`absolute top-0 -left-[14px] w-6 h-6 rounded-full ${isHighlighted ? 'bg-forest-green' : 'bg-deep-forest'} shadow-md`}></div>
+      
+      <FadeIn 
+        direction={isLeft ? "right" : "left"} 
+        delay={delay}
+        className={`md:absolute ${isLeft ? 'md:right-[calc(100%+24px)] md:text-right md:top-0 md:w-[calc(100%-24px)] md:pr-6' : 'md:hidden'}`}
+      >
+        <h3 className="text-xl font-bold text-deep-forest mb-2 font-clash">{year}</h3>
+        <p className="text-deep-forest/80">{content}</p>
+      </FadeIn>
+      
+      <FadeIn 
+        direction={isLeft ? "right" : "left"} 
+        delay={delay}
+        className={isLeft ? 'md:hidden' : 'hidden md:block'}
+      >
+        <h3 className="text-xl font-bold text-deep-forest mb-2 font-clash">{year}</h3>
+        <p className="text-deep-forest/80">{content}</p>
+      </FadeIn>
+    </div>
   );
 }

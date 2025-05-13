@@ -135,11 +135,11 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-deep-forest-green pt-32 pb-20 md:py-32">
+      <section className="relative bg-deep-forest-green pt-40 pb-28 md:pt-48 md:pb-36">
         <div className="absolute inset-0 bg-[url('/images/hero-placeholder.jpg')] bg-cover bg-center opacity-20"></div>
         <div className="container-custom relative z-10">
           <div className="max-w-3xl mx-auto text-center text-off-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-8">
               Our Services & Experiences
             </h1>
             <p className="text-xl mb-8">

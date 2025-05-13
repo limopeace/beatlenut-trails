@@ -7,6 +7,7 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
   children: ReactNode;
   type?: 'button' | 'submit' | 'reset';
@@ -19,6 +20,7 @@ const Button = ({
   href,
   onClick,
   variant = 'primary',
+  size = 'md',
   className = '',
   children,
   type = 'button',
@@ -26,7 +28,7 @@ const Button = ({
   disabled = false,
   ariaLabel,
 }: ButtonProps) => {
-  const baseClasses = `btn btn-${variant} ${fullWidth ? 'w-full' : ''} ${
+  const baseClasses = `btn btn-${variant} btn-${size} ${fullWidth ? 'w-full' : ''} ${
     disabled ? 'opacity-50 cursor-not-allowed' : ''
   } ${className}`;
 
