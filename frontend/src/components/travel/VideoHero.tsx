@@ -59,10 +59,38 @@ const VideoHero = () => {
   // Ensure video plays when component mounts
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error('Video autoplay failed:', error);
-      });
+      // Add event listeners for debugging
+      videoRef.current.addEventListener('loadstart', () => console.log('Video loading started'));
+      videoRef.current.addEventListener('loadeddata', () => console.log('Video data loaded'));
+      videoRef.current.addEventListener('playing', () => console.log('Video is playing'));
+      videoRef.current.addEventListener('error', (e) => console.error('Video error:', videoRef.current?.error));
+      
+      // Try to play the video
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => console.log('Video playback started successfully'))
+          .catch(error => {
+            console.error('Video autoplay failed:', error);
+            // Try again after a short delay
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(e => console.error('Retry failed:', e));
+              }
+            }, 1000);
+          });
+      }
     }
+    
+    // Cleanup event listeners
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.removeEventListener('loadstart', () => {});
+        videoRef.current.removeEventListener('loadeddata', () => {});
+        videoRef.current.removeEventListener('playing', () => {});
+        videoRef.current.removeEventListener('error', () => {});
+      }
+    };
   }, []);
 
   return (
@@ -76,8 +104,12 @@ const VideoHero = () => {
           muted
           loop
           playsInline
+          preload="auto"
+          playsinline
+          disablePictureInPicture
+          poster="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg"
         >
-          <source src="/videos/12542049_3840_2160_60fps.mp4" type="video/mp4" />
+          <source src="/12542049_3840_2160_60fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50"></div>
