@@ -42,7 +42,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-6">
           <Link
             href="/"
             className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
@@ -50,34 +50,40 @@ const Header = () => {
             Home
           </Link>
           <Link
-            href="/about"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
-          >
-            About
-          </Link>
-          <Link
-            href="/services"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
-          >
-            Services
-          </Link>
-          <Link
-            href="/destinations"
+            href="#destinations"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
           >
             Destinations
           </Link>
           <Link
-            href="/packages"
+            href="/bike-rentals"
+            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+          >
+            Bike Rentals
+          </Link>
+          <Link
+            href="#services"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+          >
+            Services
+          </Link>
+          <Link
+            href="#packages"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
           >
             Packages
-          </Link>
-          <Link
-            href="/blog"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
-          >
-            Blog
           </Link>
           <Link
             href="/contact"
@@ -115,39 +121,44 @@ const Header = () => {
               Home
             </Link>
             <Link
-              href="/about"
+              href="#destinations"
               className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/destinations"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Destinations
             </Link>
             <Link
-              href="/packages"
+              href="/bike-rentals"
               className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Packages
+              Bike Rentals
             </Link>
             <Link
-              href="/blog"
+              href="#services"
               className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
-              Blog
+              Services
+            </Link>
+            <Link
+              href="#packages"
+              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Packages
             </Link>
             <Link
               href="/contact"
