@@ -11,7 +11,7 @@ const services = [
     price: '₹5,000 per session',
     description: 'Comprehensive security assessment and consultation for businesses, events, and residential properties.',
     seller: 'Col. Amar Joshi (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/1025/600/400',
     category: 'Security Services',
     location: 'Delhi NCR',
   },
@@ -21,7 +21,7 @@ const services = [
     price: '₹15,000 per day',
     description: 'Corporate leadership training based on military principles, team building, and crisis management.',
     seller: 'Brig. Harish Mehta (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/1062/600/400',
     category: 'Training',
     location: 'Mumbai',
   },
@@ -31,7 +31,7 @@ const services = [
     price: '₹7,500 per day',
     description: 'Expert logistics and supply chain optimization services for businesses of all sizes.',
     seller: 'Lt. Col. Priya Sharma (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/116/600/400',
     category: 'Consulting',
     location: 'Bengaluru',
   },
@@ -41,7 +41,7 @@ const services = [
     price: '₹2,000 per session',
     description: 'Personalized fitness programs and combat training for individuals and groups.',
     seller: 'Capt. Vikram Singh (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/176/600/400',
     category: 'Training',
     location: 'Pune',
   },
@@ -51,7 +51,7 @@ const services = [
     price: '₹3,500 per session',
     description: 'Expert advice on sustainable farming practices, crop management, and agricultural business development.',
     seller: 'Maj. Deepak Nair (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/164/600/400',
     category: 'Agriculture',
     location: 'Kerala',
   },
@@ -61,7 +61,7 @@ const services = [
     price: 'Contact for pricing',
     description: 'Complete event security planning and execution services for corporate and public events.',
     seller: 'Wing Cdr. Rajiv Malhotra (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/432/600/400',
     category: 'Security Services',
     location: 'Pan India',
   },
@@ -71,7 +71,7 @@ const services = [
     price: '₹12,000 per session',
     description: 'Specialized training for organizations on disaster preparedness, response, and recovery.',
     seller: 'Lt. Gen. Sunil Kumar (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/28/600/400',
     category: 'Training',
     location: 'Chennai',
   },
@@ -81,7 +81,7 @@ const services = [
     price: 'Based on assessment',
     description: 'Professional repair and maintenance services for technical and electronic equipment.',
     seller: 'Flt. Lt. Rahul Desai (Retd.)',
-    image: '/images/hero-placeholder.jpg',
+    image: 'https://picsum.photos/id/250/600/400',
     category: 'Technical Services',
     location: 'Hyderabad',
   },
@@ -96,22 +96,46 @@ const locations = Array.from(new Set(services.map(service => service.location)))
 export default function ServicesPage() {
   return (
     <>
-      {/* Page Header */}
-      <section className="bg-deep-forest-green pt-32 pb-12 md:py-32">
-        <div className="container-custom">
+      {/* Expanded Hero Section with background image */}
+      <section className="relative bg-deep-forest-green pt-32 pb-20 md:py-48">
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-forest/90 to-deep-forest/70 z-10"></div>
+        <div className="absolute inset-0">
+          <img 
+            src="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg"
+            alt="Ex-Servicemen Services Background"
+            className="w-full h-full object-cover opacity-30"
+          />
+        </div>
+        <div className="container-custom relative z-20">
           <div className="max-w-3xl mx-auto text-center text-off-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Professional Services by Ex-Servicemen
             </h1>
-            <p className="text-xl mb-0">
+            <p className="text-xl md:text-2xl mb-8 text-off-white/90 max-w-2xl mx-auto">
               Discover expert services offered by skilled veterans with years of experience and disciplined training
             </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button
+                href="#services-list"
+                variant="secondary"
+                className="border-2 border-off-white text-off-white hover:bg-off-white hover:text-deep-forest-green px-6 py-3 text-lg"
+              >
+                Explore Services
+              </Button>
+              <Button
+                href="/esm-portal/register"
+                variant="primary"
+                className="bg-vibrant-teal text-off-white hover:bg-vibrant-teal/90 px-6 py-3 text-lg"
+              >
+                Register as Provider
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 md:py-16" id="services-list">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
@@ -195,7 +219,7 @@ export default function ServicesPage() {
                 </div>
                 
                 <Button 
-                  className="w-full bg-deep-forest-green hover:bg-vibrant-teal"
+                  className="w-full bg-vibrant-teal hover:bg-vibrant-teal/90 text-white font-medium py-3 rounded-md shadow-sm transition-colors duration-200"
                   variant="primary"
                 >
                   Apply Filters
@@ -319,7 +343,11 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Security Services */}
             <div className="card p-6">
-              <div className="text-4xl mb-4 text-deep-forest-green">🛡️</div>
+              <div className="w-12 h-12 bg-deep-forest-green/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-deep-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
               <h3 className="text-xl font-semibold mb-3">Security Services</h3>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
@@ -351,7 +379,11 @@ export default function ServicesPage() {
 
             {/* Training & Development */}
             <div className="card p-6">
-              <div className="text-4xl mb-4 text-deep-forest-green">🎯</div>
+              <div className="w-12 h-12 bg-deep-forest-green/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-deep-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
               <h3 className="text-xl font-semibold mb-3">Training & Development</h3>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
@@ -383,7 +415,11 @@ export default function ServicesPage() {
 
             {/* Consulting Services */}
             <div className="card p-6">
-              <div className="text-4xl mb-4 text-deep-forest-green">📊</div>
+              <div className="w-12 h-12 bg-deep-forest-green/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-deep-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
               <h3 className="text-xl font-semibold mb-3">Consulting Services</h3>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">

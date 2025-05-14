@@ -11,7 +11,7 @@ import Testimonial from '@/components/travel/Testimonial';
 import TravelPackages from '@/components/travel/TravelPackages';
 import PhotoSwipeGallery from '@/components/travel/PhotoSwipeGallery';
 import VideoPlayer from '@/components/travel/VideoPlayer';
-import BikeRentals from '@/components/travel/BikeRentals';
+import BikeRentalsSection from '@/components/travel/BikeRentalsSection';
 import EnhancedMarqueeText from '@/components/travel/EnhancedMarqueeText';
 import InstagramPlaceholder from '@/components/travel/InstagramPlaceholder';
 import AboutSection from '@/components/travel/AboutSection';
@@ -158,12 +158,14 @@ const Home = () => {
       {/* About Section */}
       <AboutSection />
       
-      {/* Bike Rentals Section */}
-      <BikeRentals />
-      
       {/* Services Section */}
       <div id="services">
         <FeaturedServices />
+      </div>
+      
+      {/* Bike Rentals Section - Full-width section with proper styles */}
+      <div className="relative w-full bg-gray-900">
+        <BikeRentalsSection />
       </div>
       
       {/* Tour Packages Section */}
@@ -171,14 +173,14 @@ const Home = () => {
         <TravelPackages />
       </div>
       
-      {/* Gallery Section */}
+      {/* Gallery Section - Temporarily commented out
       <div id="gallery">
         <PhotoSwipeGallery 
           tabs={galleryTabs}
           title="Our Gallery"
           subtitle="Explore breathtaking views and experiences from Northeast India"
         />
-      </div>
+      </div> */}
       
       {/* Testimonials Section */}
       <Testimonial />

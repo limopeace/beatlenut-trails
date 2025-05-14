@@ -3,6 +3,23 @@ import Image from 'next/image';
 import Button from '@/components/common/Button';
 import SectionTitle from '@/components/common/SectionTitle';
 
+// Function to get product images from our real images collection
+const getProductImage = (id: number) => {
+  const realImages = [
+    '/images/real/pexels-kanishka-211910-679492-min.jpg',
+    '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
+    '/images/real/pexels-nans1419-20519339-min.jpg',
+    '/images/real/pexels-dizitalboost-11622977-min.jpg',
+    '/images/real/pexels-travelerchitect-18736328-min.jpg',
+    '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    '/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg',
+    '/images/real/pexels-shubhendu-singh-1278012-2439742-min.jpg',
+  ];
+  
+  // Use modulo to cycle through the available images
+  return realImages[(id - 1) % realImages.length];
+};
+
 // Sample product data (to be replaced with API calls in the future)
 const products = [
   {
@@ -94,10 +111,10 @@ export default function ProductsPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-deep-forest-green pt-32 pb-12 md:py-32">
+      <section className="bg-deep-forest pt-32 pb-12 md:py-32">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center text-off-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <div className="max-w-3xl mx-auto text-center text-pale-straw">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-clash">
               ESM Marketplace Products
             </h1>
             <p className="text-xl mb-0">
@@ -192,7 +209,7 @@ export default function ProductsPage() {
                 </div>
                 
                 <Button 
-                  className="w-full bg-deep-forest-green hover:bg-vibrant-teal"
+                  className="w-full bg-deep-forest text-pale-straw hover:bg-forest-green"
                   variant="primary"
                 >
                   Apply Filters
@@ -233,15 +250,14 @@ export default function ProductsPage() {
                 {products.map((product) => (
                   <div key={product.id} className="card group">
                     <div className="relative h-48 overflow-hidden rounded-t-lg">
-                      <Image 
-                        src={product.image} 
+                      <img 
+                        src={getProductImage(product.id)}
                         alt={product.name}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="p-4">
-                      <span className="inline-block px-2 py-1 text-xs font-medium bg-light-grey text-deep-forest-green rounded-full mb-2">
+                      <span className="inline-block px-2 py-1 text-xs font-medium bg-moss-green/20 text-deep-forest rounded-full mb-2">
                         {product.category}
                       </span>
                       <p className="text-sm text-gray-500 mb-1">{product.seller}</p>
@@ -298,9 +314,9 @@ export default function ProductsPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-vibrant-teal text-white">
+      <section className="py-16 bg-forest-green text-pale-straw">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-clash">
             Are You an Ex-Serviceman?
           </h2>
           <p className="text-xl max-w-3xl mx-auto mb-8">
@@ -309,7 +325,7 @@ export default function ProductsPage() {
           <Button
             href="/esm-portal/register"
             variant="secondary"
-            className="border-2 border-white text-white hover:bg-white hover:text-vibrant-teal"
+            className="border-2 border-pale-straw text-pale-straw hover:bg-pale-straw hover:text-deep-forest shadow-md"
           >
             Register as a Seller
           </Button>
