@@ -3,32 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import MobileAdminNav from '@/components/layout/MobileAdminNav';
+import { AdminProviders } from './providers';
+import { useAdminAuth } from '@/context/AdminAuthContext';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
+// Inner layout component that uses the auth context
+const AdminLayoutInner: React.FC<AdminLayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [adminName, setAdminName] = useState('');
   const pathname = usePathname();
   const router = useRouter();
-  
-  // Check authentication status on mount
-  useEffect(() => {
-    const adminToken = Cookies.get('admin_token');
-    const name = Cookies.get('admin_name');
-    
-    if (adminToken && pathname !== '/admin/login') {
-      setIsLoggedIn(true);
-      setAdminName(name || 'Admin User');
-    } else if (!adminToken && pathname !== '/admin/login') {
-      router.push('/admin/login');
-    }
-  }, [pathname, router]);
+  const { user, isAuthenticated, loading, logout } = useAdminAuth();
   
   // If on login page, just render children
   if (pathname === '/admin/login') {
@@ -36,9 +24,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   }
   
   const handleLogout = () => {
-    Cookies.remove('admin_token');
-    Cookies.remove('admin_name');
-    router.push('/admin/login');
+    logout();
   };
   
   const toggleSidebar = () => {
@@ -57,7 +43,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     { name: 'Settings', path: '/admin/settings', icon: 'fas fa-cog' },
   ];
   
-  if (!isLoggedIn) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <div className="text-center">
@@ -68,6 +54,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         </div>
       </div>
     );
+  }
+  
+  if (!isAuthenticated && pathname !== '/admin/login') {
+    router.push('/admin/login');
+    return null;
   }
   
   // Track window width for responsive design
@@ -167,9 +158,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               <div className="relative">
                 <button className="flex items-center text-gray-700 focus:outline-none">
                   <div className="flex items-center">
-                    <span className="hidden md:inline-block text-sm mr-2">{adminName}</span>
+                    <span className="hidden md:inline-block text-sm mr-2">{user?.name || 'Admin'}</span>
                     <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-                      {adminName.charAt(0)}
+                      {(user?.name || 'A').charAt(0)}
                     </div>
                   </div>
                 </button>
@@ -187,6 +178,15 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <MobileAdminNav />
       </div>
     </div>
+  );
+};
+
+// Wrapper component that provides the auth context
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
+  return (
+    <AdminProviders>
+      <AdminLayoutInner>{children}</AdminLayoutInner>
+    </AdminProviders>
   );
 };
 

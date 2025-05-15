@@ -288,13 +288,74 @@ const ApprovalCard = ({
 // Main page component
 const ApprovalsPage: React.FC = () => {
   const router = useRouter();
-  const [approvals, setApprovals] = useState(MOCK_APPROVALS);
-  const [filteredApprovals, setFilteredApprovals] = useState(MOCK_APPROVALS);
+  const [approvals, setApprovals] = useState<any[]>([]);
+  const [filteredApprovals, setFilteredApprovals] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [stats, setStats] = useState({
+    totalPending: 0,
+    sellerPending: 0,
+    productPending: 0,
+    servicePending: 0
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [windowWidth, setWindowWidth] = useState<number>(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
+  
+  // Load approvals data from API
+  useEffect(() => {
+    const fetchApprovals = async () => {
+      try {
+        setIsLoading(true);
+        
+        // For development/testing, use mock data
+        if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
+          setApprovals(MOCK_APPROVALS);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Import dynamically to prevent server-side import errors
+        const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+        
+        // Get pending approvals
+        const response = await ApprovalsService.getPendingApprovals(
+          {
+            type: typeFilter !== 'all' ? typeFilter : undefined,
+            search: searchTerm || undefined
+          },
+          currentPage,
+          10
+        );
+        
+        setApprovals(response.approvals);
+        setTotalPages(response.pagination.totalPages);
+        
+        // Get stats
+        const statsData = await ApprovalsService.getApprovalStats();
+        setStats({
+          totalPending: statsData.totalPending,
+          sellerPending: statsData.sellerPending,
+          productPending: statsData.productPending,
+          servicePending: statsData.servicePending
+        });
+        
+      } catch (err) {
+        console.error('Error fetching approvals:', err);
+        setError('Failed to load approvals. Please try again.');
+        // Fallback to mock data in case of error
+        setApprovals(MOCK_APPROVALS);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchApprovals();
+  }, [typeFilter, searchTerm, currentPage]);
   
   // Track window size
   useEffect(() => {
@@ -311,33 +372,10 @@ const ApprovalsPage: React.FC = () => {
   
   const isMobile = windowWidth < 768;
   
-  // Filter approvals based on search and type filter
+  // Set filtered approvals when approvals change
   useEffect(() => {
-    let filtered = approvals;
-    
-    // Filter by type
-    if (typeFilter !== 'all') {
-      filtered = filtered.filter(item => item.type === typeFilter);
-    }
-    
-    // Filter by search term
-    if (searchTerm) {
-      filtered = filtered.filter(item => {
-        const details = item.details;
-        const searchLower = searchTerm.toLowerCase();
-        
-        return (
-          (details.name?.toLowerCase().includes(searchLower)) ||
-          (details.sellerName?.toLowerCase().includes(searchLower)) ||
-          (details.businessName?.toLowerCase().includes(searchLower)) ||
-          (details.productName?.toLowerCase().includes(searchLower)) ||
-          (details.category?.toLowerCase().includes(searchLower))
-        );
-      });
-    }
-    
-    setFilteredApprovals(filtered);
-  }, [approvals, searchTerm, typeFilter]);
+    setFilteredApprovals(approvals);
+  }, [approvals]);
   
   const handleViewDetails = (id: string) => {
     const approval = approvals.find(a => a.id === id);
@@ -356,22 +394,87 @@ const ApprovalsPage: React.FC = () => {
     }
   };
   
-  const handleApprove = (id: string) => {
-    // In a real app, make API call to approve
-    setApprovals(
-      approvals.map(item => 
-        item.id === id ? { ...item, status: 'approved' } : item
-      )
-    );
+  const handleApprove = async (id: string) => {
+    try {
+      // For development/testing without API
+      if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
+        setApprovals(
+          approvals.map(item => 
+            item.id === id ? { ...item, status: 'approved' } : item
+          )
+        );
+        return;
+      }
+      
+      // Import dynamically to prevent server-side import errors
+      const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+      
+      // Call API to approve
+      await ApprovalsService.approveRequest(id);
+      
+      // Update the local state
+      setApprovals(
+        approvals.map(item => 
+          item.id === id ? { ...item, status: 'approved' } : item
+        )
+      );
+      
+      // Refresh stats
+      const statsData = await ApprovalsService.getApprovalStats();
+      setStats({
+        totalPending: statsData.totalPending,
+        sellerPending: statsData.sellerPending,
+        productPending: statsData.productPending,
+        servicePending: statsData.servicePending
+      });
+      
+    } catch (err) {
+      console.error('Error approving request:', err);
+      setError('Failed to approve request. Please try again.');
+    }
   };
   
-  const handleReject = (id: string) => {
-    // In a real app, make API call to reject
-    setApprovals(
-      approvals.map(item => 
-        item.id === id ? { ...item, status: 'rejected' } : item
-      )
-    );
+  const handleReject = async (id: string) => {
+    try {
+      // For development/testing without API
+      if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
+        setApprovals(
+          approvals.map(item => 
+            item.id === id ? { ...item, status: 'rejected' } : item
+          )
+        );
+        return;
+      }
+      
+      // Import dynamically to prevent server-side import errors
+      const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+      
+      // In a real implementation, we'd prompt for rejection reason
+      const reason = 'Does not meet requirements'; // This would come from a modal dialog
+      
+      // Call API to reject
+      await ApprovalsService.rejectRequest(id, reason);
+      
+      // Update the local state
+      setApprovals(
+        approvals.map(item => 
+          item.id === id ? { ...item, status: 'rejected' } : item
+        )
+      );
+      
+      // Refresh stats
+      const statsData = await ApprovalsService.getApprovalStats();
+      setStats({
+        totalPending: statsData.totalPending,
+        sellerPending: statsData.sellerPending,
+        productPending: statsData.productPending,
+        servicePending: statsData.servicePending
+      });
+      
+    } catch (err) {
+      console.error('Error rejecting request:', err);
+      setError('Failed to reject request. Please try again.');
+    }
   };
   
   return (
@@ -422,26 +525,48 @@ const ApprovalsPage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="text-sm text-gray-500">Total Pending</div>
-            <div className="text-2xl font-bold">{
-              approvals.filter(a => a.status === 'pending').length
-            }</div>
+            <div className="text-2xl font-bold">
+              {isLoading ? '...' : stats.totalPending}
+            </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="text-sm text-gray-500">Seller Registrations</div>
             <div className="text-2xl font-bold text-blue-600">
-              {approvals.filter(a => a.type === 'seller_registration' && a.status === 'pending').length}
+              {isLoading ? '...' : stats.sellerPending}
             </div>
           </div>
           <div className="hidden md:block bg-white p-4 rounded-lg shadow-sm">
             <div className="text-sm text-gray-500">Product Listings</div>
             <div className="text-2xl font-bold text-green-600">
-              {approvals.filter(a => a.type === 'product_listing' && a.status === 'pending').length}
+              {isLoading ? '...' : stats.productPending}
             </div>
           </div>
         </div>
         
+        {/* Error message */}
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+            <span className="block sm:inline">{error}</span>
+            <button 
+              className="absolute top-0 bottom-0 right-0 px-4 py-3"
+              onClick={() => setError(null)}
+            >
+              <span className="text-red-500">×</span>
+            </button>
+          </div>
+        )}
+        
+        {/* Loading indicator */}
+        {isLoading && (
+          <div className="flex justify-center my-8">
+            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600 border-t-transparent" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+        
         {/* No results message */}
-        {filteredApprovals.length === 0 && (
+        {!isLoading && filteredApprovals.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm p-8 text-center">
             <FontAwesomeIcon icon={faExclamationTriangle} className="text-yellow-500 text-4xl mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-1">No approvals found</h3>
@@ -454,7 +579,7 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* Mobile view */}
-        {isMobile && filteredApprovals.length > 0 && (
+        {!isLoading && isMobile && filteredApprovals.length > 0 && (
           <div className="space-y-4">
             {filteredApprovals.map(approval => (
               <ApprovalCard
@@ -469,7 +594,7 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* Desktop view */}
-        {!isMobile && filteredApprovals.length > 0 && (
+        {!isLoading && !isMobile && filteredApprovals.length > 0 && (
           <div className="bg-white shadow rounded-lg overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -580,6 +705,65 @@ const ApprovalsPage: React.FC = () => {
                 })}
               </tbody>
             </table>
+          </div>
+        )}
+        
+        {/* Pagination */}
+        {!isLoading && filteredApprovals.length > 0 && totalPages > 1 && (
+          <div className="mt-6 flex justify-center">
+            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
+                  currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                }`}
+              >
+                <span className="sr-only">Previous</span>
+                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                // Calculate page numbers to show for pagination
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else {
+                  // Center current page in pagination when possible
+                  const startPage = Math.max(1, Math.min(currentPage - 2, totalPages - 4));
+                  pageNum = startPage + i;
+                }
+                
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium ${
+                      currentPage === pageNum
+                        ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                        : 'text-gray-500 hover:bg-gray-50'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
+                  currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                }`}
+              >
+                <span className="sr-only">Next</span>
+                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </nav>
           </div>
         )}
       </div>

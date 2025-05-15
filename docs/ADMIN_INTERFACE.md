@@ -11,6 +11,38 @@ The admin interface follows a responsive design approach, ensuring full function
 - Approval management for various marketplace entities
 - Account and notification settings
 
+## Architecture Overview
+
+The admin interface follows a modern client-server architecture with the following components:
+
+1. **Frontend**: Next.js application with React components
+2. **Backend**: Node.js with Express API endpoints
+3. **Authentication**: JWT-based token authentication
+4. **Data Layer**: MongoDB with Mongoose as the ORM
+
+## API Integration
+
+The frontend and backend are integrated through a comprehensive service layer:
+
+```
+/services/api/
+  ├── apiClient.ts         # Base Axios configuration with interceptors
+  ├── index.ts             # Exports all services
+  ├── authService.ts       # Authentication service
+  ├── approvalsService.ts  # Approval management service
+  └── sellersService.ts    # Seller management service
+```
+
+### Authentication Flow
+
+The admin authentication system is implemented with:
+
+1. React context provider for global auth state
+2. JWT tokens stored in secure cookies
+3. API interceptors for token management
+4. Automatic redirection on authentication failures
+5. Protected routes with authentication checks
+
 ## Key Components
 
 ### 1. Dashboard
@@ -105,16 +137,70 @@ Admin authentication is managed through:
 
 - Built using Next.js App Router architecture
 - Responsive design using Tailwind CSS
-- State management with React hooks
-- Authentication handled via cookies
+- State management with React contexts and hooks
+- Authentication handled via JWT tokens in secure cookies
 - Mobile-specific components for optimal user experience
+
+### API Services
+
+The frontend interfaces with the backend through specialized service modules:
+
+1. **apiClient**: Central Axios instance with:
+   - Base URL configuration from environment variables
+   - Auth token management via interceptors
+   - Error handling with appropriate redirects
+   - Request/response transformations
+
+2. **authService**: Handles authentication operations:
+   - Admin login with credential validation
+   - Token verification and validation
+   - Session management
+   - User profile information
+
+3. **approvalsService**: Manages approval workflows:
+   - Retrieves pending approvals with filtering options
+   - Handles approval/rejection operations
+   - Manages approval statistics
+   - Document verification capabilities
+
+4. **sellersService**: Provides seller management:
+   - Seller listing with filtering and search
+   - Seller verification operations
+   - Detailed seller information retrieval
+   - Seller statistics
+
+### Environment Configuration
+
+Environment configuration is managed through `.env` files:
+
+```
+# Development (.env.development)
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
+NEXT_PUBLIC_USE_REAL_API=false  # Toggle API vs mock data
+
+# Production (.env.production)
+NEXT_PUBLIC_API_URL=/api
+NEXT_PUBLIC_USE_REAL_API=true
+```
+
+### Fallback Mechanisms
+
+For development and testing purposes:
+- Mock data is provided when real API is unavailable
+- Development flags to toggle between mock and real data
+- Graceful error handling with appropriate UI feedback
 
 ## Future Enhancements
 
 Planned improvements to the admin interface include:
 
-- Enhanced analytics dashboard
-- Batch approval workflows for high-volume periods
-- Integrated audit logging for admin actions
-- Advanced filtering for larger datasets
+- Enhanced analytics dashboard with visual data representations
+- Batch approval workflows for high-volume periods (API already implemented)
+- Integrated audit logging for admin actions with timestamped records
+- Advanced filtering for larger datasets with saved filter presets
 - Customizable admin permissions by role
+- Real-time notifications using WebSockets
+- Multi-factor authentication for enhanced security
+- Document preview and annotation tools
+- Automated fraud detection systems
+- Report generation with exportable formats
