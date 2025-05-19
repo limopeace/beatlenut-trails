@@ -94,7 +94,7 @@ const VideoHero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen overflow-hidden pt-16 md:pt-20">
+    <section className="relative min-h-[550px] h-[95vh] md:h-screen overflow-hidden pt-16 md:pt-20">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -105,29 +105,28 @@ const VideoHero = () => {
           loop
           playsInline
           preload="auto"
-          playsinline
           disablePictureInPicture
           poster="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg"
         >
-          <source src="/12542049_3840_2160_60fps.mp4" type="video/mp4" />
+          <source src="/videos/12542049_3840_2160_60fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-deep-forest/70 via-deep-forest/50 to-deep-forest/80"></div>
       </div>
       
       {/* Content Container */}
       <div className="relative z-10 h-full w-full flex flex-col justify-center items-center">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
           {slideTexts.map((text, index) => (
             <div 
               key={index}
-              className={`max-w-xl mx-auto text-center ${
+              className={`max-w-[90%] xs:max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-center ${
                 currentText === index ? 'block' : 'hidden'
               }`}
             >
               {/* Subtitle */}
               <span
-                className={`inline-block text-white/90 text-lg md:text-xl mb-2 font-serif italic transition-all duration-700 ${
+                className={`inline-block text-pale-straw text-base sm:text-lg md:text-xl mb-1 sm:mb-2 font-serif italic transition-all duration-700 ${
                   animationPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -136,7 +135,7 @@ const VideoHero = () => {
               
               {/* Main Heading */}
               <h1 
-                className={`text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-white mb-6 leading-tight transition-all duration-700 ${
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-clash font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 leading-tight transition-all duration-700 uppercase ${
                   animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -145,7 +144,7 @@ const VideoHero = () => {
               
               {/* Description */}
               <p 
-                className={`text-xl md:text-2xl text-white/90 mb-10 font-light leading-relaxed transition-all duration-700 ${
+                className={`text-base sm:text-lg md:text-xl lg:text-2xl text-pale-straw mb-6 md:mb-8 lg:mb-10 font-light leading-relaxed transition-all duration-700 ${
                   animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -154,23 +153,23 @@ const VideoHero = () => {
               
               {/* Action Buttons */}
               <div 
-                className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-700 ${
+                className={`flex flex-col xs:flex-row justify-center gap-3 sm:gap-4 transition-all duration-700 w-full sm:w-auto ${
                   animationPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
                 <Link 
                   href="/travel-listings"
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-lg font-medium tracking-wide gap-2"
+                  className="w-full sm:w-auto bg-forest-green hover:bg-moss-green text-pale-straw px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-base sm:text-lg font-medium tracking-wide gap-2"
                 >
-                  <FontAwesomeIcon icon={faCalendarAlt} className="w-5 h-5" />
+                  <FontAwesomeIcon icon={faCalendarAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Explore Tours</span>
                 </Link>
 
                 <Link 
                   href="/activities"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-3 rounded-full inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-lg font-medium tracking-wide gap-2"
+                  className="w-full sm:w-auto bg-transparent border-2 border-pale-straw text-pale-straw hover:bg-pale-straw hover:text-deep-forest px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-base sm:text-lg font-medium tracking-wide gap-2"
                 >
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-5 h-5" />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Activities</span>
                 </Link>
               </div>
@@ -180,24 +179,32 @@ const VideoHero = () => {
       </div>
       
       {/* Feature Icons at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-sm z-20 py-4">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
-            <div className="flex flex-col items-center text-white text-center">
-              <FontAwesomeIcon icon={faMountain} className="w-6 h-6 mb-2" />
-              <span className="text-sm md:text-base">Trekking & Hiking</span>
+      <div className="absolute bottom-0 left-0 right-0 bg-deep-forest/90 backdrop-blur-sm z-20 py-2 sm:py-3 md:py-4">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 xs:gap-2 sm:gap-3 md:gap-4">
+            <div className="flex flex-col items-center text-pale-straw text-center">
+              <div className="bg-forest-green p-1.5 sm:p-2 rounded-full mb-1 sm:mb-2">
+                <FontAwesomeIcon icon={faMountain} className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <span className="text-xs sm:text-sm md:text-base">Trekking & Hiking</span>
             </div>
-            <div className="flex flex-col items-center text-white text-center">
-              <FontAwesomeIcon icon={faCamera} className="w-6 h-6 mb-2" />
-              <span className="text-sm md:text-base">Photography Tours</span>
+            <div className="flex flex-col items-center text-pale-straw text-center">
+              <div className="bg-forest-green p-1.5 sm:p-2 rounded-full mb-1 sm:mb-2">
+                <FontAwesomeIcon icon={faCamera} className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <span className="text-xs sm:text-sm md:text-base">Photography Tours</span>
             </div>
-            <div className="flex flex-col items-center text-white text-center">
-              <FontAwesomeIcon icon={faUsers} className="w-6 h-6 mb-2" />
-              <span className="text-sm md:text-base">Cultural Immersion</span>
+            <div className="flex flex-col items-center text-pale-straw text-center">
+              <div className="bg-forest-green p-1.5 sm:p-2 rounded-full mb-1 sm:mb-2">
+                <FontAwesomeIcon icon={faUsers} className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <span className="text-xs sm:text-sm md:text-base">Cultural Immersion</span>
             </div>
-            <div className="flex flex-col items-center text-white text-center">
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="w-6 h-6 mb-2" />
-              <span className="text-sm md:text-base">Hidden Gems</span>
+            <div className="flex flex-col items-center text-pale-straw text-center">
+              <div className="bg-forest-green p-1.5 sm:p-2 rounded-full mb-1 sm:mb-2">
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <span className="text-xs sm:text-sm md:text-base">Hidden Gems</span>
             </div>
           </div>
         </div>
