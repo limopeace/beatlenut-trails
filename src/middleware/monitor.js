@@ -12,11 +12,23 @@
 const responseTime = (req, res, next) => {
   const start = process.hrtime();
   
-  res.on('finish', () => {
+  // Store the original end method
+  const originalEnd = res.end;
+  
+  // Override the end method
+  res.end = function(chunk, encoding) {
+    // Calculate response time
     const diff = process.hrtime(start);
     const time = diff[0] * 1e3 + diff[1] * 1e-6; // Convert to milliseconds
-    res.set('X-Response-Time', `${time.toFixed(2)}ms`);
-  });
+    
+    // Set the header before calling the original end
+    if (!res.headersSent) {
+      res.setHeader('X-Response-Time', `${time.toFixed(2)}ms`);
+    }
+    
+    // Call the original end method
+    return originalEnd.call(this, chunk, encoding);
+  };
   
   next();
 };

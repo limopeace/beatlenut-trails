@@ -1,14 +1,16 @@
-# Beatlenuts-GR API
+# Beatlenuts-GR API & Frontend
 
-A robust Node.js Express RESTful API with modular architecture and comprehensive security features.
+A comprehensive travel business platform with a robust Node.js Express RESTful API backend and Next.js frontend. Features include travel services showcase and an Ex-Servicemen (ESM) marketplace.
 
 ![Node.js](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen)
 ![Express](https://img.shields.io/badge/express-%5E4.18.2-blue)
 ![MongoDB](https://img.shields.io/badge/mongodb-%5E8.14.2-green)
+![Next.js](https://img.shields.io/badge/next.js-%5E13.0.0-purple)
 ![License](https://img.shields.io/badge/license-ISC-yellow)
 
 ## 🚀 Features
 
+### Backend API
 - **Modular Architecture**: Model-View-Controller (MVC) pattern with service and repository layers
 - **RESTful API**: Follows REST principles with proper HTTP methods and status codes
 - **Authentication**: JWT-based authentication with role-based access control
@@ -20,6 +22,26 @@ A robust Node.js Express RESTful API with modular architecture and comprehensive
 - **Testing**: Unit and integration tests with Jest and Supertest
 - **Code Quality**: ESLint and Prettier for consistent code style
 - **Health Monitoring**: Health check endpoint and performance monitoring
+
+### Frontend
+- **Next.js Framework**: Server-side rendering and optimized performance
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Two Main Sections**:
+  - **Travel Website**: Showcasing Northeast India travel experiences
+  - **ESM Marketplace**: Platform for Ex-Servicemen to sell products and services
+- **TypeScript**: Type-safe codebase for better maintainability
+- **Modular Components**: Reusable UI components following best practices
+- **Form Validation**: Zod schema validation for type-safe forms
+- **API Integration**: Axios-based API client with interceptors
+
+### ESM Portal Features
+- **Seller Registration**: Complete workflow for Ex-Servicemen to register
+- **Product Management**: CRUD operations for products with image upload
+- **Service Listings**: Service providers can list their offerings
+- **Authentication**: Separate auth system for ESM portal
+- **Admin Oversight**: Admin panel integration for monitoring
+- **Messaging System**: Built-in communication between buyers and sellers
+- **Approval Workflow**: Admin approval system for new sellers
 
 ## 📋 Prerequisites
 
@@ -36,14 +58,21 @@ git clone <repository-url>
 # Navigate to the project directory
 cd beatlenuts-gr
 
-# Install dependencies
+# Install backend dependencies
 npm install
+
+# Install frontend dependencies
+cd frontend
+npm install
+cd ..
 
 # Create .env file from example
 cp .env.example .env
 ```
 
 ## 🏃‍♂️ Running the Application
+
+### Backend
 
 ```bash
 # Start the server
@@ -54,6 +83,18 @@ npm run dev
 ```
 
 The server will start at http://localhost:3000
+
+### Frontend
+
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Start the development server
+npm run dev
+```
+
+The frontend will be available at http://localhost:3001
 
 ## 📚 API Documentation
 
@@ -72,10 +113,33 @@ Interactive API documentation is available at `/api-docs` when the server is run
 - `POST /examples` - Create a new example (protected)
 - `DELETE /examples/:id` - Delete example (admin only)
 
-#### System
-- `GET /` - API information
-- `GET /health` - System health check
-- `GET /swagger.json` - Swagger API specification
+#### ESM Marketplace
+
+**Authentication**
+- `POST /api/auth/esm-login` - ESM portal login
+- `POST /api/auth/esm-register` - ESM portal registration
+- `POST /api/auth/esm-logout` - ESM portal logout
+- `GET /api/auth/esm-me` - Get current ESM user
+- `PUT /api/auth/esm-profile` - Update ESM profile
+
+**Products**
+- `GET /api/esm-products` - List all products
+- `GET /api/esm-products/:id` - Get product details
+- `POST /api/esm-products` - Create new product (seller only)
+- `PUT /api/esm-products/:id` - Update product (seller only)
+- `DELETE /api/esm-products/:id` - Delete product (seller only)
+
+**Services**
+- `GET /api/esm-services` - List all services
+- `GET /api/esm-services/:id` - Get service details
+- `POST /api/esm-services` - Create new service (seller only)
+- `PUT /api/esm-services/:id` - Update service (seller only)
+- `DELETE /api/esm-services/:id` - Delete service (seller only)
+
+For complete documentation:
+- [ESM Portal Implementation](docs/ESM_PORTAL_COMPLETE_IMPLEMENTATION.md)
+- [ESM Marketplace Guide](docs/ESM_MARKETPLACE.md)
+- [Admin Integration](docs/ADMIN_INTERFACE_IMPLEMENTATION.md)
 
 ## 🧪 Testing
 
@@ -101,14 +165,17 @@ npm run test:integration
 ```
 beatlenuts-gr/
 ├── config/                    # Configuration files
-├── src/                       # Source code
+├── docs/                      # Documentation files
+├── frontend/                  # Next.js frontend application
+│   ├── public/                # Static assets
+│   ├── src/                   # Frontend source code
+│   │   ├── app/               # Next.js pages
+│   │   ├── components/        # React components
+│   │   └── styles/            # Global styles
+│   └── config files           # Next.js configuration
+├── src/                       # Backend source code
 │   ├── controllers/           # Request handlers
 │   ├── middleware/            # Express middleware
-│   │   ├── auth.js            # Authentication middleware
-│   │   ├── errorHandler.js    # Error handling middleware
-│   │   ├── logger.js          # Request logging
-│   │   ├── monitor.js         # Performance monitoring
-│   │   └── validator.js       # Request validation
 │   ├── models/                # Data models
 │   │   ├── mongoose/          # Mongoose schema definitions
 │   │   └── user.js            # User model
@@ -116,33 +183,43 @@ beatlenuts-gr/
 │   ├── routes/                # API routes
 │   ├── services/              # Business logic
 │   ├── utils/                 # Utility functions
-│   │   ├── database.js        # Database connection
-│   │   ├── errors.js          # Custom error classes
-│   │   ├── sanitizer.js       # Input sanitization
-│   │   └── swagger.js         # API documentation
 │   └── index.js               # Application entry point
 ├── tests/                     # Test files
-│   ├── integration/           # API integration tests
-│   ├── unit/                  # Unit tests
-│   └── setup.js               # Test configuration
 ├── .env.example               # Example environment variables
-├── .eslintrc.js               # ESLint configuration
-├── .gitignore                 # Git ignore file
 ├── CLAUDE.md                  # Claude Code guidance
 ├── jest.config.js             # Jest configuration
-├── package.json               # npm package configuration
-└── README.md                  # Project documentation
+└── package.json               # npm package configuration
 ```
 
 ## 📝 Code Quality
 
 ```bash
-# Lint code
+# Lint backend code
 npm run lint
 
-# Format code
+# Format backend code
 npm run format
+
+# Lint frontend code
+cd frontend && npm run lint
+
+# Format frontend code
+cd frontend && npm run format
 ```
+
+## 📚 Documentation
+
+Comprehensive documentation is available in the `/docs` directory:
+
+- [ESM Portal Implementation Summary](docs/ESM_PORTAL_IMPLEMENTATION_SUMMARY.md)
+- [Complete API Documentation](docs/API_COMPLETE.md)
+- [Frontend Architecture](docs/FRONTEND_ARCHITECTURE.md)
+- [Testing Guide](docs/TESTING_GUIDE.md)
+- [Server Troubleshooting Guide](docs/SERVER_TROUBLESHOOTING.md) - Solutions for common server issues
+- [Admin Panel Integration](docs/ESM_PORTAL_ADMIN_INTEGRATION.md)
+- [Admin API Client Setup](docs/ADMIN_API_CLIENT_SETUP.md) - Admin API integration guide
+- [Admin Frontend Integration Plan](docs/ADMIN_FRONTEND_INTEGRATION_PLAN.md) - Admin frontend-backend integration
+- [Project Status](docs/PROJECT_STATUS.md)
 
 ## 🔐 Environment Variables
 
@@ -153,7 +230,8 @@ PORT=3000
 NODE_ENV=development
 DATABASE_URL=mongodb://localhost:27017/beatlenuts-gr
 JWT_SECRET=your-secret-key
-JWT_EXPIRES_IN=1h
+JWT_EXPIRES_IN=24h
+JWT_REFRESH_EXPIRES_IN=7d
 CORS_ORIGIN=*
 ```
 
@@ -167,6 +245,13 @@ CORS_ORIGIN=*
 - **Input Validation**: All inputs are validated before processing
 - **Input Sanitization**: Prevent XSS and injection attacks
 - **Error Handling**: No sensitive information in error responses
+
+## 📘 Additional Documentation
+
+- [Project Status](docs/PROJECT_STATUS.md) - Current project status and pending tasks
+- [ESM Marketplace](docs/ESM_MARKETPLACE.md) - Detailed documentation of the ESM marketplace
+- [Frontend Architecture](docs/FRONTEND_ARCHITECTURE.md) - Frontend architectural details
+- [Bike Animation Restoration](docs/BIKE_ANIMATION_RESTORATION.md) - Details of the motorcycle animation implementation
 
 ## 📄 License
 
