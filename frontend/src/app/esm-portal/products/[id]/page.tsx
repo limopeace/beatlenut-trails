@@ -21,6 +21,7 @@ import {
 import { FadeIn } from '@/components/animations';
 import { Button } from '@/components/common';
 import Link from 'next/link';
+import AddToCartButton from '@/components/marketplace/cart/AddToCartButton';
 
 // Mock data for development
 const MOCK_PRODUCTS = [
@@ -649,6 +650,23 @@ export default function ProductDetailPage() {
                         className="w-full p-3 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50 bg-white text-deep-forest text-sm"
                       />
                     </div>
+                    
+                    {/* Add to Cart Button */}
+                    <AddToCartButton
+                      id={product.id}
+                      type="product"
+                      name={product.name}
+                      price={parseFloat(product.discountedPrice?.replace('₹', '').replace(',', '') || product.price.replace('₹', '').replace(',', ''))}
+                      imageUrl={product.images[0]}
+                      sellerId="seller-" + product.seller.name.toLowerCase().replace(/\s+/g, '-')
+                      sellerName={product.seller.name}
+                      options={[
+                        { name: 'Size', values: ['Small', 'Medium', 'Large'] },
+                        { name: 'Color', values: ['Natural', 'Brown', 'Black'] }
+                      ]}
+                      className="w-full mb-4"
+                      buttonText="Add to Cart"
+                    />
                     
                     <div className="flex justify-center">
                       <Button

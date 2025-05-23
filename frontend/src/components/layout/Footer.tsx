@@ -9,7 +9,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h4 className="text-off-white text-xl font-montserrat font-bold mb-4">BeatlenutTrails</h4>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/images/beatlenut-logo.png" 
+                alt="BeatlenutTrails Logo" 
+                className="w-16 h-16 mr-2"
+              />
+            </div>
             <p className="mb-4">
               Founded by Army veterans, dedicated to sharing Northeast India's unparalleled beauty and cultural richness through authentic, sustainable travel experiences.
             </p>
@@ -52,13 +58,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/destinations" className="hover:text-sunrise-orange transition-colors">
-                  Destinations
+                <Link href="/travel-listings" className="hover:text-sunrise-orange transition-colors">
+                  Packages & Listings
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="hover:text-sunrise-orange transition-colors">
-                  Packages
+                <Link href="/activities" className="hover:text-sunrise-orange transition-colors">
+                  Activities
                 </Link>
               </li>
               <li>
@@ -122,7 +128,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-sm text-center">
-          <p>© {new Date().getFullYear()} BeatlenutTrails. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} All rights reserved.</p>
           <div className="mt-2 space-x-4">
             <Link href="/privacy-policy" className="hover:text-sunrise-orange transition-colors">
               Privacy Policy

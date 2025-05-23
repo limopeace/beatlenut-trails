@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 import Button from '@/components/common/Button';
+import { useEsmAuth } from '@/hooks/useEsmAuth';
 
 interface LoginFormData {
   email: string;
@@ -28,8 +30,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
     general?: string;
   }>({});
   
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { login, loading: isLoading, error } = useEsmAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -71,51 +73,25 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
       return;
     }
     
-    setIsLoading(true);
     setErrors({});
     
     try {
-      // Call API endpoint
-      const response = await fetch('/api/esm/sellers/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      await login(formData.email, formData.password);
       
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
-      
-      // Store token and user info in localStorage or cookies
-      if (formData.rememberMe) {
-        localStorage.setItem('auth_token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      } else {
-        sessionStorage.setItem('auth_token', data.token);
-        sessionStorage.setItem('user', JSON.stringify(data.user));
-      }
+      // The login method from useEsmAuth handles navigation
+      // based on user role, so we don't need to do it here
       
       // Call success callback if provided
       if (onSuccess) {
-        onSuccess(data.token, data.user);
+        const user = JSON.parse(Cookies.get('esm_user') || '{}');
+        const token = Cookies.get('esm_token') || '';
+        onSuccess(token, user);
       }
-      
-      // Navigate to dashboard
-      router.push('/esm-portal/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       setErrors({
         general: error instanceof Error ? error.message : 'An unexpected error occurred',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 

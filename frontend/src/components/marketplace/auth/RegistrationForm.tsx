@@ -259,10 +259,10 @@ const RegistrationForm: React.FC = () => {
       case 'personal':
         return (
           <>
-            <h3 className="text-xl font-bold text-deep-forest-green mb-4">Personal Information</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-deep-forest-green mb-5 text-center sm:text-left">Personal Information</h3>
+            <div className="space-y-5">
               <div>
-                <label htmlFor="fullName" className="block text-dark-grey font-medium mb-2">
+                <label htmlFor="fullName" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                   Full Name*
                 </label>
                 <input
@@ -271,7 +271,7 @@ const RegistrationForm: React.FC = () => {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                     errors.fullName ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Your full name"
@@ -280,7 +280,7 @@ const RegistrationForm: React.FC = () => {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-dark-grey font-medium mb-2">
+                <label htmlFor="email" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                   Email Address*
                 </label>
                 <input
@@ -289,7 +289,7 @@ const RegistrationForm: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Your email address"
@@ -297,9 +297,9 @@ const RegistrationForm: React.FC = () => {
                 {errors.email && <p className="mt-1 text-red-500 text-sm">{errors.email}</p>}
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
-                  <label htmlFor="password" className="block text-dark-grey font-medium mb-2">
+                  <label htmlFor="password" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                     Password*
                   </label>
                   <input
@@ -308,7 +308,7 @@ const RegistrationForm: React.FC = () => {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                       errors.password ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Create a password"
@@ -317,7 +317,7 @@ const RegistrationForm: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-dark-grey font-medium mb-2">
+                  <label htmlFor="confirmPassword" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                     Confirm Password*
                   </label>
                   <input
@@ -326,7 +326,7 @@ const RegistrationForm: React.FC = () => {
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                       errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Confirm your password"
@@ -336,7 +336,7 @@ const RegistrationForm: React.FC = () => {
               </div>
               
               <div>
-                <label htmlFor="phone" className="block text-dark-grey font-medium mb-2">
+                <label htmlFor="phone" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                   Phone Number*
                 </label>
                 <input
@@ -345,7 +345,7 @@ const RegistrationForm: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                     errors.phone ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Your contact number"
@@ -354,7 +354,7 @@ const RegistrationForm: React.FC = () => {
               </div>
               
               <div>
-                <label htmlFor="location" className="block text-dark-grey font-medium mb-2">
+                <label htmlFor="location" className="block text-dark-grey font-medium mb-2 text-sm sm:text-base">
                   Location*
                 </label>
                 <input
@@ -363,7 +363,7 @@ const RegistrationForm: React.FC = () => {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange ${
+                  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunrise-orange text-base ${
                     errors.location ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="City, State"
@@ -673,21 +673,21 @@ const RegistrationForm: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-8">
+      <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
         <div className="text-center">
           <div className="flex justify-center mb-6">
             <div className="rounded-full bg-green-100 p-3">
-              <svg className="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-10 h-10 sm:w-12 sm:h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
               </svg>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-deep-forest-green mb-2">Registration Successful!</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-deep-forest-green mb-2">Registration Successful!</h2>
           <p className="text-dark-grey mb-6">
             Your registration has been submitted for verification. We'll notify you via email once your account is approved.
           </p>
           <Link href="/esm-portal" passHref>
-            <Button variant="primary">Return to ESM Portal</Button>
+            <Button variant="primary" className="w-full sm:w-auto">Return to ESM Portal</Button>
           </Link>
         </div>
       </div>
@@ -695,12 +695,49 @@ const RegistrationForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-deep-forest-green mb-4">
+    <div className="bg-white rounded-lg shadow-md p-5 sm:p-8">
+      <div className="mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-deep-forest-green mb-4 text-center sm:text-left">
           ESM Seller Registration
         </h2>
-        <div className="flex justify-between">
+        
+        {/* Mobile stepper - simplified for small screens */}
+        <div className="flex justify-between sm:hidden mb-4">
+          <div className={`step flex flex-col items-center ${currentStep === 'personal' ? 'text-sunrise-orange font-semibold' : ''}`}>
+            <div className={`w-7 h-7 flex items-center justify-center rounded-full ${currentStep === 'personal' ? 'bg-sunrise-orange text-white' : 'bg-gray-200 text-gray-600'}`}>
+              1
+            </div>
+          </div>
+          <div className="step-connector flex-grow border-t-2 border-gray-200 mt-3 mx-1"></div>
+          <div className={`step flex flex-col items-center ${currentStep === 'military' ? 'text-sunrise-orange font-semibold' : ''}`}>
+            <div className={`w-7 h-7 flex items-center justify-center rounded-full ${currentStep === 'military' ? 'bg-sunrise-orange text-white' : 'bg-gray-200 text-gray-600'}`}>
+              2
+            </div>
+          </div>
+          <div className="step-connector flex-grow border-t-2 border-gray-200 mt-3 mx-1"></div>
+          <div className={`step flex flex-col items-center ${currentStep === 'business' ? 'text-sunrise-orange font-semibold' : ''}`}>
+            <div className={`w-7 h-7 flex items-center justify-center rounded-full ${currentStep === 'business' ? 'bg-sunrise-orange text-white' : 'bg-gray-200 text-gray-600'}`}>
+              3
+            </div>
+          </div>
+          <div className="step-connector flex-grow border-t-2 border-gray-200 mt-3 mx-1"></div>
+          <div className={`step flex flex-col items-center ${currentStep === 'verification' ? 'text-sunrise-orange font-semibold' : ''}`}>
+            <div className={`w-7 h-7 flex items-center justify-center rounded-full ${currentStep === 'verification' ? 'bg-sunrise-orange text-white' : 'bg-gray-200 text-gray-600'}`}>
+              4
+            </div>
+          </div>
+        </div>
+        
+        {/* Step labels for mobile */}
+        <div className="text-center sm:hidden text-sm font-medium text-gray-700 mb-4">
+          {currentStep === 'personal' && 'Personal Information'}
+          {currentStep === 'military' && 'Military Service Details'}
+          {currentStep === 'business' && 'Business Information'}
+          {currentStep === 'verification' && 'Verification & Submit'}
+        </div>
+        
+        {/* Desktop stepper - full version */}
+        <div className="hidden sm:flex justify-between">
           <div className={`step flex flex-col items-center ${currentStep === 'personal' ? 'text-sunrise-orange font-semibold' : ''}`}>
             <div className={`w-8 h-8 flex items-center justify-center rounded-full mb-2 ${currentStep === 'personal' ? 'bg-sunrise-orange text-white' : 'bg-gray-200 text-gray-600'}`}>
               1
@@ -734,27 +771,27 @@ const RegistrationForm: React.FC = () => {
       <form onSubmit={handleSubmit}>
         {renderStepContent()}
         
-        <div className="flex justify-between mt-8">
+        <div className={`flex ${currentStep === 'personal' ? 'justify-end' : 'justify-between'} mt-8`}>
           {currentStep !== 'personal' && (
             <Button 
               type="button" 
               variant="secondary" 
               onClick={handlePrevStep}
+              className="py-3 px-5"
             >
               Previous
             </Button>
           )}
           
           {currentStep === 'personal' && (
-            <div className="ml-auto">
-              <Button 
-                type="button" 
-                variant="primary" 
-                onClick={handleNextStep}
-              >
-                Next
-              </Button>
-            </div>
+            <Button 
+              type="button" 
+              variant="primary" 
+              onClick={handleNextStep}
+              className="py-3 px-8"
+            >
+              Next
+            </Button>
           )}
           
           {currentStep === 'military' && (
@@ -762,6 +799,7 @@ const RegistrationForm: React.FC = () => {
               type="button" 
               variant="primary" 
               onClick={handleNextStep}
+              className="py-3 px-8"
             >
               Next
             </Button>
@@ -772,6 +810,7 @@ const RegistrationForm: React.FC = () => {
               type="button" 
               variant="primary" 
               onClick={handleNextStep}
+              className="py-3 px-8"
             >
               Next
             </Button>
@@ -782,6 +821,7 @@ const RegistrationForm: React.FC = () => {
               type="submit" 
               variant="primary" 
               disabled={isLoading}
+              className="py-3 px-8"
             >
               {isLoading ? 'Submitting...' : 'Submit Registration'}
             </Button>

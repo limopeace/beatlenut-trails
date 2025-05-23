@@ -23,160 +23,160 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-deep-forest-green text-off-white shadow-lg'
-          : 'bg-transparent text-off-white'
+          ? 'bg-deep-forest text-pale-straw shadow-lg py-2'
+          : 'bg-deep-forest/90 text-pale-straw py-3'
       }`}
     >
-      <div className="container-custom flex items-center justify-between py-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <span className="sr-only">BeatlenutTrails</span>
-          <div className="w-12 h-12 relative mr-2">
-            {/* Logo placeholder */}
-            <div className="w-full h-full bg-sunrise-orange rounded-full flex items-center justify-center">
-              <span className="text-off-white font-bold text-xl">BT</span>
-            </div>
+          <div className="w-10 h-10 sm:w-12 sm:h-12 relative mr-2">
+            {/* Replace placeholder with logo */}
+            <img 
+              src="/images/beatlenut-logo.png" 
+              alt="BeatlenutTrails Logo" 
+              className="w-full h-full"
+            />
           </div>
-          <span className="font-montserrat font-bold text-xl">BeatlenutTrails</span>
+          {/* Remove beatlenut-trails text */}
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
           <Link
             href="/"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Home
           </Link>
-          <Link
-            href="#destinations"
-            onClick={(e) => {
-              e.preventDefault();
+          <button
+            onClick={() => {
               document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Destinations
-          </Link>
+          </button>
           <Link
             href="/bike-rentals"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Bike Rentals
           </Link>
-          <Link
-            href="#services"
-            onClick={(e) => {
-              e.preventDefault();
+          <button
+            onClick={() => {
               document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Services
-          </Link>
-          <Link
-            href="#packages"
-            onClick={(e) => {
-              e.preventDefault();
+          </button>
+          <button
+            onClick={() => {
               document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Packages
-          </Link>
+          </button>
           <Link
             href="/contact"
-            className="font-montserrat font-medium hover:text-sunrise-orange transition-colors"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
           >
             Contact
           </Link>
           <Link
             href="/esm-portal"
-            className="font-montserrat font-medium bg-sunrise-orange text-off-white px-4 py-2 rounded hover:bg-vibrant-teal transition-colors"
+            className="font-clash font-medium bg-forest-green text-pale-straw px-4 py-2 rounded-md hover:bg-moss-green transition-colors"
           >
             ESM Portal
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Enhanced touch target */}
         <button
-          className="md:hidden text-2xl"
+          className="md:hidden text-2xl p-2.5"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? '✕' : '☰'}
+          {mobileMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-deep-forest-green text-off-white">
-          <div className="container-custom py-4 flex flex-col space-y-4">
-            <Link
-              href="/"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="#destinations"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Destinations
-            </Link>
-            <Link
-              href="/bike-rentals"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Bike Rentals
-            </Link>
-            <Link
-              href="#services"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Services
-            </Link>
-            <Link
-              href="#packages"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Packages
-            </Link>
-            <Link
-              href="/contact"
-              className="font-montserrat font-medium hover:text-sunrise-orange transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <Link
-              href="/esm-portal"
-              className="font-montserrat font-medium bg-sunrise-orange text-off-white px-4 py-2 rounded hover:bg-vibrant-teal transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              ESM Portal
-            </Link>
-          </div>
+      {/* Mobile Menu - Improved with animation and better touch targets */}
+      <div 
+        className={`md:hidden bg-deep-forest text-pale-straw absolute w-full left-0 transition-all duration-300 overflow-hidden ${
+          mobileMenuOpen ? 'max-h-[90vh] border-t border-pale-straw/20' : 'max-h-0'
+        }`}
+      >
+        <div className="container mx-auto px-4 py-5 flex flex-col space-y-5">
+          <Link
+            href="/"
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <button
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 text-left w-full"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Destinations
+          </button>
+          <Link
+            href="/bike-rentals"
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Bike Rentals
+          </Link>
+          <button
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 text-left w-full"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Services
+          </button>
+          <button
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 text-left w-full"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Packages
+          </button>
+          <Link
+            href="/contact"
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Contact
+          </Link>
+          <Link
+            href="/esm-portal"
+            className="font-clash font-medium bg-forest-green text-pale-straw px-4 py-3 rounded-md hover:bg-moss-green transition-colors mt-4 text-center block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            ESM Portal
+          </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 };

@@ -42,8 +42,9 @@ module.exports = {
         'fadeInUp': 'fadeInUp 0.6s ease-in-out',
         'slideInRight': 'slideInRight 0.5s ease-in-out',
         'slideInLeft': 'slideInLeft 0.5s ease-in-out',
-        'marquee': 'marquee 25s linear infinite',
+        'marquee': 'marquee 30s linear infinite',
         'marquee-slower': 'marquee 60s linear infinite',
+        'marquee-fast': 'marquee 15s linear infinite',
       },
       keyframes: {
         fadeIn: {

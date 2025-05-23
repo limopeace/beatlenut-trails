@@ -5,9 +5,6 @@ import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { AuthService } from '../services/api/authService';
 
-// Initialize the auth service
-const authService = new AuthService();
-
 // Define types
 export interface AdminUser {
   id: string;
@@ -58,7 +55,7 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
 
         try {
           // Verify token with backend
-          const userData = await authService.verifyToken();
+          const userData = await AuthService.verifyToken();
           
           if (userData) {
             setUser(userData);
@@ -84,7 +81,7 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
     setError(null);
     
     try {
-      const { token, user } = await authService.adminLogin(email, password);
+      const { token, user } = await AuthService.adminLogin(email, password);
       
       if (token && user) {
         // Store token in cookie (use secure and httpOnly in production)
@@ -100,7 +97,7 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
         return { success: false, message: 'Login failed' };
       }
     } catch (err: any) {
-      const errorMessage = err?.response?.data?.message || 'Login failed. Please try again.';
+      const errorMessage = err?.message || 'Login failed. Please try again.';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {

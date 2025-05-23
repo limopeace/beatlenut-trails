@@ -2,6 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import FadeIn from '@/components/animations/FadeIn';
+import StaggerContainer, { StaggerItem } from '@/components/animations/StaggerContainer';
+import SectionContainer from '@/components/common/SectionContainer';
 
 const destinations = [
   {
@@ -9,105 +12,125 @@ const destinations = [
     name: 'Shillong',
     state: 'Meghalaya',
     description: 'The Scotland of the East with beautiful lakes and waterfalls.',
-    imageSrc: '/images/hero-placeholder.jpg', // Using existing image as placeholder
-    href: '/destinations/shillong',
+    imageSrc: '/images/real/pexels-travelerchitect-18736328-min.jpg',
+    href: '/travel-listings/shillong',
   },
   {
     id: 2,
     name: 'Kaziranga',
     state: 'Assam',
     description: 'Home to the one-horned rhinoceros and diverse wildlife.',
-    imageSrc: '/images/hero-placeholder.jpg',
-    href: '/destinations/kaziranga',
+    imageSrc: '/images/real/pexels-dizitalboost-11622977-min.jpg',
+    href: '/travel-listings/kaziranga',
   },
   {
     id: 3,
     name: 'Tawang',
     state: 'Arunachal Pradesh',
     description: 'Buddhist monasteries amidst breathtaking Himalayan landscapes.',
-    imageSrc: '/images/hero-placeholder.jpg',
-    href: '/destinations/tawang',
+    imageSrc: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    href: '/travel-listings/tawang',
   },
   {
     id: 4,
     name: 'Majuli',
     state: 'Assam',
     description: 'The largest river island with unique cultural heritage.',
-    imageSrc: '/images/hero-placeholder.jpg',
-    href: '/destinations/majuli',
+    imageSrc: '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
+    href: '/travel-listings/majuli',
   },
   {
     id: 5,
     name: 'Cherrapunji',
     state: 'Meghalaya',
     description: 'One of the wettest places on Earth with living root bridges.',
-    imageSrc: '/images/hero-placeholder.jpg',
-    href: '/destinations/cherrapunji',
+    imageSrc: '/images/real/pexels-nans1419-20519339-min.jpg',
+    href: '/travel-listings/cherrapunji',
   },
   {
     id: 6,
     name: 'Dzukou Valley',
     state: 'Nagaland',
     description: 'A hidden paradise known for its seasonal flowers and gentle hills.',
-    imageSrc: '/images/hero-placeholder.jpg',
-    href: '/destinations/dzukou-valley',
+    imageSrc: '/images/real/pexels-kanishka-211910-679492-min.jpg',
+    href: '/travel-listings/dzukou-valley',
   },
 ];
 
 const FeaturedDestinations = () => {
   return (
-    <section className="py-16 bg-off-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="text-deep-forest-green text-2xl">Discover</span>
-          <h2 className="text-3xl md:text-4xl text-deep-forest-green font-semibold mb-4">Top Destinations</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Explore the most beautiful and culturally rich destinations of Northeast India
-          </p>
-        </div>
+    <SectionContainer
+      id="destinations"
+      background="pale-straw"
+      className="relative py-12 sm:py-16 md:py-20"
+    >
+      <FadeIn direction="up" duration={0.7} className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
+        <span className="text-forest-green text-lg sm:text-xl md:text-2xl font-serif">Discover</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-deep-forest font-bold mb-2 sm:mb-3 md:mb-4 mt-1 sm:mt-2 font-clash uppercase">
+          Top Destinations
+        </h2>
+        <p className="text-deep-forest/80 max-w-3xl mx-auto text-sm sm:text-base">
+          Explore the most beautiful and culturally rich destinations of Northeast India
+        </p>
+      </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Improved grid layout with smaller gaps on mobile */}
+      <div className="px-4 sm:px-6">
+        <StaggerContainer 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8" 
+          delay={0.2} 
+          staggerChildren={0.15}
+        >
           {destinations.map((destination) => (
-            <div key={destination.id} className="group overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 hover:-translate-y-2">
-              <Link href={destination.href} className="block">
-                <div className="relative h-64 overflow-hidden">
+            <StaggerItem 
+              key={destination.id} 
+              direction="up" 
+              className="group overflow-hidden rounded-md shadow-md bg-white transition duration-300 hover:-translate-y-2 hover:shadow-lg"
+            >
+              <Link href={destination.href} className="block h-full flex flex-col">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img
                     src={destination.imageSrc}
                     alt={destination.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-deep-forest-green text-white text-xs font-bold px-3 py-1 rounded">
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/70 via-deep-forest/30 to-transparent"></div>
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-forest-green text-pale-straw text-xs font-bold px-2 sm:px-3 py-1 rounded-md">
                     {destination.state}
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-deep-forest-green mb-2">
+                <div className="p-4 sm:p-5 md:p-6 flex-grow flex flex-col">
+                  <h3 className="text-lg sm:text-xl font-bold text-deep-forest mb-1 sm:mb-2 font-clash">
                     {destination.name}
                   </h3>
-                  <p className="text-gray-600 mb-4">{destination.description}</p>
-                  <div className="text-deep-forest-green font-medium group-hover:underline inline-flex items-center">
+                  <p className="text-deep-forest/70 mb-3 sm:mb-4 text-sm sm:text-base flex-grow">{destination.description}</p>
+                  <div className="text-forest-green font-medium group-hover:underline inline-flex items-center text-sm sm:text-base">
                     Explore
-                    <svg className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:ml-2 transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
                 </div>
               </Link>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link 
-            href="/destinations" 
-            className="inline-block px-8 py-3 bg-deep-forest-green text-white font-medium rounded shadow-md hover:bg-opacity-90 transition duration-300"
-          >
-            Explore All Destinations
-          </Link>
-        </div>
+        </StaggerContainer>
       </div>
-    </section>
+
+      <FadeIn direction="up" delay={0.5} className="mt-8 sm:mt-10 md:mt-12 text-center">
+        <Link 
+          href="/travel-listings" 
+          className="inline-block px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 bg-forest-green hover:bg-moss-green text-pale-straw font-medium rounded-md shadow-md transition duration-300 text-sm sm:text-base"
+        >
+          Browse All Travel Listings
+        </Link>
+      </FadeIn>
+      
+      {/* Abstract decorative element - hidden on smaller screens */}
+      <div className="absolute -bottom-8 right-0 w-24 sm:w-32 md:w-48 h-24 sm:h-32 md:h-48 bg-moss-green/20 rounded-full opacity-50 hidden md:block"></div>
+      <div className="absolute top-24 left-0 w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-32 bg-moss-green/20 rounded-full opacity-50 hidden md:block"></div>
+    </SectionContainer>
   );
 };
 

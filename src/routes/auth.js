@@ -137,4 +137,15 @@ router.post('/login', validate(loginSchema), authController.login);
  */
 router.get('/profile', authenticate, authController.getProfile);
 
+// ESM Portal routes
+router.post('/esm-login', validate(loginSchema), authController.esmLogin);
+router.post('/esm-register', validate(registerSchema), authController.esmRegister);
+router.post('/esm-logout', authenticate, authController.esmLogout);
+router.get('/esm-me', authenticate, authController.getEsmUser);
+router.put('/esm-profile', authenticate, authController.updateEsmProfile);
+
+// Admin authentication routes
+router.post('/admin/login', validate(loginSchema), authController.adminLogin);
+router.get('/admin/verify', authenticate, authController.verifyAdminToken);
+
 module.exports = router;

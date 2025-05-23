@@ -1,14 +1,30 @@
 # API Documentation
 
+**Last Updated: 20 May 2025**
+
 ## Base URL
 
 ```
-http://localhost:3000
+http://localhost:4000/api
 ```
 
 ## Authentication
 
-Currently, the API does not require authentication.
+The API uses JWT (JSON Web Token) based authentication for protected endpoints. 
+
+### Authentication Headers
+
+```
+Authorization: Bearer <your_jwt_token>
+```
+
+### Role-Based Access
+
+- **Public**: No authentication required
+- **User**: Basic authenticated user
+- **Seller**: ESM seller role
+- **Buyer**: ESM buyer role
+- **Admin**: Administrator role
 
 ## Endpoints
 

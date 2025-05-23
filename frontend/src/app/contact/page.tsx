@@ -362,19 +362,69 @@ export default function Contact() {
       </SectionContainer>
 
       {/* Map Section */}
-      <section className="h-96 bg-pale-straw relative overflow-hidden">
-        <div className="absolute inset-0 bg-moss-green/10 z-10"></div>
-        <div className="absolute inset-0 flex items-center justify-center z-20">
-          <div className="text-deep-forest text-xl font-clash shadow-lg bg-white p-8 rounded-lg border border-moss-green/20">
-            <div className="mb-4 text-center">
-              <svg className="w-12 h-12 text-forest-green mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <h3 className="text-2xl font-bold">Find Us Here</h3>
+      <section className="bg-pale-straw relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+            {/* Map Container */}
+            <div className="lg:col-span-2 h-[450px] relative">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114417.01168372156!2d91.81154274659902!3d25.575287619436085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507e8f34c31857%3A0xc46f9df0e46c5eb0!2sShillong%2C%20Meghalaya!5e0!3m2!1sen!2sin!4v1684157862858!5m2!1sen!2sin"
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                loading="lazy" 
+                allowFullScreen 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="BeatlenutTrails Office Location"
+                className="z-10"
+              ></iframe>
+              
+              {/* Subtle overlay for branding */}
+              <div className="absolute bottom-0 left-0 z-20 bg-deep-forest/80 text-pale-straw py-2 px-4 rounded-tr-md">
+                <span className="font-medium">BeatlenutTrails Headquarters</span>
+              </div>
             </div>
-            <p className="text-deep-forest/80">Interactive Map Coming Soon</p>
-            <p className="text-deep-forest/80 mt-2">123 Army Road, Shillong, Meghalaya, India</p>
+            
+            {/* Location Info Card */}
+            <div className="p-10 flex items-center justify-center bg-deep-forest text-pale-straw">
+              <div>
+                <div className="mb-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-forest-green flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold font-clash">Our Location</h3>
+                  </div>
+                  <p className="text-lg ml-16">123 Army Road, Shillong</p>
+                  <p className="text-pale-straw/80 ml-16">Meghalaya, India</p>
+                </div>
+                
+                <div className="ml-16 space-y-4">
+                  <div>
+                    <h4 className="text-md font-medium mb-1">Directions</h4>
+                    <p className="text-pale-straw/80 text-sm">10 minutes from Shillong Airport</p>
+                    <p className="text-pale-straw/80 text-sm">5 minutes from City Center</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-md font-medium mb-1">GPS Coordinates</h4>
+                    <p className="text-pale-straw/80 text-sm">25.5788° N, 91.8933° E</p>
+                  </div>
+                  
+                  <a 
+                    href="https://goo.gl/maps/YgkJ8LZ7XQ3PYaYH7" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 py-2 px-4 bg-forest-green rounded-md hover:bg-moss-green transition-colors text-sm font-medium"
+                  >
+                    Get Directions
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -51,3 +51,22 @@
 - Add animations to elements as they scroll into view
 - Use placeholder images with bikes in the bike rental section
 - Explore neobrutalism style elements for various sections
+
+# Changes Log
+
+## Latest Updates
+
+### 2025-05-13: Bike Rental Image Update
+- Added new motorcycle images to the bike rentals page
+- Implemented a carousel in the hero section featuring the new images
+- Updated all bike listing thumbnails to use the new images
+- Added navigation controls and indicators to the carousel
+
+### 2025-05-14: Founder Image Addition
+- Added Gurpreet Singh's image to the About Us section with custom visual effects
+- Implemented interactive hover effects with color overlay and scaling
+- Added decorative elements around the founder's image
+- Updated the founder information with correct name and title
+- Enhanced responsive design for better mobile display
+- Replaced landscape image in main About section with the founder's image
+- Added corner decorative borders and hover zoom effect to the main image

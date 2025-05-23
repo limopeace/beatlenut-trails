@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from '../common/Button';
-import NextImage from '../common/NextImage';
 
 const ESMPromotion = () => {
   const [isClient, setIsClient] = useState(false);
@@ -46,23 +45,17 @@ const ESMPromotion = () => {
             </div>
           </div>
           
-          {/* Image with enhanced loading and fallback */}
+          {/* Image with real photo */}
           <div className="relative h-96 rounded-lg overflow-hidden">
-            {isClient ? (
-              <NextImage
-                src="/images/esm-placeholder.jpg"
+            <div className="absolute inset-0">
+              <img
+                src="/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg"
                 alt="Ex-Servicemen Marketplace"
-                fallbackSrc="/images/placeholder.jpg"
-                containerClassName="absolute inset-0"
-                fill
-                className="object-cover object-center"
-                shimmer={true}
+                className="absolute w-full h-full object-cover object-center"
               />
-            ) : (
-              <div className="absolute inset-0 bg-[url('/images/esm-placeholder.jpg')] bg-cover bg-center"></div>
-            )}
+            </div>
             <div className="absolute inset-0 bg-gradient-to-r from-deep-forest-green/60 to-transparent z-10"></div>
-            <div className="absolute top-4 left-4 bg-sunrise-orange text-off-white py-2 px-6 rounded-full font-montserrat font-semibold z-20">
+            <div className="absolute top-4 left-4 bg-sunrise-orange text-off-white py-2 px-6 rounded-full font-semibold z-20">
               By Army Veterans, For Army Veterans
             </div>
           </div>

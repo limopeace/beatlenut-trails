@@ -13,13 +13,14 @@ const { responseTime, healthCheck } = require('./middleware/monitor');
 const { NotFoundError } = require('./utils/errors');
 const { connectDB } = require('./utils/database');
 const setupSwagger = require('./utils/swagger');
+const { retryMiddleware } = require('./utils/retry');
 
 // Set environment variable if not set
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || config.server.port;
+const PORT = process.env.PORT || 3000; // Use port 3000 as specified in .env.example
 
 // Connect to database
 if (process.env.NODE_ENV !== 'test') {
@@ -64,11 +65,20 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 // Custom middleware
 app.use(logger);
 
+// Add retry middleware for server errors
+app.use(retryMiddleware({
+  maxRetries: config.requestLimits.maxRetries,
+  delayMs: config.requestLimits.retryDelayMs
+}));
+
 // Setup Swagger documentation
 setupSwagger(app);
 
 // Routes
 app.use('/', routes);
+
+// Serve uploaded files statically
+app.use('/uploads', express.static('uploads'));
 
 // Handle 404 - Route not found
 app.all('*', (req, res, next) => {
@@ -80,9 +90,13 @@ app.use(errorHandler);
 
 // Start server
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+  
+  // Set server timeout
+  server.timeout = config.server.timeout;
+  console.log(`Server timeout set to ${config.server.timeout}ms`);
 }
 
 module.exports = app;

@@ -14,133 +14,7 @@ import {
   faSearch
 } from '@fortawesome/free-solid-svg-icons';
 import { FadeIn } from '@/components/animations';
-
-// Mock approval requests data
-const MOCK_APPROVALS = [
-  {
-    id: 'a1',
-    type: 'seller_registration',
-    status: 'pending',
-    createdAt: '2023-11-01T15:30:00Z',
-    updatedAt: '2023-11-01T15:30:00Z',
-    details: {
-      sellerId: 's2',
-      name: 'Priya Singh',
-      businessName: 'Ladakh Expeditions',
-      category: 'Trekking Services',
-      location: 'Leh, Ladakh',
-      profileImg: 'https://randomuser.me/api/portraits/women/44.jpg',
-      serviceRecord: 'Indian Army, 10 years',
-      documents: [
-        { 
-          id: 'd1', 
-          type: 'ID Proof', 
-          name: 'Aadhaar Card', 
-          status: 'verified'
-        },
-        { 
-          id: 'd2', 
-          type: 'Service Certificate', 
-          name: 'Army Discharge Certificate', 
-          status: 'pending' 
-        },
-        { 
-          id: 'd3', 
-          type: 'Business Registration', 
-          name: 'Shop & Establishment Certificate', 
-          status: 'pending'
-        }
-      ],
-      notes: ''
-    }
-  },
-  {
-    id: 'a2',
-    type: 'product_listing',
-    status: 'pending',
-    createdAt: '2023-11-02T09:15:00Z',
-    updatedAt: '2023-11-02T09:15:00Z',
-    details: {
-      productId: 'p5',
-      sellerId: 's1',
-      sellerName: 'Rajesh Kumar',
-      businessName: 'Himalayan Adventures',
-      productName: 'Spiti Valley Winter Trek',
-      category: 'Adventure Tours',
-      price: 35000,
-      profileImg: 'https://randomuser.me/api/portraits/men/32.jpg',
-      documents: [
-        { 
-          id: 'd1', 
-          type: 'Safety Certificate', 
-          name: 'Adventure Tourism Safety Compliance', 
-          status: 'pending'
-        },
-        { 
-          id: 'd2', 
-          type: 'Insurance Policy', 
-          name: 'Tourist Group Insurance', 
-          status: 'pending'
-        }
-      ],
-      notes: 'New winter trek product needs safety verification'
-    }
-  },
-  {
-    id: 'a3',
-    type: 'seller_registration',
-    status: 'pending',
-    createdAt: '2023-11-03T11:45:00Z',
-    updatedAt: '2023-11-03T11:45:00Z',
-    details: {
-      sellerId: 's4',
-      name: 'Anita Sharma',
-      businessName: 'Rajasthan Heritage Tours',
-      category: 'Cultural Tours',
-      location: 'Jaipur, Rajasthan',
-      profileImg: 'https://randomuser.me/api/portraits/women/28.jpg',
-      serviceRecord: 'Indian Air Force, 8 years',
-      documents: [
-        { 
-          id: 'd1', 
-          type: 'ID Proof', 
-          name: 'Aadhaar Card', 
-          status: 'verified'
-        },
-        { 
-          id: 'd2', 
-          type: 'Service Certificate', 
-          name: 'Air Force Discharge Certificate', 
-          status: 'verified'
-        },
-        { 
-          id: 'd3', 
-          type: 'Business Registration', 
-          name: 'Tourism Department License', 
-          status: 'pending'
-        }
-      ],
-      notes: 'All documents look legitimate but need final verification'
-    }
-  },
-  {
-    id: 'a4',
-    type: 'document_verification',
-    status: 'pending',
-    createdAt: '2023-11-04T14:20:00Z',
-    updatedAt: '2023-11-04T14:20:00Z',
-    details: {
-      documentId: 'd12',
-      sellerId: 's3',
-      sellerName: 'Sanjay Mehta',
-      businessName: 'Kerala Backwaters',
-      documentType: 'Boat License',
-      documentName: 'Commercial Boating Permit',
-      profileImg: 'https://randomuser.me/api/portraits/men/22.jpg',
-      note: 'Annual license renewal needs verification'
-    }
-  }
-];
+import ApprovalsService, { type Approval } from '@/services/api/approvalsService';
 
 // Define status badge component
 const StatusBadge = ({ status }: { status: string }) => {
@@ -187,29 +61,29 @@ const ApprovalCard = ({
   onApprove, 
   onReject 
 }: { 
-  approval: any; 
+  approval: Approval; 
   onView: (id: string) => void; 
   onApprove: (id: string) => void; 
   onReject: (id: string) => void;
 }) => {
-  const details = approval.details;
+  const details = approval.itemDetails;
   
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
       <div className="flex items-center mb-3">
         <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
           <img 
-            src={details.profileImg} 
-            alt={details.name || details.sellerName} 
+            src={details.profileImg || approval.requesterProfileImage || '/images/placeholder.jpg'} 
+            alt={approval.requesterName} 
             className="w-full h-full object-cover"
           />
         </div>
         <div>
           <h3 className="font-semibold">
-            {details.name || details.sellerName}
+            {approval.requesterName}
           </h3>
           <p className="text-sm text-gray-500">
-            {details.businessName}
+            {approval.requesterBusinessName || details.businessName}
           </p>
         </div>
       </div>
@@ -224,10 +98,10 @@ const ApprovalCard = ({
         <StatusBadge status={approval.status} />
       </div>
       
-      {approval.type === 'product_listing' && (
+      {(approval.type === 'product_listing' || approval.type === 'service_listing') && (
         <div className="mb-3">
-          <p className="text-xs text-gray-500">Product</p>
-          <p className="font-medium text-sm">{details.productName}</p>
+          <p className="text-xs text-gray-500">{approval.type === 'product_listing' ? 'Product' : 'Service'}</p>
+          <p className="font-medium text-sm">{approval.itemName || details.productName}</p>
           <p className="text-sm">₹{details.price?.toLocaleString()}</p>
         </div>
       )}
@@ -242,7 +116,7 @@ const ApprovalCard = ({
       <div className="mb-3">
         <p className="text-xs text-gray-500">Documents</p>
         <div className="mt-1 space-y-1">
-          {details.documents?.map((doc: any) => (
+          {(approval.documents || details.documents)?.map((doc: any) => (
             <div key={doc.id} className="flex justify-between items-center text-sm">
               <span className="flex items-center">
                 <FontAwesomeIcon icon={faFileAlt} className="text-gray-400 mr-2" />
@@ -254,10 +128,10 @@ const ApprovalCard = ({
         </div>
       </div>
       
-      {details.notes && (
+      {(approval.requesterNotes || details.notes) && (
         <div className="mb-4 text-sm bg-gray-50 p-2 rounded">
           <p className="text-xs text-gray-500 mb-1">Notes</p>
-          <p>{details.notes}</p>
+          <p>{approval.requesterNotes || details.notes}</p>
         </div>
       )}
       
@@ -288,9 +162,9 @@ const ApprovalCard = ({
 // Main page component
 const ApprovalsPage: React.FC = () => {
   const router = useRouter();
-  const [approvals, setApprovals] = useState<any[]>([]);
-  const [filteredApprovals, setFilteredApprovals] = useState<any[]>([]);
+  const [approvals, setApprovals] = useState<Approval[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -306,27 +180,27 @@ const ApprovalsPage: React.FC = () => {
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
   
+  // Debounce search term
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500); // 500ms delay
+    
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+  
   // Load approvals data from API
   useEffect(() => {
     const fetchApprovals = async () => {
       try {
         setIsLoading(true);
-        
-        // For development/testing, use mock data
-        if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
-          setApprovals(MOCK_APPROVALS);
-          setIsLoading(false);
-          return;
-        }
-        
-        // Import dynamically to prevent server-side import errors
-        const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+        setError(null);
         
         // Get pending approvals
         const response = await ApprovalsService.getPendingApprovals(
           {
             type: typeFilter !== 'all' ? typeFilter : undefined,
-            search: searchTerm || undefined
+            search: debouncedSearchTerm || undefined
           },
           currentPage,
           10
@@ -347,15 +221,13 @@ const ApprovalsPage: React.FC = () => {
       } catch (err) {
         console.error('Error fetching approvals:', err);
         setError('Failed to load approvals. Please try again.');
-        // Fallback to mock data in case of error
-        setApprovals(MOCK_APPROVALS);
       } finally {
         setIsLoading(false);
       }
     };
     
     fetchApprovals();
-  }, [typeFilter, searchTerm, currentPage]);
+  }, [typeFilter, debouncedSearchTerm, currentPage]);
   
   // Track window size
   useEffect(() => {
@@ -372,52 +244,32 @@ const ApprovalsPage: React.FC = () => {
   
   const isMobile = windowWidth < 768;
   
-  // Set filtered approvals when approvals change
-  useEffect(() => {
-    setFilteredApprovals(approvals);
-  }, [approvals]);
-  
   const handleViewDetails = (id: string) => {
     const approval = approvals.find(a => a.id === id);
     if (approval) {
       if (approval.type === 'seller_registration') {
-        router.push(`/admin/sellers/${approval.details.sellerId}`);
+        router.push(`/admin/sellers/${approval.itemDetails.sellerId || approval.requesterId}`);
       } else if (approval.type === 'product_listing') {
         // Navigate to product details
-        console.log(`View product details: ${approval.details.productId}`);
-        // router.push(`/admin/products/${approval.details.productId}`);
+        console.log(`View product details: ${approval.itemDetails.productId || approval.itemId}`);
+        // router.push(`/admin/products/${approval.itemDetails.productId || approval.itemId}`);
       } else if (approval.type === 'document_verification') {
         // Navigate to document verification
-        console.log(`View document: ${approval.details.documentId}`);
-        // router.push(`/admin/documents/${approval.details.documentId}`);
+        console.log(`View document: ${approval.itemDetails.documentId || approval.itemId}`);
+        // router.push(`/admin/documents/${approval.itemDetails.documentId || approval.itemId}`);
       }
     }
   };
   
   const handleApprove = async (id: string) => {
     try {
-      // For development/testing without API
-      if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
-        setApprovals(
-          approvals.map(item => 
-            item.id === id ? { ...item, status: 'approved' } : item
-          )
-        );
-        return;
-      }
-      
-      // Import dynamically to prevent server-side import errors
-      const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+      setError(null);
       
       // Call API to approve
       await ApprovalsService.approveRequest(id);
       
-      // Update the local state
-      setApprovals(
-        approvals.map(item => 
-          item.id === id ? { ...item, status: 'approved' } : item
-        )
-      );
+      // Remove the approved item from the list (since we're showing only pending)
+      setApprovals(approvals.filter(item => item.id !== id));
       
       // Refresh stats
       const statsData = await ApprovalsService.getApprovalStats();
@@ -436,31 +288,20 @@ const ApprovalsPage: React.FC = () => {
   
   const handleReject = async (id: string) => {
     try {
-      // For development/testing without API
-      if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_USE_REAL_API) {
-        setApprovals(
-          approvals.map(item => 
-            item.id === id ? { ...item, status: 'rejected' } : item
-          )
-        );
-        return;
-      }
-      
-      // Import dynamically to prevent server-side import errors
-      const { default: ApprovalsService } = await import('@/services/api/approvalsService');
+      setError(null);
       
       // In a real implementation, we'd prompt for rejection reason
-      const reason = 'Does not meet requirements'; // This would come from a modal dialog
+      const reason = prompt('Enter rejection reason:') || 'Does not meet requirements';
+      
+      if (!reason.trim()) {
+        return;
+      }
       
       // Call API to reject
       await ApprovalsService.rejectRequest(id, reason);
       
-      // Update the local state
-      setApprovals(
-        approvals.map(item => 
-          item.id === id ? { ...item, status: 'rejected' } : item
-        )
-      );
+      // Remove the rejected item from the list (since we're showing only pending)
+      setApprovals(approvals.filter(item => item.id !== id));
       
       // Refresh stats
       const statsData = await ApprovalsService.getApprovalStats();
@@ -566,7 +407,7 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* No results message */}
-        {!isLoading && filteredApprovals.length === 0 && (
+        {!isLoading && approvals.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm p-8 text-center">
             <FontAwesomeIcon icon={faExclamationTriangle} className="text-yellow-500 text-4xl mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-1">No approvals found</h3>
@@ -579,9 +420,9 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* Mobile view */}
-        {!isLoading && isMobile && filteredApprovals.length > 0 && (
+        {!isLoading && isMobile && approvals.length > 0 && (
           <div className="space-y-4">
-            {filteredApprovals.map(approval => (
+            {approvals.map(approval => (
               <ApprovalCard
                 key={approval.id}
                 approval={approval}
@@ -594,7 +435,7 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* Desktop view */}
-        {!isLoading && !isMobile && filteredApprovals.length > 0 && (
+        {!isLoading && !isMobile && approvals.length > 0 && (
           <div className="bg-white shadow rounded-lg overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -620,21 +461,25 @@ const ApprovalsPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredApprovals.map((approval) => {
-                  const details = approval.details;
+                {approvals.map((approval) => {
+                  const details = approval.itemDetails;
                   return (
                     <tr key={approval.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={details.profileImg} alt="" />
+                            <img 
+                              className="h-10 w-10 rounded-full" 
+                              src={details.profileImg || approval.requesterProfileImage || '/images/placeholder.jpg'} 
+                              alt="" 
+                            />
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
-                              {details.name || details.sellerName}
+                              {approval.requesterName}
                             </div>
                             <div className="text-sm text-gray-500">
-                              {details.businessName}
+                              {approval.requesterBusinessName || details.businessName}
                             </div>
                           </div>
                         </div>
@@ -653,10 +498,12 @@ const ApprovalsPage: React.FC = () => {
                           </div>
                         )}
                         
-                        {approval.type === 'product_listing' && (
+                        {(approval.type === 'product_listing' || approval.type === 'service_listing') && (
                           <div>
-                            <div className="text-sm text-gray-900">{details.productName}</div>
-                            <div className="text-sm text-gray-500">₹{details.price?.toLocaleString()}</div>
+                            <div className="text-sm text-gray-900">{approval.itemName || details.productName}</div>
+                            {details.price && (
+                              <div className="text-sm text-gray-500">₹{details.price.toLocaleString()}</div>
+                            )}
                             <div className="text-sm text-gray-500">{details.category}</div>
                           </div>
                         )}
@@ -709,7 +556,7 @@ const ApprovalsPage: React.FC = () => {
         )}
         
         {/* Pagination */}
-        {!isLoading && filteredApprovals.length > 0 && totalPages > 1 && (
+        {!isLoading && approvals.length > 0 && totalPages > 1 && (
           <div className="mt-6 flex justify-center">
             <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
               <button

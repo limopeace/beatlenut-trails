@@ -1,0 +1,417 @@
+/* ESM Portal Specific Styles */
+
+/* ESM Header Styles */
+.esm-header {
+  background: linear-gradient(135deg, var(--deep-forest) 0%, var(--forest-green) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.esm-header.scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ESM Product Cards */
+.esm-product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--pale-straw-20);
+}
+
+.esm-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--forest-green);
+}
+
+.esm-product-badge {
+  background: var(--sunrise-orange);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ESM Category Cards */
+.esm-category-card {
+  background: var(--moss-green-20);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.esm-category-card:hover {
+  background: var(--deep-forest);
+  color: var(--pale-straw);
+}
+
+.esm-category-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--moss-green-30);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.esm-category-card:hover .esm-category-icon {
+  background: var(--pale-straw-20);
+  color: var(--pale-straw);
+}
+
+/* ESM Seller Profile */
+.esm-seller-profile {
+  background: var(--pale-straw);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.esm-seller-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--forest-green);
+  object-fit: cover;
+}
+
+.esm-seller-badge {
+  background: var(--forest-green);
+  color: var(--pale-straw);
+  padding: 4px 16px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* ESM Forms */
+.esm-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.esm-form-label {
+  color: var(--deep-forest);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.esm-form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--pale-straw-40);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.esm-form-input:focus {
+  outline: none;
+  border-color: var(--forest-green);
+  box-shadow: 0 0 0 3px var(--forest-green-20);
+}
+
+.esm-form-error {
+  color: var(--error-red, #dc2626);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ESM Buttons */
+.esm-btn {
+  transition: all 0.2s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.esm-btn-primary {
+  background: var(--forest-green);
+  color: var(--pale-straw);
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+}
+
+.esm-btn-primary:hover {
+  background: var(--moss-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.esm-btn-secondary {
+  background: transparent;
+  color: var(--forest-green);
+  border: 2px solid var(--forest-green);
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+}
+
+.esm-btn-secondary:hover {
+  background: var(--forest-green);
+  color: var(--pale-straw);
+}
+
+/* ESM Search Bar */
+.esm-search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.esm-search-input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  border: 2px solid var(--pale-straw-40);
+  border-radius: 9999px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.esm-search-input:focus {
+  outline: none;
+  border-color: var(--forest-green);
+  box-shadow: 0 0 0 3px var(--forest-green-20);
+}
+
+.esm-search-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--forest-green);
+  color: var(--pale-straw);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.esm-search-button:hover {
+  background: var(--moss-green);
+}
+
+/* ESM Hero Section */
+.esm-hero {
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(to bottom, var(--deep-forest-90), var(--deep-forest-75), var(--deep-forest-90)),
+    url('/images/real/esm-hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.esm-hero-content {
+  position: relative;
+  z-index: 10;
+  padding-top: 8rem;
+  color: var(--pale-straw);
+  text-align: center;
+}
+
+.esm-hero-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.esm-hero-subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ESM Stats */
+.esm-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.esm-stat-card {
+  background: var(--pale-straw-10);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--pale-straw-20);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.esm-stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--pale-straw);
+  margin-bottom: 0.5rem;
+}
+
+.esm-stat-label {
+  color: var(--pale-straw-80);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ESM Testimonials */
+.esm-testimonial {
+  background: var(--pale-straw);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.esm-testimonial-quote {
+  font-style: italic;
+  color: var(--dark-grey);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.esm-testimonial-quote::before,
+.esm-testimonial-quote::after {
+  content: '"';
+  position: absolute;
+  font-size: 3rem;
+  color: var(--moss-green);
+  font-family: Georgia, serif;
+}
+
+.esm-testimonial-quote::before {
+  top: -0.5rem;
+  left: 0;
+}
+
+.esm-testimonial-quote::after {
+  bottom: -1.5rem;
+  right: 0;
+}
+
+.esm-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.esm-testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--moss-green);
+}
+
+.esm-testimonial-info {
+  flex: 1;
+}
+
+.esm-testimonial-name {
+  font-weight: 600;
+  color: var(--deep-forest);
+  margin-bottom: 0.25rem;
+}
+
+.esm-testimonial-role {
+  color: var(--forest-green);
+  font-size: 0.875rem;
+}
+
+/* ESM Responsive Design */
+@media (max-width: 768px) {
+  .esm-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .esm-hero-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .esm-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .esm-stat-card {
+    padding: 1rem;
+  }
+  
+  .esm-stat-number {
+    font-size: 2rem;
+  }
+  
+  .esm-category-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ESM Loading States */
+.esm-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.esm-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: esm-shimmer 1.5s infinite;
+}
+
+@keyframes esm-shimmer {
+  to {
+    left: 100%;
+  }
+}
+
+/* ESM Success/Error Messages */
+.esm-message {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.esm-message-success {
+  background: var(--success-green-10, #dcfce7);
+  color: var(--success-green-80, #166534);
+  border: 1px solid var(--success-green-20, #86efac);
+}
+
+.esm-message-error {
+  background: var(--error-red-10, #fee2e2);
+  color: var(--error-red-80, #991b1b);
+  border: 1px solid var(--error-red-20, #fecaca);
+}
+
+.esm-message-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,127 @@
+const express = require('express');
+const router = express.Router();
+const esmProductController = require('../controllers/esmProduct');
+const { authenticate, authorize } = require('../middleware/auth');
+const isAdmin = authorize(['admin']);
+const { validate } = require('../middleware/validator');
+const esmProductValidator = require('../validators/esmProduct');
+
+/**
+ * @route POST /api/esm/products
+ * @desc Create a new product
+ * @access Private (Seller)
+ */
+router.post(
+  '/',
+  authenticate,
+  validate(esmProductValidator.createProduct),
+  esmProductController.createProduct
+);
+
+/**
+ * @route GET /api/esm/products
+ * @desc Get all products (public view)
+ * @access Public
+ */
+router.get(
+  '/',
+  esmProductController.getAllProducts
+);
+
+/**
+ * @route GET /api/esm/products/featured
+ * @desc Get featured products
+ * @access Public
+ */
+router.get(
+  '/featured',
+  esmProductController.getFeaturedProducts
+);
+
+/**
+ * @route GET /api/esm/products/admin
+ * @desc Get all products (admin view)
+ * @access Private (Admin)
+ */
+router.get(
+  '/admin',
+  authenticate,
+  isAdmin,
+  esmProductController.getAllProducts // Using getAllProducts instead of missing adminGetAllProducts
+);
+
+/**
+ * @route GET /api/esm/products/seller
+ * @desc Get current seller's products
+ * @access Private (Seller)
+ */
+router.get(
+  '/seller',
+  authenticate,
+  (req, res, next) => {
+    // Pass the authenticated user's ID as the seller ID
+    req.params.sellerId = req.user.id;
+    next();
+  },
+  esmProductController.getProductsBySeller
+);
+
+/**
+ * @route GET /api/esm/products/seller/:sellerId
+ * @desc Get products by seller ID
+ * @access Public
+ */
+router.get(
+  '/seller/:sellerId',
+  esmProductController.getProductsBySeller
+);
+
+/**
+ * @route GET /api/esm/products/:id
+ * @desc Get product by ID
+ * @access Public
+ */
+router.get(
+  '/:id',
+  esmProductController.getProductById
+);
+
+/**
+ * @route PUT /api/esm/products/:id
+ * @desc Update a product
+ * @access Private (Seller)
+ */
+router.put(
+  '/:id',
+  authenticate,
+  validate(esmProductValidator.updateProduct),
+  esmProductController.updateProduct
+);
+
+/**
+ * @route DELETE /api/esm/products/:id
+ * @desc Delete a product
+ * @access Private (Seller)
+ */
+router.delete(
+  '/:id',
+  authenticate,
+  esmProductController.deleteProduct
+);
+
+/**
+ * @route PUT /api/esm/products/:id/approve
+ * @desc Approve a product (admin function)
+ * @access Private (Admin)
+ * @TODO: Implement approveProduct controller method
+ */
+// Route commented out until controller method is implemented
+// router.put(
+//   '/:id/approve',
+//   authenticate,
+//   isAdmin,
+//   validate(esmProductValidator.approveProduct),
+//   esmProductController.approveProduct
+// );
+
+module.exports = router;

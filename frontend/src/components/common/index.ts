@@ -5,6 +5,9 @@ import NextImage from './NextImage';
 import ImageWithFallback from './ImageWithFallback';
 import ContentPlaceholder from './ContentPlaceholder';
 import { createPlaceholderImage } from './CreatePlaceholderImage';
+import WhatsAppButton from './WhatsAppButton';
+import LoadingSpinner from './LoadingSpinner';
+import ErrorDisplay from './ErrorDisplay';
 
 export {
   Button,
@@ -13,5 +16,8 @@ export {
   NextImage,
   ImageWithFallback,
   ContentPlaceholder,
-  createPlaceholderImage
+  createPlaceholderImage,
+  WhatsAppButton,
+  LoadingSpinner,
+  ErrorDisplay
 };

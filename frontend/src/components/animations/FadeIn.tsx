@@ -31,8 +31,8 @@ const FadeIn: React.FC<FadeInProps> = ({
   });
 
   // Set initial and animate values based on direction
-  let initial = { opacity: 0 };
-  
+  let initial: { opacity: number; y?: number; x?: number } = { opacity: 0 };
+
   if (direction === 'up') {
     initial = { ...initial, y: distance };
   } else if (direction === 'down') {

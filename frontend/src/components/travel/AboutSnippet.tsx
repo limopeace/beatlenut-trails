@@ -21,13 +21,11 @@ const AboutSnippet = () => {
             <div className="flex space-x-8 mb-6">
               <div className="flex items-center">
                 <span className="bg-green-100 p-2 rounded-full mr-2">
-                  <span className="text-deep-forest-green">🌿</span>
                 </span>
                 <span className="font-medium">Experienced Guides</span>
               </div>
               <div className="flex items-center">
                 <span className="bg-green-100 p-2 rounded-full mr-2">
-                  <span className="text-deep-forest-green">⭐</span>
                 </span>
                 <span className="font-medium">Authentic Experiences</span>
               </div>
@@ -41,9 +39,9 @@ const AboutSnippet = () => {
             </Link>
           </div>
           <div className="w-full md:w-1/2 h-96 md:h-auto relative">
-            <img 
-              src="/images/about-placeholder.jpg" 
-              alt="About BeatlenutTrails" 
+            <img
+              src="/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg"
+              alt="About BeatlenutTrails"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

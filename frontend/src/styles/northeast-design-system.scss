@@ -1,0 +1,438 @@
+/* 
+ * Northeast Design System
+ * A comprehensive design system for BeatlenutTrails
+ * capturing the essence of Northeast India's hills and rainforests
+ */
+
+/* Variables */
+:root {
+  /* Primary Colors */
+  --forest-deep: #2A4030;
+  --forest-medium: #3B5E45;
+  --forest-light: #4D7A5A;
+  
+  --misty-dark: #8999A6;
+  --misty-medium: #A8B0B8;
+  --misty-light: #CDD3D8;
+  
+  --earth-dark: #5A4B3C;
+  --earth-medium: #6D5D4B;
+  --earth-light: #8A7A67;
+  
+  /* Accent Colors */
+  --golden-dark: #D97706;
+  --golden-medium: #F59E0B;
+  --golden-light: #FBBF24;
+  
+  --teal-dark: #0D9488;
+  --teal-medium: #14B8A6;
+  --teal-light: #2DD4BF;
+  
+  /* Neutral Colors */
+  --canvas-white: #F8F6F2;
+  --canvas-light: #E6E2D9;
+  --canvas-medium: #D4CEC2;
+  
+  --ink-light: #4B5563;
+  --ink-medium: #374151;
+  --ink-dark: #1F2937;
+  
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Merriweather', serif;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 60px;
+  --spacing-2xl: 80px;
+  --spacing-3xl: 120px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  
+  /* Animation Durations */
+  --duration-fast: 0.2s;
+  --duration-medium: 0.5s;
+  --duration-slow: 0.8s;
+  
+  /* Z-Indexes */
+  --z-behind: -1;
+  --z-normal: 0; 
+  --z-above: 1;
+  --z-top: 10;
+  --z-overlay: 100;
+  --z-modal: 1000;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Base Typography */
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-medium);
+  background-color: var(--canvas-white);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--forest-deep);
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--teal-medium);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease, transform var(--duration-fast) ease;
+  
+  &:hover {
+    color: var(--teal-dark);
+  }
+}
+
+/* Container */
+.northeast-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+/* Buttons */
+.northeast-btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) ease, 
+              box-shadow var(--duration-fast) ease,
+              background-color var(--duration-fast) ease;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.northeast-btn-primary {
+  background-color: var(--golden-medium);
+  color: var(--canvas-white);
+  
+  &:hover {
+    background-color: var(--golden-dark);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+  }
+}
+
+.northeast-btn-secondary {
+  background-color: transparent;
+  color: var(--forest-deep);
+  border: 2px solid var(--forest-deep);
+  
+  &:hover {
+    background-color: var(--forest-deep);
+    color: var(--canvas-white);
+  }
+}
+
+.northeast-btn-tertiary {
+  background-color: transparent;
+  color: var(--teal-medium);
+  padding: var(--spacing-sm) 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--teal-medium);
+    transition: width var(--duration-medium) ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+/* Cards */
+.northeast-card {
+  background-color: var(--canvas-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--duration-medium) ease, 
+              box-shadow var(--duration-medium) ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--canvas-light);
+  }
+  
+  .card-body {
+    padding: var(--spacing-md);
+  }
+  
+  .card-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--canvas-light);
+  }
+}
+
+/* Glassmorphic Card */
+.northeast-glass-card {
+  background-color: rgba(248, 246, 242, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(248, 246, 242, 0.5);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  transition: transform var(--duration-medium) ease, 
+              box-shadow var(--duration-medium) ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Hero Section */
+.northeast-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-behind);
+    object-fit: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-behind);
+    background: linear-gradient(to bottom, rgba(42, 64, 48, 0.1), rgba(42, 64, 48, 0.9));
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: var(--z-normal);
+    max-width: 600px;
+    
+    h1 {
+      color: var(--canvas-white);
+      font-size: 48px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    p {
+      color: var(--canvas-white);
+      font-size: 18px;
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+  
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--canvas-white);
+    animation: bounce 2s infinite;
+    
+    .scroll-text {
+      font-size: 14px;
+      margin-bottom: var(--spacing-sm);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    .scroll-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+/* Misty Overlay Effect */
+.northeast-misty-overlay {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(168, 176, 184, 0.3), transparent);
+    z-index: var(--z-above);
+    pointer-events: none;
+  }
+}
+
+/* Nature Pattern Background */
+.northeast-leaf-pattern {
+  background-image: radial-gradient(var(--forest-deep) 2px, transparent 2px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+  background-repeat: repeat;
+  opacity: 0.05;
+}
+
+/* Watercolor Texture Background */
+.northeast-watercolor {
+  background: linear-gradient(to bottom, rgba(248, 246, 242, 0.9), rgba(109, 93, 75, 0.1));
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes mistyFade {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-misty-fade {
+  animation: mistyFade 6s ease-in-out infinite;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 28px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  
+  .northeast-hero {
+    min-height: 70vh;
+    
+    .hero-content {
+      h1 {
+        font-size: 36px;
+      }
+    }
+  }
+  
+  .northeast-container {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+}
+
+/* Utility Classes */
+.text-forest-deep { color: var(--forest-deep); }
+.text-forest-medium { color: var(--forest-medium); }
+.text-forest-light { color: var(--forest-light); }
+
+.text-misty-dark { color: var(--misty-dark); }
+.text-misty-medium { color: var(--misty-medium); }
+.text-misty-light { color: var(--misty-light); }
+
+.text-earth-dark { color: var(--earth-dark); }
+.text-earth-medium { color: var(--earth-medium); }
+.text-earth-light { color: var(--earth-light); }
+
+.text-golden-medium { color: var(--golden-medium); }
+.text-teal-medium { color: var(--teal-medium); }
+.text-canvas-white { color: var(--canvas-white); }
+.text-ink-medium { color: var(--ink-medium); }
+
+.bg-forest-deep { background-color: var(--forest-deep); }
+.bg-forest-medium { background-color: var(--forest-medium); }
+.bg-forest-light { background-color: var(--forest-light); }
+
+.bg-misty-dark { background-color: var(--misty-dark); }
+.bg-misty-medium { background-color: var(--misty-medium); }
+.bg-misty-light { background-color: var(--misty-light); }
+
+.bg-earth-dark { background-color: var(--earth-dark); }
+.bg-earth-medium { background-color: var(--earth-medium); }
+.bg-earth-light { background-color: var(--earth-light); }
+
+.bg-golden-medium { background-color: var(--golden-medium); }
+.bg-teal-medium { background-color: var(--teal-medium); }
+.bg-canvas-white { background-color: var(--canvas-white); }

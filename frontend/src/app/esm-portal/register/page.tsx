@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Button from '@/components/common/Button';
 import SectionTitle from '@/components/common/SectionTitle';
 
@@ -339,6 +340,16 @@ export default function ESMRegistrationPage() {
                   </Button>
                 </div>
               </form>
+              
+              {/* Login Link */}
+              <div className="mt-6 text-center">
+                <p className="text-gray-700">
+                  Already have an account?{' '}
+                  <Link href="/esm-portal/login" className="text-vibrant-teal hover:underline font-medium">
+                    Login to your account
+                  </Link>
+                </p>
+              </div>
             </div>
             
             {/* Additional Information */}

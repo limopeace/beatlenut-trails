@@ -6,6 +6,13 @@ import {
   faBriefcase, faUtensils, faShield, faChartPie, faBullseye, faSeedling,
   faCheck
 } from '@fortawesome/free-solid-svg-icons';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'ESM Marketplace - Ex-Servicemen Portal | Beatlenuts',
+  description: 'Supporting our heroes through a platform that connects skilled Ex-Servicemen with customers looking for quality products and services. Browse handicrafts, security services, consulting, and more.',
+  keywords: 'ex-servicemen, marketplace, veterans, military, products, services, handicrafts, security, consulting',
+};
 
 // Sample featured products
 const featuredProducts = [

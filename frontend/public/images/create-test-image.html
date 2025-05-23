@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Test Image</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600" style="display: none;"></canvas>
+    <script>
+        // Create a simple colored image with text
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Fill background
+        ctx.fillStyle = '#2A4030'; // Deep forest green
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add text
+        ctx.fillStyle = 'white';
+        ctx.font = '48px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Test Image', canvas.width/2, canvas.height/2);
+        ctx.font = '24px Arial';
+        ctx.fillText('BeatlenutTrails', canvas.width/2, canvas.height/2 + 50);
+        
+        // Convert to data URL
+        const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'test-image.jpg';
+        link.textContent = 'Download Test Image';
+        document.body.appendChild(link);
+        link.click(); // Auto download
+        
+        // Display the image
+        const img = document.createElement('img');
+        img.src = dataURL;
+        document.body.appendChild(img);
+        
+        // Display the data URL (for copy-paste)
+        const pre = document.createElement('pre');
+        pre.textContent = dataURL;
+        pre.style.wordWrap = 'break-word';
+        pre.style.whiteSpace = 'pre-wrap';
+        document.body.appendChild(pre);
+    </script>
+</body>
+</html>

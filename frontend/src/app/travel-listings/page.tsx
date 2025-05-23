@@ -219,28 +219,152 @@ const TravelListingsPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-pale-straw">
       {/* Hero Section */}
-      <div className="relative h-96 md:h-128 overflow-hidden">
+      <div className="relative h-[60vh] min-h-[400px] md:h-[70vh] lg:h-[80vh] overflow-hidden">
         <div className="absolute inset-0 bg-deep-forest/60 z-10"></div>
         <img 
           src="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg" 
           alt="Travel experiences"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-pale-straw mb-6 font-clash">
+        <div className="relative z-20 container mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center items-center text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pale-straw mb-4 sm:mb-6 font-clash">
             Discover Amazing Travel Experiences
           </h1>
-          <p className="text-lg md:text-xl text-pale-straw/90 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-pale-straw/90 max-w-md sm:max-w-xl md:max-w-2xl">
             Explore handcrafted journeys through Northeast India's breathtaking landscapes
           </p>
         </div>
       </div>
       
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12">
         <FadeIn>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-10">
-            {/* Filters sidebar */}
-            <div className="lg:col-span-1">
+          {/* Mobile filter toggle button - only visible on small screens */}
+          <div className="lg:hidden mb-6 flex justify-between items-center">
+            <h2 className="text-xl sm:text-2xl font-semibold text-deep-forest font-clash">Travel Listings</h2>
+            <button 
+              onClick={() => document.getElementById('mobile-filters')?.classList.toggle('hidden')} 
+              className="bg-forest-green hover:bg-deep-forest text-pale-straw px-4 py-2 rounded-md flex items-center transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              Filters
+            </button>
+          </div>
+          
+          {/* Mobile filters panel */}
+          <div id="mobile-filters" className="lg:hidden mb-6 hidden">
+            <div className="bg-moss-green/20 p-5 rounded-lg shadow-sm border border-moss-green/10">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-deep-forest font-clash">Filters</h2>
+                <button 
+                  onClick={() => document.getElementById('mobile-filters')?.classList.add('hidden')}
+                  className="text-deep-forest hover:text-forest-green transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Search box */}
+              <div className="mb-5">
+                <label htmlFor="mobile-search" className="block mb-2 font-medium text-deep-forest/80">
+                  Search
+                </label>
+                <input
+                  type="text"
+                  id="mobile-search"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  placeholder="Location, activity, etc."
+                  className="w-full p-3 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50 bg-white placeholder-deep-forest/50"
+                />
+              </div>
+              
+              {/* Category filter */}
+              <div className="mb-5">
+                <label htmlFor="mobile-category" className="block mb-2 font-medium text-deep-forest/80">
+                  Category
+                </label>
+                <select
+                  id="mobile-category"
+                  value={selectedCategory}
+                  onChange={e => setSelectedCategory(e.target.value)}
+                  className="w-full p-3 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50 bg-white text-deep-forest"
+                >
+                  <option value="">All Categories</option>
+                  {CATEGORIES.map(category => (
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              {/* Price range filter */}
+              <div className="mb-5">
+                <label htmlFor="mobile-price" className="block mb-2 font-medium text-deep-forest/80">
+                  Price Range
+                </label>
+                <select
+                  id="mobile-price"
+                  value={selectedPriceRange}
+                  onChange={e => setSelectedPriceRange(e.target.value)}
+                  className="w-full p-3 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50 bg-white text-deep-forest"
+                >
+                  <option value="">Any Price</option>
+                  {PRICE_RANGES.map(range => (
+                    <option key={range.value} value={range.value}>
+                      {range.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              {/* Date range picker */}
+              <div className="mb-5">
+                <label htmlFor="mobile-dates" className="block mb-2 font-medium text-deep-forest/80">
+                  Travel Dates
+                </label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    type="date"
+                    value={selectedDates.startDate ? selectedDates.startDate.toISOString().split('T')[0] : ''}
+                    onChange={(e) => {
+                      const newStartDate = e.target.value ? new Date(e.target.value) : null;
+                      setSelectedDates({...selectedDates, startDate: newStartDate});
+                    }}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    min={new Date().toISOString().split('T')[0]}
+                  />
+                  <input
+                    type="date"
+                    value={selectedDates.endDate ? selectedDates.endDate.toISOString().split('T')[0] : ''}
+                    onChange={(e) => {
+                      const newEndDate = e.target.value ? new Date(e.target.value) : null;
+                      setSelectedDates({...selectedDates, endDate: newEndDate});
+                    }}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    min={selectedDates.startDate ? selectedDates.startDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
+                  />
+                </div>
+              </div>
+              
+              {/* Clear filters button */}
+              <button
+                onClick={() => {
+                  clearFilters();
+                  document.getElementById('mobile-filters')?.classList.add('hidden');
+                }}
+                className="w-full py-3 px-4 bg-transparent border-2 border-moss-green text-deep-forest font-medium rounded-md hover:bg-moss-green/10 transition-colors duration-300"
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8 mb-8 lg:mb-10">
+            {/* Desktop Filters sidebar - only visible on large screens */}
+            <div className="hidden lg:block lg:col-span-1">
               <div className="bg-moss-green/20 p-6 rounded-lg shadow-sm border border-moss-green/10 sticky top-24">
                 <h2 className="text-2xl font-semibold mb-6 text-deep-forest font-clash">Filters</h2>
                 
@@ -304,7 +428,7 @@ const TravelListingsPage: React.FC = () => {
                   <label htmlFor="dates" className="block mb-2 font-medium text-deep-forest/80">
                     Travel Dates
                   </label>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-col space-y-2">
                     <input
                       type="date"
                       value={selectedDates.startDate ? selectedDates.startDate.toISOString().split('T')[0] : ''}
@@ -312,7 +436,7 @@ const TravelListingsPage: React.FC = () => {
                         const newStartDate = e.target.value ? new Date(e.target.value) : null;
                         setSelectedDates({...selectedDates, startDate: newStartDate});
                       }}
-                      className="w-full p-2 border border-gray-300 rounded-md"
+                      className="w-full p-2 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50"
                       min={new Date().toISOString().split('T')[0]}
                     />
                     <input
@@ -322,7 +446,7 @@ const TravelListingsPage: React.FC = () => {
                         const newEndDate = e.target.value ? new Date(e.target.value) : null;
                         setSelectedDates({...selectedDates, endDate: newEndDate});
                       }}
-                      className="w-full p-2 border border-gray-300 rounded-md"
+                      className="w-full p-2 border border-moss-green/30 rounded-md focus:outline-none focus:ring-2 focus:ring-forest-green/50"
                       min={selectedDates.startDate ? selectedDates.startDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                     />
                   </div>
@@ -342,7 +466,7 @@ const TravelListingsPage: React.FC = () => {
             <div className="lg:col-span-3">
               {filteredListings.length > 0 ? (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                     {paginatedListings.map(listing => (
                       <motion.div
                         key={listing.id}
@@ -360,21 +484,21 @@ const TravelListingsPage: React.FC = () => {
                   
                   {/* Pagination */}
                   {totalPages > 1 && (
-                    <div className="flex justify-center mt-10">
-                      <nav className="flex items-center space-x-2">
+                    <div className="flex justify-center mt-8 sm:mt-10">
+                      <nav className="flex flex-wrap items-center justify-center gap-2">
                         <button
                           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                           disabled={currentPage === 1}
-                          className="px-4 py-2 border border-moss-green/30 rounded-md disabled:opacity-50 bg-white text-deep-forest hover:bg-moss-green/10 transition-colors"
+                          className="px-3 sm:px-4 py-2 border border-moss-green/30 rounded-md disabled:opacity-50 bg-white text-deep-forest hover:bg-moss-green/10 transition-colors text-sm sm:text-base"
                         >
-                          Previous
+                          Prev
                         </button>
                         
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`px-4 py-2 border rounded-md ${
+                            className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border rounded-md text-sm sm:text-base ${
                               currentPage === page
                                 ? 'bg-forest-green text-pale-straw border-forest-green'
                                 : 'bg-white text-deep-forest border-moss-green/30 hover:bg-moss-green/10'
@@ -387,7 +511,7 @@ const TravelListingsPage: React.FC = () => {
                         <button
                           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                           disabled={currentPage === totalPages}
-                          className="px-4 py-2 border border-moss-green/30 rounded-md disabled:opacity-50 bg-white text-deep-forest hover:bg-moss-green/10 transition-colors"
+                          className="px-3 sm:px-4 py-2 border border-moss-green/30 rounded-md disabled:opacity-50 bg-white text-deep-forest hover:bg-moss-green/10 transition-colors text-sm sm:text-base"
                         >
                           Next
                         </button>
@@ -396,13 +520,13 @@ const TravelListingsPage: React.FC = () => {
                   )}
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center h-64 bg-white rounded-lg border border-moss-green/20 shadow-sm">
-                  <p className="text-xl font-medium text-deep-forest mb-4">
+                <div className="flex flex-col items-center justify-center h-48 sm:h-64 bg-white rounded-lg border border-moss-green/20 shadow-sm p-4">
+                  <p className="text-lg sm:text-xl font-medium text-deep-forest mb-4 text-center">
                     No listings found matching your criteria
                   </p>
                   <button
                     onClick={clearFilters}
-                    className="py-3 px-6 bg-forest-green text-pale-straw font-medium rounded-md hover:bg-moss-green transition-colors duration-300"
+                    className="py-2 sm:py-3 px-5 sm:px-6 bg-forest-green text-pale-straw font-medium rounded-md hover:bg-moss-green transition-colors duration-300 text-sm sm:text-base"
                   >
                     Clear Filters
                   </button>

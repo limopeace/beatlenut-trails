@@ -7,6 +7,7 @@ Images were not displaying correctly in the application. The issue appeared to b
 1. Next.js Image components were not rendering properly
 2. Images were showing up in the HTML but not visible on the page
 3. Errors were occurring with complex image components and optimizations
+4. Unused imports of NextImage components causing conflicts
 
 ## Solution
 
@@ -16,6 +17,7 @@ We implemented a radical simplification approach:
    - Switched from `<Image>` to `<img>` tags
    - Used standard HTML attributes for styling
    - Applied positioning using Tailwind classes
+   - **Removed unused NextImage imports from components**
 
 2. **Created Actual Image Content**
    - Added actual JPEG content to all image placeholders 
@@ -44,6 +46,8 @@ We implemented a radical simplification approach:
 - FeaturedServices.tsx
 - Testimonial.tsx
 - AboutSnippet.tsx
+- CallToAction.tsx
+- ESMPromotion.tsx
 
 ## Why This Works
 
@@ -54,5 +58,10 @@ The approach solved the problem by:
 3. Ensuring actual image content exists at the referenced paths
 4. Simplifying the rendering pipeline with fewer abstraction layers
 5. Removing complex state management around image loading
+6. Eliminating unused imports that caused conflicts between component approaches
 
 This approach is more robust and less prone to errors from complex dependencies.
+
+## Additional Notes
+
+Some components had been partially migrated - they were using standard HTML img tags but still importing the NextImage component without using it. These unused imports were removed to complete the migration process and fix the image loading issues.

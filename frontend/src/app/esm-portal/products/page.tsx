@@ -1,7 +1,12 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Button from '@/components/common/Button';
 import SectionTitle from '@/components/common/SectionTitle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { EsmProductService, EsmProduct } from '@/services/api/esmProductService';
 
 // Function to get product images from our real images collection
 const getProductImage = (id: number) => {
@@ -20,8 +25,19 @@ const getProductImage = (id: number) => {
   return realImages[(id - 1) % realImages.length];
 };
 
-// Sample product data (to be replaced with API calls in the future)
-const products = [
+export default function ProductsPage() {
+  const [products, setProducts] = useState<EsmProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState('newest');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  // Sample product data (fallback for when API is not available)
+  const sampleProducts = [
   {
     id: 1,
     name: 'Handcrafted Bamboo Art',
@@ -96,18 +112,89 @@ const products = [
   },
 ];
 
-// Available categories from the products
-const categories = Array.from(new Set(products.map(product => product.category)));
+  // Fetch products from API
+  useEffect(() => {
+    fetchProducts();
+  }, [searchQuery, selectedCategories, selectedPriceRanges, sortBy, currentPage]);
 
-// Price ranges for filtering
-const priceRanges = [
+  const fetchProducts = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const filters = {
+        search: searchQuery,
+        category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
+        sortBy: sortBy === 'price-low' ? 'price' : sortBy === 'price-high' ? 'price' : sortBy === 'newest' ? 'date' : 'name',
+        sortOrder: sortBy === 'price-high' ? 'desc' : 'asc',
+        page: currentPage,
+        limit: 9
+      };
+      
+      const response = await EsmProductService.getProducts(filters);
+      setProducts(response.products);
+      setTotalPages(response.pagination.pages);
+    } catch (err: any) {
+      console.error('Error fetching products:', err);
+      setError(err.message || 'Failed to load products');
+      // Use sample data as fallback
+      setProducts(sampleProducts.map((p, index) => ({ ...p, _id: String(index + 1) })));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Available categories from the products
+  const categories = loading ? [] : Array.from(new Set(products.map(product => product.category || 'Other')));
+
+  // Price ranges for filtering
+  const priceRanges = [
   { label: 'Under ₹1,000', value: 'under1000' },
   { label: '₹1,000 - ₹2,000', value: '1000to2000' },
   { label: '₹2,000 - ₹5,000', value: '2000to5000' },
   { label: 'Above ₹5,000', value: 'above5000' },
 ];
+  
+  // Client-side filtering (in case API filtering isn't working)
+  const filteredProducts = products.filter(product => {
+    // Search filter
+    const matchesSearch = searchQuery === '' || 
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (product.seller?.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+    
+    // Category filter
+    const matchesCategory = selectedCategories.length === 0 || 
+      selectedCategories.includes(product.category || 'Other');
+    
+    // Price filter
+    const price = product.price;
+    let matchesPrice = selectedPriceRanges.length === 0;
+    
+    if (selectedPriceRanges.includes('under1000') && price < 1000) matchesPrice = true;
+    if (selectedPriceRanges.includes('1000to2000') && price >= 1000 && price <= 2000) matchesPrice = true;
+    if (selectedPriceRanges.includes('2000to5000') && price >= 2000 && price <= 5000) matchesPrice = true;
+    if (selectedPriceRanges.includes('above5000') && price > 5000) matchesPrice = true;
+    
+    return matchesSearch && matchesCategory && matchesPrice;
+  });
+  
+  const handleCategoryToggle = (category: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
+  
+  const handlePriceToggle = (range: string) => {
+    setSelectedPriceRanges(prev => 
+      prev.includes(range) 
+        ? prev.filter(r => r !== range)
+        : [...prev, range]
+    );
+  };
 
-export default function ProductsPage() {
   return (
     <>
       {/* Page Header */}
@@ -117,9 +204,23 @@ export default function ProductsPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6 font-clash">
               ESM Marketplace Products
             </h1>
-            <p className="text-xl mb-0">
+            <p className="text-xl mb-8">
               Browse high-quality products made by skilled Ex-Servicemen from across India
             </p>
+            
+            {/* Search Bar */}
+            <div className="esm-search-container max-w-2xl mx-auto">
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search products, sellers, or categories..."
+                className="esm-search-input w-full px-6 py-4 text-lg text-gray-900 bg-white rounded-full shadow-lg focus:outline-none focus:ring-4 focus:ring-forest-green/20"
+              />
+              <button className="esm-search-button absolute right-3 top-1/2 transform -translate-y-1/2 bg-forest-green text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-moss-green transition-colors">
+                <FontAwesomeIcon icon={faSearch} className="text-lg" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -142,9 +243,11 @@ export default function ProductsPage() {
                         <input 
                           type="checkbox" 
                           id={`category-${index}`} 
-                          className="w-4 h-4 text-deep-forest-green" 
+                          className="w-4 h-4 text-deep-forest-green"
+                          checked={selectedCategories.includes(category)}
+                          onChange={() => handleCategoryToggle(category)}
                         />
-                        <label htmlFor={`category-${index}`} className="ml-2 text-gray-700">
+                        <label htmlFor={`category-${index}`} className="ml-2 text-gray-700 cursor-pointer">
                           {category}
                         </label>
                       </div>
@@ -161,9 +264,11 @@ export default function ProductsPage() {
                         <input 
                           type="checkbox" 
                           id={`price-${range.value}`} 
-                          className="w-4 h-4 text-deep-forest-green" 
+                          className="w-4 h-4 text-deep-forest-green"
+                          checked={selectedPriceRanges.includes(range.value)}
+                          onChange={() => handlePriceToggle(range.value)}
                         />
-                        <label htmlFor={`price-${range.value}`} className="ml-2 text-gray-700">
+                        <label htmlFor={`price-${range.value}`} className="ml-2 text-gray-700 cursor-pointer">
                           {range.label}
                         </label>
                       </div>
@@ -219,20 +324,11 @@ export default function ProductsPage() {
             
             {/* Products Grid */}
             <div className="lg:col-span-3">
-              {/* Search and Sort */}
+              {/* Results Count and Sort */}
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                <div className="relative w-full md:w-96 mb-4 md:mb-0">
-                  <input 
-                    type="text" 
-                    placeholder="Search products..." 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-deep-forest-green"
-                  />
-                  <button className="absolute right-3 top-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div>
+                <p className="text-gray-700 mb-4 md:mb-0">
+                  Showing {filteredProducts.length} of {products.length} products
+                </p>
                 
                 <div className="flex items-center">
                   <span className="mr-2 text-gray-700">Sort by:</span>
@@ -247,7 +343,7 @@ export default function ProductsPage() {
               
               {/* Products */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <div key={product.id} className="card group">
                     <div className="relative h-48 overflow-hidden rounded-t-lg">
                       <img 
