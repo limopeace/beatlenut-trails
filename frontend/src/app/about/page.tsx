@@ -191,6 +191,39 @@ export default function About() {
         <div className="absolute bottom-1/4 right-1/3 w-32 h-32 bg-forest-green/5 rounded-full -z-10"></div>
       </SectionContainer>
 
+      {/* Founders Section */}
+      <SectionContainer background="pale-straw" className="relative overflow-hidden py-16 md:py-24" id="founders-section">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-deep-forest font-clash">Meet the Founders</h2>
+          <p className="text-base sm:text-lg md:text-xl text-deep-forest/90">The road brought us together. Now we build the trail for others.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col items-center">
+            <TeamAvatar name="Gurpreet Singh" imagePath="/images/founders/gurpreet.jpg" />
+            <h3 className="mt-4 text-xl font-bold text-deep-forest">Gurpreet Singh</h3>
+            <p className="text-sm text-deep-forest/70">Founder | Expedition Leader | Veteran</p>
+            <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
+              A retired Indian Army officer with over 30 years of leadership and outdoor experience, Gurpreet is the compass behind every Beatlenut expedition. From commanding high-altitude missions to curating soulful motorcycle and cycling routes, he brings unmatched precision, safety, and storytelling to every trail.
+            </p>
+            <p className="mt-1 text-sm text-deep-forest/80">"Every journey should challenge the body, awaken the mind, and return you a little more alive."</p>
+            <p className="mt-1 text-sm text-deep-forest/90">Contact: +91 9501229112</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <TeamAvatar name="Hame Kurbah" imagePath="/images/founders/hame.jpg" />
+            <h3 className="mt-4 text-xl font-bold text-deep-forest">Hame Kurbah</h3>
+            <p className="text-sm text-deep-forest/70">Co-Founder | Hospitality Curator | Cultural Specialist</p>
+            <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
+              A native of the Khasi hills and a seasoned hospitality expert, Hame has spent years hosting travelers and weaving culture into comfort. He brings heart, heritage, and deep local insight into every Beatlenut journey — from curated village stays to off-grid luxury camps.
+            </p>
+            <p className="mt-1 text-sm text-deep-forest/80">"I don't just want guests to see my homeland — I want them to feel it."</p>
+            <p className="mt-1 text-sm text-deep-forest/90">Contact: +91 9362047953</p>
+          </div>
+        </div>
+        <div className="text-center mt-8">
+          <p className="text-sm text-deep-forest/80">Together, We Ride with Soul. This isn't just about adventure — it's about belonging. Come, ride with us where the road ends and stories begin.</p>
+        </div>
+      </SectionContainer>
+
       {/* Our Team Section */}
       <SectionContainer
         background="pale-straw"

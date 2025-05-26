@@ -9,6 +9,8 @@ yarn-error.log
 dist/
 build/
 out/
+.next/
+.vercel/
 
 # Environment variables
 .env
@@ -38,5 +40,30 @@ Thumbs.db
 # Debug logs
 logs/
 *.log
-EOL < /dev/null
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Cache directories
+.cache/
+.eslintcache
+.parcel-cache/
+
+# Documentation build files
+docs/.vuepress/dist/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Claude settings
 **/.claude/settings.local.json
