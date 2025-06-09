@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PhotoSwipeMasonryGallery } from '@/components/travel/gallery';
+import PhotoSwipeMasonryGallery from '@/components/travel/PhotoSwipeMasonryGallery';
 
 // Sample gallery items with varying heights for better masonry effect
 const galleryItems = [

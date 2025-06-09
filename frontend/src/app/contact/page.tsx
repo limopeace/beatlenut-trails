@@ -170,8 +170,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-deep-forest mb-1 font-clash">Email</h3>
-                    <p className="text-deep-forest/80">info@beatlenuttrails.com</p>
-                    <p className="text-deep-forest/80">support@beatlenuttrails.com</p>
+                    <p className="text-deep-forest/80">gurpreet.nijher@gmail.com</p>
                   </div>
                 </div>
                 

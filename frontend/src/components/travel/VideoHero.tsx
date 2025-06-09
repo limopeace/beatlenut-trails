@@ -116,11 +116,11 @@ const VideoHero = () => {
       
       {/* Content Container */}
       <div className="relative z-10 h-full w-full flex flex-col justify-center items-center">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 3xl:px-12 4xl:px-16 max-w-7xl 3xl:max-w-[1920px]">
           {slideTexts.map((text, index) => (
             <div 
               key={index}
-              className={`max-w-[90%] xs:max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-center ${
+              className={`max-w-[90%] xs:max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl 3xl:max-w-6xl mx-auto text-center ${
                 currentText === index ? 'block' : 'hidden'
               }`}
             >
@@ -135,7 +135,7 @@ const VideoHero = () => {
               
               {/* Main Heading */}
               <h1 
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-clash font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 leading-tight transition-all duration-700 uppercase ${
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 3xl:text-8xl 4xl:text-9xl font-clash font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 3xl:mb-8 leading-tight transition-all duration-700 uppercase ${
                   animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -144,7 +144,7 @@ const VideoHero = () => {
               
               {/* Description */}
               <p 
-                className={`text-base sm:text-lg md:text-xl lg:text-2xl text-pale-straw mb-6 md:mb-8 lg:mb-10 font-light leading-relaxed transition-all duration-700 ${
+                className={`text-base sm:text-lg md:text-xl lg:text-2xl 3xl:text-3xl text-pale-straw mb-6 md:mb-8 lg:mb-10 3xl:mb-12 font-light leading-relaxed transition-all duration-700 ${
                   animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >

@@ -8,53 +8,75 @@ import { motion, AnimatePresence } from 'framer-motion';
 const testimonials = [
   {
     id: 1,
-    content:
-      "Our trip to Meghalaya with BeatlenutTrails was nothing short of magical. The team's attention to detail and knowledge of hidden gems made this journey unforgettable. Highly recommended for anyone wanting to experience the authentic Northeast!",
-    author: 'Priya Sharma',
-    location: 'Mumbai',
+    content: "I came to see clouds. I left carrying silence. I thought I was signing up for a holiday. Beatlenut gave me something else entirely — time to breathe, weep by rivers, laugh like a child again, and feel part of something sacred. I'll never forget the women who fed me like family, or the fog that walked beside us in Sohra.",
+    author: '🌿 Reshma',
+    location: 'Verified Traveler',
     rating: 5,
-    imageSrc: 'https://picsum.photos/id/1036/800/600', // Mountain/forest landscape
-    avatarSrc: 'https://randomuser.me/api/portraits/women/32.jpg', // Woman avatar
+    imageSrc: 'https://picsum.photos/id/1036/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/women/32.jpg',
   },
   {
     id: 2,
-    content:
-      "As a solo traveler, safety was my top concern. The ex-Army team at BeatlenutTrails made me feel secure while exploring remote areas of Arunachal Pradesh. Their local connections provided cultural experiences that wouldn't be possible otherwise.",
-    author: 'Rajiv Mehta',
-    location: 'Bangalore',
+    content: "Precision meets poetry. These folks don't miss a detail — or a moment. As someone who's travelled the world, I rarely come across a team that combines military-grade preparedness with such warmth and humility. From the backup support to the birding walks, every piece of the puzzle clicked — without you ever seeing the edges.",
+    author: '🧳 Byram Godrej',
+    location: 'Verified Traveler',
     rating: 5,
-    imageSrc: 'https://picsum.photos/id/1037/800/600', // People in mountains
-    avatarSrc: 'https://randomuser.me/api/portraits/men/45.jpg', // Man avatar
+    imageSrc: 'https://picsum.photos/id/1037/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/men/45.jpg',
   },
   {
     id: 3,
-    content:
-      "The wildlife safari in Kaziranga organized by BeatlenutTrails exceeded all expectations. Their guides were knowledgeable, patient, and passionate about conservation. A perfect balance of adventure and education!",
-    author: 'Ananya Gupta',
-    location: 'Delhi',
-    rating: 4,
-    imageSrc: 'https://picsum.photos/id/137/800/600', // Wildlife/nature scene
-    avatarSrc: 'https://randomuser.me/api/portraits/women/65.jpg', // Woman avatar
+    content: "It felt like the forest remembered me. I didn't just visit the Northeast. I entered it — through stories, rituals, trails, and cups of tea by people who knew why we were really there. Beatlenut isn't a tour company. It's a way of being.",
+    author: '🛶 Gagan Sethi',
+    location: 'Verified Traveler',
+    rating: 5,
+    imageSrc: 'https://picsum.photos/id/137/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/men/65.jpg',
   },
   {
     id: 4,
-    content:
-      "My family's adventure through Northeast India with BeatlenutTrails was the highlight of our year. The cultural experiences were authentic and the mountain views were spectacular. Our guide went above and beyond to ensure we had the best experience.",
-    author: 'Vikram Singh',
-    location: 'Kolkata',
+    content: "If you want your soul to catch up with your body — go with them. I've been to monasteries before, but never like this. The walks were gentle, the prayers unsaid but felt, and the rhythm of travel so intuitive, it felt like we were being guided by the land itself.",
+    author: '📿 Meenakshi Ramachandran',
+    location: 'Verified Traveler',
     rating: 5,
-    imageSrc: 'https://picsum.photos/id/184/800/600', // Mountain village scene
-    avatarSrc: 'https://randomuser.me/api/portraits/men/22.jpg', // Man avatar
+    imageSrc: 'https://picsum.photos/id/184/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/women/22.jpg',
   },
   {
     id: 5,
-    content:
-      "The motorcycle tour through Arunachal Pradesh was an adventure of a lifetime! BeatlenutTrails handled all the logistics perfectly, from bikes to accommodations. Their knowledge of the terrain and local culture made this a truly special experience.",
-    author: 'Aditya Patel',
-    location: 'Hyderabad',
+    content: "The ride changed me. The road remembered me. I've done long bike circuits before, but nothing comes close to what I experienced on the Upper Assam Superbike loop. The routes were surreal, the stories were alive, and the crew? Rock solid. These guys ride with soul and precision — rare to find both.",
+    author: '🏍️ Jim Sathya',
+    location: 'Verified Traveler',
     rating: 5,
-    imageSrc: 'https://picsum.photos/id/28/800/600', // Road/journey image
-    avatarSrc: 'https://randomuser.me/api/portraits/men/54.jpg', // Man avatar
+    imageSrc: 'https://picsum.photos/id/28/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/men/54.jpg',
+  },
+  {
+    id: 6,
+    content: "This was the first trip where I didn't feel like a tourist — I felt like I belonged. I shared fires with grandmothers who told stories from before maps. I learned to cook bamboo stew in a thatched home. I cried a little when I left. Beatlenut showed me beauty that doesn't ask for an audience — just attention.",
+    author: '🌸 Aastha Gautam',
+    location: 'Verified Traveler',
+    rating: 5,
+    imageSrc: 'https://picsum.photos/id/1043/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/women/41.jpg',
+  },
+  {
+    id: 7,
+    content: "Some trips give you memories. This one gave me meaning. From Loktak's floating worlds to the monks of Sikkim, every step felt intentional, every silence allowed. Thank you, Beatlenut, for reminding me how much wisdom lives off the beaten path.",
+    author: '🕊️ Shereen Perez',
+    location: 'Verified Traveler',
+    rating: 5,
+    imageSrc: 'https://picsum.photos/id/1044/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/women/67.jpg',
+  },
+  {
+    id: 8,
+    content: "There are roads. And then there are rituals. This was the latter. I've ridden across continents, crossed deserts, and climbed high passes — but nothing felt like this. Beatlenut Trails doesn't just chart routes. They craft pilgrimages disguised as expeditions. Every halt had a story. Every turn felt timed by something higher. I came home with dust on my boots, peace in my chest, and a quiet knowing that I'd ridden something eternal.",
+    author: '🔥 Ajay Dubey',
+    location: 'Verified Traveler',
+    rating: 5,
+    imageSrc: 'https://picsum.photos/id/1045/800/600',
+    avatarSrc: 'https://randomuser.me/api/portraits/men/72.jpg',
   },
 ];
 
@@ -103,7 +125,7 @@ const Testimonial = () => {
           <span className="text-pale-straw text-lg sm:text-xl md:text-2xl font-serif">Testimonials</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-pale-straw font-semibold mb-3 sm:mb-4 mt-1 sm:mt-2 font-clash">What Our Travelers Say</h2>
           <p className="text-pale-straw/80 max-w-3xl mx-auto text-sm sm:text-base">
-            Discover why our guests keep coming back for more adventures
+            Authentic reviews from riders who've experienced the soul of Northeast India with us
           </p>
         </FadeIn>
 

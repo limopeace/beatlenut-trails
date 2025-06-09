@@ -10,34 +10,76 @@ import { motion } from 'framer-motion';
 const packages = [
   {
     id: 1,
-    title: 'Meghalaya Explorer',
-    duration: '6 Days / 5 Nights',
-    price: 32500,
-    description: 'Discover living root bridges, crystal caves, and stunning waterfalls in the abode of clouds.',
-    highlights: ['Cherrapunji', 'Double Decker Root Bridge', 'Dawki River', 'Mawlynnong Village'],
-    imageSrc: 'https://picsum.photos/id/100/800/500',
-    href: '/travel-listings/meghalaya-explorer',
+    title: '🌧️ The Megha Ride in the Clouds',
+    duration: '7-9 Days',
+    price: 35000,
+    description: 'A cycling expedition through mist, myths, and monsoon melodies. Ride from Shillong to Sohra through sacred valleys and cloud-kissed ridges.',
+    highlights: ['Shillong Musical Alleys', 'Sohra Waterfalls', 'Living Root Bridges', 'Sacred Groves', 'Village Stays'],
+    imageSrc: '/images/real/pexels-kanishka-211910-679492-min.jpg',
+    href: '/travel-listings/megha-ride-clouds',
+    category: 'Cycling',
+    emoji: '🌿'
   },
   {
     id: 2,
-    title: 'Assam Wildlife Safari',
-    duration: '5 Days / 4 Nights',
-    price: 28000,
-    description: 'Experience thrilling wildlife encounters in the renowned national parks of Assam.',
-    highlights: ['Kaziranga National Park', 'Manas National Park', 'Jeep Safaris', 'Boat Cruises'],
-    imageSrc: 'https://picsum.photos/id/167/800/500',
-    href: '/travel-listings/assam-wildlife-safari',
+    title: '🍃 Whispers from the Bungalows',
+    duration: '10-12 Days',
+    price: 85000,
+    description: 'A luxury tea trail through time — from Kaziranga to Dibrugarh. Stay in 100-year-old colonial tea estates and explore wildlife sanctuaries.',
+    highlights: ['Heritage Tea Bungalows', 'Kaziranga Safaris', 'Majuli River Island', 'Tea Garden Walks', 'Colonial Architecture'],
+    imageSrc: '/images/real/pexels-shubhendu-singh-1278012-2439742-min.jpg',
+    href: '/travel-listings/whispers-bungalows',
+    category: 'Luxury',
+    emoji: '🍵'
   },
   {
     id: 3,
-    title: 'Arunachal Monastery Circuit',
-    duration: '7 Days / 6 Nights',
-    price: 45000,
-    description: 'Journey through spectacular mountain landscapes and ancient Buddhist monasteries.',
-    highlights: ['Tawang Monastery', 'Bomdila', 'Sela Pass', 'Dirang Hot Springs'],
-    imageSrc: 'https://picsum.photos/id/177/800/500',
-    href: '/travel-listings/arunachal-monastery-circuit',
+    title: '🕉️ The Monastic Himalayan Circuit',
+    duration: '9-12 Days',
+    price: 65000,
+    description: 'From Bomdila to Tawang — a spiritual ascent through clouds and chants. Journey through western Arunachal Pradesh\'s sacred monasteries.',
+    highlights: ['Tawang Monastery', 'Sela Pass', 'Buddhist Rituals', 'Himalayan Villages', 'Sacred Lakes'],
+    imageSrc: '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
+    href: '/travel-listings/monastic-himalayan-circuit',
+    category: 'Spiritual',
+    emoji: '🏔️'
   },
+  {
+    id: 4,
+    title: '🔥 Hornbill Festival & Naga Soul Trail',
+    duration: '5-7 Days',
+    price: 42000,
+    description: 'Dance, fire, folklore — the tribes gather, and so must you. Experience Nagaland\'s cultural heritage during the famous Hornbill Festival.',
+    highlights: ['Hornbill Festival', 'Tribal Dances', 'Naga Villages', 'Traditional Crafts', 'Fire Ceremonies'],
+    imageSrc: '/images/real/pexels-travelerchitect-18736328-min.jpg',
+    href: '/travel-listings/hornbill-naga-trail',
+    category: 'Cultural',
+    emoji: '🪖'
+  },
+  {
+    id: 5,
+    title: '🌅 Loktak Lake & the Floating Worlds',
+    duration: '3-5 Days',
+    price: 25000,
+    description: 'Where the lake breathes, and the world floats quietly with it. Experience India\'s only floating lake ecosystem in Manipur.',
+    highlights: ['Floating Phumdis', 'Keibul Lamjao Park', 'Fishermen Villages', 'Sunrise Boat Rides', 'Manipuri Culture'],
+    imageSrc: '/images/real/pexels-nans1419-20519339-min.jpg',
+    href: '/travel-listings/loktak-floating-worlds',
+    category: 'Nature',
+    emoji: '🌺'
+  },
+  {
+    id: 6,
+    title: '🏍️ Nepal Overland Bike Expedition',
+    duration: '14-18 Days',
+    price: 95000,
+    description: 'From Brahmaputra bends to Himalayan breaths — a ride that spans soul and silence. Guwahati to the Himalayas and back.',
+    highlights: ['Cross-Border Riding', 'Himalayan Passes', 'Kathmandu Valley', 'Pokhara Lakes', 'Terai Plains'],
+    imageSrc: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    href: '/travel-listings/nepal-overland-expedition',
+    category: 'Adventure',
+    emoji: '🛣️'
+  }
 ];
 
 const formatPrice = (price: number) => {
@@ -61,15 +103,15 @@ const TravelPackages = () => {
         
         {/* Section Header */}
         <FadeIn direction="up" className="text-center mb-8 sm:mb-10 md:mb-12">
-          <span className="text-forest-green text-lg sm:text-xl md:text-2xl font-serif">Tour Packages</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl text-deep-forest font-semibold mb-3 sm:mb-4 mt-1 sm:mt-2 font-clash">Popular Adventures</h2>
+          <span className="text-forest-green text-lg sm:text-xl md:text-2xl font-serif">🌍 Explore Tours</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-deep-forest font-semibold mb-3 sm:mb-4 mt-1 sm:mt-2 font-clash">Soul-Stirring Expeditions</h2>
           <p className="text-deep-forest/80 max-w-3xl mx-auto text-sm sm:text-base">
-            All-inclusive curated packages for unforgettable Northeast experiences
+            Handcrafted journeys through Northeast India's breathtaking landscapes, ancient cultures, and sacred spaces
           </p>
         </FadeIn>
         
         {/* Packages Grid - improved for mobile with better responsive columns */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           {packages.map((pkg) => (
             <StaggerItem key={pkg.id} className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col border border-moss-green/20 hover:shadow-lg transition-all duration-300">
               <div className="relative h-40 sm:h-44 md:h-48 w-full overflow-hidden">
@@ -80,7 +122,10 @@ const TravelPackages = () => {
                   loading="lazy"
                 />
                 <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-forest-green text-pale-straw py-1 px-2 sm:px-3 rounded-full text-xs sm:text-sm font-medium z-10">
-                  Featured
+                  {pkg.category}
+                </div>
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-white/90 text-deep-forest py-1 px-2 rounded-full text-lg z-10">
+                  {pkg.emoji}
                 </div>
               </div>
               

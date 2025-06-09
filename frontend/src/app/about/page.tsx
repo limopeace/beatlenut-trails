@@ -122,7 +122,7 @@ export default function About() {
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-pale-straw mb-6 font-clash">Our Story</h1>
           <p className="text-xl text-pale-straw/90 max-w-2xl">
-            Founded by Army veterans with a deep love for Northeast India, BeatlenutTrails was born from a vision to share the region's beauty while creating opportunities for ex-servicemen.
+            "A soldier and a storyteller. A rider and a host. A trail that called — and two who answered."
           </p>
         </div>
       </div>
@@ -136,9 +136,12 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           <FadeIn direction="right">
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-deep-forest font-clash">Our Mission</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-deep-forest font-clash">Our Story</h2>
               <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-deep-forest/90">
-                To showcase the unparalleled beauty and cultural richness of Northeast India through authentic, sustainable travel experiences while creating meaningful opportunities for ex-servicemen.
+                <strong>Beatlenut Trails</strong> was born out of a simple truth: that the most memorable journeys are those that change something within us.
+              </p>
+              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-deep-forest/90">
+                We are <strong>an adventure travel company founded by a retired Indian Army Veteran</strong> and <strong>Hame Kurbah</strong>, a hospitality expert and native of the Northeast. With decades of discipline, grit, and wanderlust between us, we left conventional careers behind to build something far more personal — a soulful, high-touch travel outfit that curates <strong>luxury expeditions, long-distance cycling and biking tours, forest immersions, and sacred trails</strong> across India and beyond.
               </p>
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="flex items-start">
@@ -147,7 +150,7 @@ export default function About() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80">Providing exceptional travel experiences that highlight the region's natural wonders and cultural heritage</p>
+                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Real Access</strong> — Not tourist trails, but roads less taken: monasteries before dawn, villages that still tell stories, campsites where stars speak louder than words.</p>
                 </div>
                 <div className="flex items-start">
                   <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
@@ -155,7 +158,7 @@ export default function About() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80">Supporting ex-servicemen in their transition to civilian careers through our ESM marketplace</p>
+                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Safety First</strong> — As veterans of terrain and time, we prioritize your security without compromising on freedom or exploration.</p>
                 </div>
                 <div className="flex items-start">
                   <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
@@ -163,7 +166,15 @@ export default function About() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80">Promoting sustainable tourism practices that benefit local communities and preserve the environment</p>
+                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Local Partnership</strong> — We work directly with tribal hosts, farmers, monks, and artists — ensuring every trip uplifts communities and preserves their voice.</p>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
+                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Mindful Travel</strong> — Whether you're riding through cloud forests or sitting still in a monastery courtyard, every moment is curated to reconnect you with what matters.</p>
                 </div>
               </div>
             </div>
@@ -178,8 +189,8 @@ export default function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/60 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-pale-straw mb-2 sm:mb-3 font-clash">Our Vision</h3>
-                <p className="text-sm sm:text-base md:text-lg text-pale-straw/90">To be the leading sustainable tourism provider in Northeast India while empowering ex-servicemen and local communities.</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-pale-straw mb-2 sm:mb-3 font-clash">Why We Ride</h3>
+                <p className="text-sm sm:text-base md:text-lg text-pale-straw/90">We believe that travel is not escape — it is <strong>return</strong>. To the land. To wonder. To stillness. And that when done right, it can be a prayer on two wheels, a poem by the fire, and a story passed on forever.</p>
               </div>
             </div>
           </FadeIn>
@@ -199,28 +210,43 @@ export default function About() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col items-center">
-            <TeamAvatar name="Gurpreet Singh" imagePath="/images/founders/gurpreet.jpg" />
-            <h3 className="mt-4 text-xl font-bold text-deep-forest">Gurpreet Singh</h3>
+            <div className="w-48 h-48 rounded-full overflow-hidden mb-4 border-4 border-moss-green/20">
+              <TeamAvatar name="Gurpreet Singh" imagePath="/images/team/gurpreet.jpeg" />
+            </div>
+            <h3 className="mt-4 text-xl font-bold text-deep-forest">🪖 Gurpreet Singh</h3>
             <p className="text-sm text-deep-forest/70">Founder | Expedition Leader | Veteran</p>
             <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
               A retired Indian Army officer with over 30 years of leadership and outdoor experience, Gurpreet is the compass behind every Beatlenut expedition. From commanding high-altitude missions to curating soulful motorcycle and cycling routes, he brings unmatched precision, safety, and storytelling to every trail.
             </p>
-            <p className="mt-1 text-sm text-deep-forest/80">"Every journey should challenge the body, awaken the mind, and return you a little more alive."</p>
-            <p className="mt-1 text-sm text-deep-forest/90">Contact: +91 9501229112</p>
+            <p className="mt-1 text-sm text-deep-forest/80 italic">"Every journey should challenge the body, awaken the mind, and return you a little more alive."</p>
+            <div className="mt-3 text-sm text-deep-forest/80">
+              <p>🛡️ 30+ years of military, terrain, and leadership experience</p>
+              <p>🏍️ Specialist in long-route biking, spiritual circuits, and luxury expeditions</p>
+              <p>🗺️ Expert in offbeat Northeast India travel design</p>
+            </div>
+            <p className="mt-2 text-sm text-deep-forest/90 font-medium">👉 Talk to Gurpreet: +91 9501229112</p>
           </div>
           <div className="flex flex-col items-center">
-            <TeamAvatar name="Hame Kurbah" imagePath="/images/founders/hame.jpg" />
-            <h3 className="mt-4 text-xl font-bold text-deep-forest">Hame Kurbah</h3>
+            <div className="w-48 h-48 rounded-full overflow-hidden mb-4 border-4 border-moss-green/20">
+              <TeamAvatar name="Hame Kurbah" imagePath="/images/founders/hame.jpg" />
+            </div>
+            <h3 className="mt-4 text-xl font-bold text-deep-forest">🏡 Hame Kurbah</h3>
             <p className="text-sm text-deep-forest/70">Co-Founder | Hospitality Curator | Cultural Specialist</p>
             <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
               A native of the Khasi hills and a seasoned hospitality expert, Hame has spent years hosting travelers and weaving culture into comfort. He brings heart, heritage, and deep local insight into every Beatlenut journey — from curated village stays to off-grid luxury camps.
             </p>
-            <p className="mt-1 text-sm text-deep-forest/80">"I don't just want guests to see my homeland — I want them to feel it."</p>
-            <p className="mt-1 text-sm text-deep-forest/90">Contact: +91 9362047953</p>
+            <p className="mt-1 text-sm text-deep-forest/80 italic">"I don't just want guests to see my homeland — I want them to feel it."</p>
+            <div className="mt-3 text-sm text-deep-forest/80">
+              <p>🌾 10+ years of boutique hospitality and guest experience curation</p>
+              <p>🧭 Cultural guide across Meghalaya, Nagaland, and Mizoram</p>
+              <p>🔥 Crafts soulful village stays, tribal immersions, and community-based tourism</p>
+            </div>
+            <p className="mt-2 text-sm text-deep-forest/90 font-medium">👉 Talk to Hame: +91 9362047953</p>
           </div>
         </div>
         <div className="text-center mt-8">
-          <p className="text-sm text-deep-forest/80">Together, We Ride with Soul. This isn't just about adventure — it's about belonging. Come, ride with us where the road ends and stories begin.</p>
+          <p className="text-base text-deep-forest/80 font-medium">🔗 Together, We Ride with Soul</p>
+          <p className="text-sm text-deep-forest/70 mt-1">This isn't just about adventure — it's about belonging. Come, ride with us where the road ends and stories begin.</p>
         </div>
       </SectionContainer>
 

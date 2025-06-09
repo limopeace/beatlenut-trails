@@ -9,66 +9,131 @@ import { FadeIn } from '@/components/animations';
 const activities = [
   {
     id: 1,
-    title: 'Trekking & Hiking',
-    description: 'Explore breathtaking trails through lush forests, living root bridges, and majestic mountain passes. From beginner-friendly paths to challenging expeditions, Northeast India offers some of the most diverse trekking experiences in the world.',
-    image: '/images/real/pexels-travelerchitect-18736328-min.jpg',
-    locations: ['Dzükou Valley (Nagaland)', 'Nongriat Double Decker Root Bridge (Meghalaya)', 'Tawang (Arunachal Pradesh)'],
-    difficulty: 'Moderate to Challenging',
+    title: '🦜 Bird Watching',
+    description: 'Drift through dawn with hornbills, cranes, and riverbank songbirds in Assam, Arunachal, and Phobjikha.',
+    image: '/images/real/pexels-kanishka-211910-679492-min.jpg',
+    locations: ['Assam Wildlife Sanctuaries', 'Arunachal Pradesh Forests', 'Phobjikha Valley'],
+    bestTime: 'Early morning hours',
   },
   {
     id: 2,
-    title: 'River Rafting',
-    description: 'Experience the thrill of white water rafting through some of India\'s most pristine rivers. The Brahmaputra, Siang, and Kameng rivers offer exhilarating rapids surrounded by stunning natural beauty.',
-    image: '/images/real/pexels-dizitalboost-11622977-min.jpg',
-    locations: ['Brahmaputra River (Assam)', 'Siang River (Arunachal Pradesh)', 'Teesta River (Sikkim)'],
-    difficulty: 'Moderate to Extreme',
+    title: '🚴‍♂️ Cycling & Soft Adventure Rides',
+    description: 'Pedal along pine-scented ridges, forest trails, and monsoon-swept village roads across Meghalaya and Sikkim.',
+    image: '/images/real/pexels-travelerchitect-18736328-min.jpg',
+    locations: ['Meghalaya Hills', 'Sikkim Valleys', 'Village Forest Roads'],
+    difficulty: 'Easy to Moderate',
   },
   {
     id: 3,
-    title: 'Wildlife Safaris',
-    description: 'Encounter rare and endangered species in their natural habitat. From one-horned rhinoceros to wild elephants and tigers, the wildlife sanctuaries of Northeast India are biodiversity hotspots.',
-    image: '/images/real/pexels-kanishka-211910-679492-min.jpg',
-    locations: ['Kaziranga National Park (Assam)', 'Manas National Park (Assam)', 'Namdapha National Park (Arunachal Pradesh)'],
-    bestTime: 'November to April',
+    title: '🏍️ Motorcycle Expeditions',
+    description: 'Ride from tea to temples, cloud to canyon — on routes from Assam to Bhutan and the lost kingdom of Mustang.',
+    image: '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
+    locations: ['Assam Tea Gardens', 'Bhutan Border Routes', 'Mustang Circuits'],
+    specialFeatures: ['Soul routes', 'Mountain passes', 'Sacred trails'],
   },
   {
     id: 4,
-    title: 'Cultural Immersion',
-    description: 'Experience the rich cultural heritage of over 200 indigenous tribes. Stay in traditional homestays, participate in local festivals, learn traditional crafts, and enjoy authentic cuisine.',
-    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
-    locations: ['Ziro Valley (Arunachal Pradesh)', 'Majuli Island (Assam)', 'Mawlynnong Village (Meghalaya)'],
-    highlight: 'Hornbill Festival (Nagaland) - December',
+    title: '🥾 Hiking & Soft Treks',
+    description: 'Walk sacred forests, rhododendron valleys, and ancient village trails — from Dzukou to Dzongu.',
+    image: '/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg',
+    locations: ['Dzukou Valley', 'Dzongu Sacred Groves', 'Rhododendron Forests'],
+    highlight: 'Sacred and ancient trails',
   },
   {
     id: 5,
-    title: 'Caving Adventures',
-    description: 'Explore some of Asia\'s longest and most complex cave systems in Meghalaya. These limestone caves feature stunning stalactite and stalagmite formations, underground rivers, and unique ecosystems.',
-    image: '/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg',
-    locations: ['Krem Liat Prah (Meghalaya)', 'Mawsmai Cave (Meghalaya)', 'Krem Mawmluh (Meghalaya)'],
-    equipment: 'Professional guides and equipment required',
+    title: '🧘 Meditation & Forest Retreats',
+    description: 'Find silence in monastery courtyards, riverside bamboo groves, or the soft hush of a Himalayan morning.',
+    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    locations: ['Monastery Courtyards', 'Riverside Bamboo Groves', 'Himalayan Morning Spots'],
+    specialFeatures: ['Guided silence', 'Natural meditation spaces'],
   },
   {
     id: 6,
-    title: 'Motorcycle Touring',
-    description: 'Embark on epic motorcycle journeys through winding mountain roads, picturesque valleys, and remote villages. The Northeast offers some of the most scenic and challenging routes for motorcycle enthusiasts.',
-    image: '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
-    locations: ['Tawang Circuit (Arunachal Pradesh)', 'Cherrapunji to Mawlynnong (Meghalaya)', 'Kohima to Dzükou Valley (Nagaland)'],
-    bestTime: 'October to May',
+    title: '🛶 Rafting & River Drifts',
+    description: 'Float gently through the Jia Bhoroli, Umngot, or Siang — with birdsong above and quiet below.',
+    image: '/images/real/pexels-dizitalboost-11622977-min.jpg',
+    locations: ['Jia Bhoroli River', 'Umngot River', 'Siang River'],
+    experience: 'Gentle floating with nature sounds',
   },
   {
     id: 7,
-    title: 'Photography Expeditions',
-    description: 'Capture the stunning landscapes, diverse wildlife, and vibrant cultures of Northeast India. From misty valleys to living root bridges and colorful festivals, the region is a photographer\'s paradise.',
-    image: '/images/real/pexels-shubhendu-singh-1278012-2439742-min.jpg',
-    specialFeatures: ['Misty landscapes in Meghalaya', 'Tribal portraits in Nagaland', 'Wildlife in Assam', 'Mountain panoramas in Arunachal Pradesh'],
+    title: '🔭 Stargazing & Night Camps',
+    description: 'Lie under velvet skies in Dzuleke, Majuli, or Zapami — where campfire stories melt into constellations.',
+    image: '/images/real/pexels-nans1419-20519339-min.jpg',
+    locations: ['Dzuleke', 'Majuli Island', 'Zapami'],
+    specialFeatures: ['Velvet skies', 'Campfire stories', 'Constellation viewing'],
   },
   {
     id: 8,
-    title: 'Camping & Glamping',
-    description: 'Experience the magic of sleeping under starlit skies in some of India\'s most pristine locations. From basic camping to luxury glamping options, the Northeast offers unforgettable outdoor stays.',
-    image: '/images/real/pexels-nans1419-20519339-min.jpg',
-    locations: ['Shnongpdeng (Meghalaya)', 'Dzükou Valley (Nagaland)', 'Mechuka (Arunachal Pradesh)'],
-    seasons: 'Year-round in different locations',
+    title: '🔥 Camping & Outdoor Sleepouts',
+    description: 'Sleep in tents beneath prayer flags, near tribal hearths, or beside ancient woods in Nagaland and Arunachal.',
+    image: '/images/real/pexels-shubhendu-singh-1278012-2439742-min.jpg',
+    locations: ['Prayer Flag Sites', 'Tribal Villages', 'Ancient Forests'],
+    atmosphere: 'Under prayer flags and tribal hearths',
+  },
+  {
+    id: 9,
+    title: '🍵 Tea Garden Walks & Tastings',
+    description: 'Wander through Assam heritage estates, pluck leaves, and sip the story of the soil in planter bungalows.',
+    image: '/images/real/pexels-kanishka-211910-679492-min.jpg',
+    locations: ['Assam Heritage Tea Estates', 'Colonial Planter Bungalows'],
+    experience: 'Hands-on tea experience',
+  },
+  {
+    id: 10,
+    title: '🧵 Craft Workshops & Tribal Art',
+    description: 'Carve masks in Majuli, weave bamboo in Mizoram, or thread beads with a Konyak elder in Mon.',
+    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    locations: ['Majuli Island', 'Mizoram Villages', 'Mon (Konyak Territory)'],
+    skills: ['Mask carving', 'Bamboo weaving', 'Bead threading'],
+  },
+  {
+    id: 11,
+    title: '🎣 Fishing with Locals',
+    description: 'Cast your line in quiet streams with tribal guides in Zapami or Dzuleke — fire-cooked lunch included.',
+    image: '/images/real/pexels-dizitalboost-11622977-min.jpg',
+    locations: ['Zapami Streams', 'Dzuleke Waters'],
+    included: 'Fire-cooked lunch',
+  },
+  {
+    id: 12,
+    title: '🥘 Cooking Experiences & Local Meals',
+    description: 'Learn bamboo shoot stews, tribal grilling, or monastic lentil rituals — and share it all around a slow table.',
+    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    skills: ['Bamboo shoot stews', 'Tribal grilling', 'Monastic cooking'],
+    atmosphere: 'Slow table sharing',
+  },
+  {
+    id: 13,
+    title: '🎭 Cultural Performances & Story Circles',
+    description: 'From Hornbill fire dances to riverside folk songs, every rhythm reveals a world.',
+    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    experiences: ['Hornbill fire dances', 'Riverside folk songs', 'Story circles'],
+    essence: 'Every rhythm reveals a world',
+  },
+  {
+    id: 14,
+    title: '🧿 Temple Offerings & Spiritual Rituals',
+    description: 'Light lamps at Sanamahi altars, chant by the Brahmaputra, or offer butter lamps at Tiger\'s Nest.',
+    image: '/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg',
+    locations: ['Sanamahi Altars', 'Brahmaputra Banks', "Tiger's Nest"],
+    rituals: ['Lamp lighting', 'River chanting', 'Butter lamp offerings'],
+  },
+  {
+    id: 15,
+    title: '🏹 Martial Art Demos & Warrior Heritage',
+    description: 'Witness Thang-Ta in Manipur or Konyak lore in Nagaland — where movement meets memory.',
+    image: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
+    locations: ['Manipur (Thang-Ta)', 'Nagaland (Konyak Territory)'],
+    essence: 'Where movement meets memory',
+  },
+  {
+    id: 16,
+    title: '📸 Photography & Sketching Halts',
+    description: 'Pause often — in cloud alleys, forest clearings, and dusk-lit dzongs — to capture what can\'t be spoken.',
+    image: '/images/real/pexels-shubhendu-singh-1278012-2439742-min.jpg',
+    locations: ['Cloud Alleys', 'Forest Clearings', 'Dusk-lit Dzongs'],
+    philosophy: 'Capture what cannot be spoken',
   },
 ];
 
@@ -114,10 +179,10 @@ const ActivitiesPage = () => {
           <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 pt-16 sm:pt-20 md:pt-24">
             <div className="max-w-3xl">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 animate-fadeIn font-clash leading-tight">
-                Adventure Activities in Northeast India
+                🌿 Activities with Beatlenut Trails
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-pale-straw mb-6 sm:mb-8 animate-fadeInUp">
-                Discover the extraordinary adventures waiting for you in the enchanting landscapes of India's Northeast
+              <p className="text-base sm:text-lg md:text-xl text-pale-straw mb-6 sm:mb-8 animate-fadeInUp italic">
+                "Not just things to do — ways to remember."
               </p>
               <Link 
                 href="/travel-listings" 
@@ -136,12 +201,13 @@ const ActivitiesPage = () => {
               <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-12 md:mb-16">
                 <span className="text-forest-green text-lg sm:text-xl font-medium">Experiences</span>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-forest mt-2 mb-4 sm:mb-6 font-clash">
-                  Authentic Northeastern Experiences
+                  Activities with Beatlenut Trails
                 </h2>
+                <p className="text-sm sm:text-base md:text-lg text-deep-forest/90 italic mb-4">
+                  "Not just things to do — ways to remember."
+                </p>
                 <p className="text-sm sm:text-base md:text-lg text-deep-forest/90">
-                  Northeast India offers a treasure trove of unique activities that connect you with its pristine nature, 
-                  rich cultural heritage, and thrilling adventures. From trekking across living root bridges to rafting 
-                  through mighty rivers and immersing in tribal cultures, these experiences create memories that last a lifetime.
+                  Each activity is carefully curated to reconnect you with the land, its people, and yourself. From dawn bird watching to starlit camping, every experience becomes a story worth telling.
                 </p>
               </div>
             </FadeIn>

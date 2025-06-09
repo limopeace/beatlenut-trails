@@ -6,119 +6,129 @@ import { faFilter, faSort, faCheck, faSearch, faMotorcycle, faShieldAlt, faRoad,
 import Link from 'next/link';
 import { WhatsAppButton } from '@/components/common';
 
-// Sample bike rental data - in a production app, this would come from an API
+// Beatlenut Trails Motorcycle Fleet - Real client data
 const bikeRentalsData = [
   {
     id: 1,
-    name: 'Kawasaki Versys 1000',
-    description: 'Tour de France official motorcycle, perfect for long tours with excellent comfort and performance.',
-    pricePerDay: 120,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.51 PM.jpeg',
-    features: ['1000cc Engine', 'Touring Windscreen', 'Saddlebags Available', 'ABS', 'Traction Control'],
+    name: '🏍️ Hero Xpulse 200',
+    description: 'Forest nimble, village ready — a friendly wild soul. Lightweight, forgiving, and agile — perfect for trail exploration, village loops, and solo discovery.',
+    pricePerDay: 2500,
+    imageSrc: '/images/bikes/hero-xpulse-200.jpg',
+    features: ['199cc FI Engine', 'Long-travel Suspension', 'Lightweight Adventure', 'Trail Ready'],
     specifications: {
-      engine: '1043cc Liquid-Cooled 4-Stroke',
-      power: '120 HP',
-      torque: '102 Nm',
-      weight: '249 kg',
-      fuelCapacity: '21 L',
-    },
-    availability: true,
-    category: 'touring'
-  },
-  {
-    id: 2,
-    name: 'Royal Enfield Himalayan',
-    description: 'Ideal for mountain trails and off-road adventures in Northeast India.',
-    pricePerDay: 80,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.52 PM.jpeg',
-    features: ['411cc Engine', 'Off-road Capability', 'Luggage Rack', 'Navigation System'],
-    specifications: {
-      engine: '411cc Air-Cooled SOHC',
-      power: '24.5 HP',
-      torque: '32 Nm',
-      weight: '199 kg',
-      fuelCapacity: '15 L',
+      engine: '199cc, FI, long-travel suspension',
+      category: 'Lightweight adventure',
+      bestFor: 'Beginners, photographers, forest-heavy circuits',
+      personality: 'Friendly wild soul',
     },
     availability: true,
     category: 'adventure'
   },
   {
-    id: 3,
-    name: 'KTM Duke 390',
-    description: 'Sporty and agile motorcycle for thrilling rides through winding mountain roads.',
-    pricePerDay: 95,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.52 PM (1).jpeg',
-    features: ['373cc Engine', 'Lightweight', 'Aggressive Styling', 'Quick Acceleration'],
+    id: 2,
+    name: '🏍️ Honda H\'ness CB350',
+    description: 'A gentleman\'s cruiser, with a mountain\'s calm pulse. Comfortable, classy, and refined — ideal for Assam highways, Meghalaya ridges, and gentle long rides.',
+    pricePerDay: 3000,
+    imageSrc: '/images/bikes/honda-hness-cb350.jpg',
+    features: ['348cc Engine', 'Smooth Mid-torque', 'Modern Classic', 'Comfort Focused'],
     specifications: {
-      engine: '373cc Liquid-Cooled',
-      power: '43 HP',
-      torque: '37 Nm',
-      weight: '149 kg',
-      fuelCapacity: '13.4 L',
+      engine: '348cc, smooth mid-torque delivery',
+      category: 'Modern classic cruiser',
+      bestFor: 'Couples, cruiser lovers, style on smooth roads',
+      personality: 'Mountain\'s calm pulse',
     },
-    availability: false,
-    category: 'sport'
+    availability: true,
+    category: 'cruiser'
+  },
+  {
+    id: 3,
+    name: '🏍️ Triumph Scrambler 400X',
+    description: 'Heritage looks, Himalayan moves. Classic Triumph styling meets off-road confidence — ideal for curves, climbs, and cultural circuits.',
+    pricePerDay: 4500,
+    imageSrc: '/images/bikes/triumph-scrambler-400x.jpg',
+    features: ['398cc Engine', 'Dual-purpose Capability', 'Classic Styling', 'Off-road Confidence'],
+    specifications: {
+      engine: '398cc, dual-purpose capability',
+      category: 'Mid-range scrambler',
+      bestFor: 'Confident riders seeking style + grit',
+      personality: 'Heritage meets Himalayas',
+    },
+    availability: true,
+    category: 'scrambler'
   },
   {
     id: 4,
-    name: 'Hero Xpulse 200',
-    description: 'Affordable and capable adventure bike for exploring both on and off-road trails.',
-    pricePerDay: 60,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.53 PM.jpeg',
-    features: ['200cc Engine', 'Long Travel Suspension', 'Digital Display', 'Lightweight'],
+    name: '🏍️ Suzuki V-Strom SX 250',
+    description: 'A quiet warrior that keeps going. And going. Balanced, reliable, and surprisingly capable — perfect for mixed terrain with a touring mindset.',
+    pricePerDay: 3500,
+    imageSrc: '/images/bikes/suzuki-vstrom-sx-250.jpg',
+    features: ['249cc Engine', 'All-rounder Geometry', 'Touring Focused', 'Reliable'],
     specifications: {
-      engine: '199.6cc Air-Cooled',
-      power: '17.8 HP',
-      torque: '16.45 Nm',
-      weight: '157 kg',
-      fuelCapacity: '13 L',
+      engine: '249cc, all-rounder touring geometry',
+      category: 'Sport adventure tourer',
+      bestFor: 'Mid-level riders on long loops, solo or paired',
+      personality: 'Quiet warrior',
     },
     availability: true,
     category: 'adventure'
   },
   {
     id: 5,
-    name: 'Triumph Bonneville T120',
-    description: 'Classic styling with modern performance for a comfortable and stylish touring experience.',
-    pricePerDay: 110,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.51 PM.jpeg',
-    features: ['1200cc Engine', 'Classic Styling', 'Comfortable Riding Position', 'ABS'],
+    name: '🏍️ Honda Transalp 750',
+    description: 'The true alpine monarch. Torque, grace, and trust. Built for Himalayan passes and multi-nation crossings — smooth, authoritative, and road-hungry.',
+    pricePerDay: 6500,
+    imageSrc: '/images/bikes/honda-transalp-750.jpg',
+    features: ['755cc Parallel-twin', 'Long-range Comfort', 'High-altitude Ready', 'Multi-nation Capable'],
     specifications: {
-      engine: '1200cc Liquid-Cooled',
-      power: '79 HP',
-      torque: '105 Nm',
-      weight: '224 kg',
-      fuelCapacity: '14.5 L',
+      engine: '755cc, parallel-twin, long-range comfort',
+      category: 'Large-capacity ADV',
+      bestFor: 'Experienced riders, long-day diverse terrain',
+      personality: 'Alpine monarch',
     },
     availability: true,
-    category: 'cruiser'
+    category: 'premium'
   },
   {
     id: 6,
-    name: 'Bajaj Dominar 400',
-    description: 'Powerful and comfortable sports tourer for long-distance rides.',
-    pricePerDay: 75,
-    imageSrc: '/images/WhatsApp Image 2025-05-13 at 5.58.52 PM.jpeg',
-    features: ['373cc Engine', 'LED Headlamps', 'Digital Display', 'Dual-Channel ABS'],
+    name: '🏍️ Kawasaki Versys 650',
+    description: 'For those who treat curves like conversation. Great balance of power and agility — perfect for Bhutan rides, high-mileage road trips, and hill tarmac warriors.',
+    pricePerDay: 5500,
+    imageSrc: '/images/bikes/kawasaki-versys-650.jpg',
+    features: ['649cc Parallel-twin', 'Power + Agility', 'Bhutan Ready', 'Hill Tarmac Warrior'],
     specifications: {
-      engine: '373.3cc Liquid-Cooled',
-      power: '40 HP',
-      torque: '35 Nm',
-      weight: '187 kg',
-      fuelCapacity: '13 L',
+      engine: '649cc, parallel-twin',
+      category: 'Mid-to-heavy adventure tourer',
+      bestFor: 'Skilled riders wanting comfort + control at speed',
+      personality: 'Curves like conversation',
     },
     availability: true,
-    category: 'touring'
-  }
+    category: 'premium'
+  },
+  {
+    id: 7,
+    name: '🏍️ Kawasaki Versys 1100 (Advanced Only)',
+    description: 'Not for speed. For stride. The king of roads. Built for epic trans-regional rides with power to spare — this beast belongs in the open.',
+    pricePerDay: 8500,
+    imageSrc: '/images/bikes/kawasaki-versys-1100.jpg',
+    features: ['1,043cc Engine', 'Long-haul Dominance', 'Trans-regional', 'Advanced Riders Only'],
+    specifications: {
+      engine: '1,043cc — designed for long-haul dominance',
+      category: 'High-performance grand tourer',
+      bestFor: 'Veteran bikers, 1000+ cc experience, multi-nation circuits',
+      personality: 'King of roads',
+    },
+    availability: true,
+    category: 'premium'
+  },
 ];
 
 // Bike rental categories
 const categories = [
   { id: 'all', name: 'All Bikes' },
-  { id: 'touring', name: 'Touring' },
   { id: 'adventure', name: 'Adventure' },
-  { id: 'sport', name: 'Sport' },
-  { id: 'cruiser', name: 'Cruiser' }
+  { id: 'cruiser', name: 'Cruiser' },
+  { id: 'scrambler', name: 'Scrambler' },
+  { id: 'premium', name: 'Premium & Specialist' }
 ];
 
 // Cover images for carousel

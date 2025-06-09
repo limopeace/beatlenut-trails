@@ -135,10 +135,10 @@ const AboutSection = () => {
               <div className="md:col-span-7 p-5 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-center">
                 <FadeIn direction="left" duration={0.7} delay={0.3}>
                   <p className="text-deep-forest/90 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base md:text-lg">
-                    <span className="font-medium text-forest-green font-clash">Beatlenut Trails</span> was founded by a team of Army veterans who fell in love with Northeast India's breathtaking landscapes and vibrant cultures during their service years. Our mission is to share these hidden gems with travelers seeking authentic experiences beyond the ordinary tourist paths.
+                    <span className="font-medium text-forest-green font-clash">Beatlenut Trails</span> was born out of a simple truth: that the most memorable journeys are those that change something within us.
                   </p>
-                  <p className="text-deep-forest/90 mb-8 sm:mb-10 leading-relaxed text-sm sm:text-base md:text-lg">
-                    Our expert guides bring unparalleled knowledge of the region's terrain, cultures, and hidden treasures. From the living root bridges of Meghalaya to the monasteries of Arunachal Pradesh, we create journeys that connect travelers with the true essence of Northeast India.
+                  <p className="text-deep-forest/90 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base md:text-lg">
+                    We are <strong>an adventure travel company founded by a retired Indian Army Veteran</strong> and <strong>Hame Kurbah</strong>, a hospitality expert and native of the Northeast. With decades of discipline, grit, and wanderlust between us, we left conventional careers behind to build something far more personal — a soulful, high-touch travel outfit that curates <strong>luxury expeditions, long-distance cycling and biking tours, forest immersions, and sacred trails</strong> across India and beyond.
                   </p>
                 </FadeIn>
                 
@@ -226,7 +226,7 @@ const AboutSection = () => {
           </div>
           <div className="relative z-10">
             <p className="text-lg sm:text-xl md:text-2xl text-deep-forest font-serif italic mb-8 sm:mb-10 leading-relaxed">
-              "Northeast India isn't just a destination; it's a transformation. Our mission is to guide travelers safely through this magical land, creating memories that last a lifetime."
+              "Every journey should challenge the body, awaken the mind, and return you a little more alive."
             </p>
             
             <div className="flex flex-col md:flex-row items-center justify-center">
@@ -250,10 +250,10 @@ const AboutSection = () => {
               </div>
               
               <FadeIn direction="left" duration={0.6} delay={1.0} className="text-center md:text-left">
-                <h4 className="font-medium text-deep-forest font-clash text-lg sm:text-xl md:text-2xl uppercase mb-2 sm:mb-3">GURPREET SINGH</h4>
-                <p className="text-xs sm:text-sm md:text-base text-deep-forest/70 mb-3 sm:mb-4">Founder & Chief Adventure Officer</p>
+                <h4 className="font-medium text-deep-forest font-clash text-lg sm:text-xl md:text-2xl uppercase mb-2 sm:mb-3">🪖 GURPREET SINGH</h4>
+                <p className="text-xs sm:text-sm md:text-base text-deep-forest/70 mb-3 sm:mb-4">Founder | Expedition Leader | Veteran</p>
                 <p className="text-xs sm:text-sm md:text-base text-deep-forest/80 max-w-md leading-relaxed">
-                  Former army veteran with a passion for showcasing the unexplored beauty of Northeast India through sustainable and authentic experiences.
+                  A retired Indian Army officer with over 30 years of leadership and outdoor experience, Gurpreet is the compass behind every Beatlenut expedition. From commanding high-altitude missions to curating soulful motorcycle and cycling routes, he brings unmatched precision, safety, and storytelling to every trail.
                 </p>
               </FadeIn>
             </div>

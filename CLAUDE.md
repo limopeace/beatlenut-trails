@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Last Updated: 23 May 2025**
+**Last Updated: 26 May 2025**
 
 ## Project Overview
 
@@ -74,6 +74,68 @@ npm run lint
 npm run format
 ```
 
+## 🚨 CLAUDE CODE BUILD ISSUE SOLUTIONS
+
+### **Issue:** npm run build times out after 2 minutes in Claude Code
+
+### **RECOMMENDED SOLUTIONS (in order of preference):**
+
+#### **1. Use Enhanced Timeout Script**
+```bash
+# From frontend directory
+./build-with-timeout.sh
+```
+**Purpose:** Sets CLAUDE_COMMAND_TIMEOUT=300000 environment variable
+
+#### **2. Use Chained Command Approach**
+```bash
+# From frontend directory  
+./build-chained.sh
+```
+**Purpose:** Breaks build into smaller steps that Claude Code handles better
+
+#### **3. Use Fast Build Script**
+```bash
+# From frontend directory
+npm run build:fast
+```
+**Purpose:** Optimized build with timeout protection (created locally)
+
+#### **4. Use Individual Commands (Avoid pipes, use chaining)**
+```bash
+# Instead of: cd frontend && npm run build
+# Use separate commands:
+cd frontend
+npm run build
+```
+
+#### **5. Quick Validation First**
+```bash
+# Always check syntax before attempting builds
+npm run validate
+```
+
+### **Environment Variables for Claude Code:**
+```bash
+export CLAUDE_COMMAND_TIMEOUT=90000    # 90 seconds (realistic for Claude Code workflow)
+export NODE_OPTIONS="--max_old_space_size=2048"
+export NEXT_TELEMETRY_DISABLED=1
+```
+
+### **Build Scripts Available:**
+- `npm run build:fast` - Optimized build with timeout protection
+- `npm run build:quick` - Quick validation only  
+- `npm run build:check` - TypeScript check only
+- `npm run validate` - Complete quick validation
+- `./build-with-timeout.sh` - Extended timeout approach
+- `./build-chained.sh` - Step-by-step chained approach
+- `./claude-build.sh` - Multiple strategies in one script
+
+### **If Builds Still Fail:**
+1. **Check for syntax errors first:** `npm run validate`
+2. **Try manual build outside Claude Code:** `npm run build`
+3. **Use CI/CD for production builds**
+
 ## Code Organization
 
 ### Directory Structure
@@ -88,15 +150,14 @@ beatlenuts-gr/
 │   ├── services/       # Business logic
 │   ├── utils/          # Utility functions
 │   └── index.js        # Application entry point
+├── frontend/           # Next.js frontend
+│   ├── src/           # Frontend source
+│   ├── public/        # Static assets
+│   ├── build-*.sh    # Claude Code build solutions
+│   └── package.json   # Frontend dependencies
 ├── tests/              # Test files
-│   ├── controllers/    # Controller tests
-│   ├── services/       # Service tests
-│   └── utils/          # Utility tests
 ├── docs/               # Documentation
-├── .eslintrc.js        # ESLint configuration
-├── jest.config.js      # Jest configuration
-├── package.json        # npm package configuration
-└── README.md           # Project documentation
+└── CLAUDE.md          # This file
 ```
 
 ### Key Components
@@ -197,3 +258,9 @@ See comprehensive guides in `/docs`:
 - [Admin Integration Complete](docs/ADMIN_INTEGRATION_COMPLETE.md)
 - [API Documentation](docs/API_COMPLETE.md)
 - [Testing Guide](docs/TESTING_GUIDE.md)
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
