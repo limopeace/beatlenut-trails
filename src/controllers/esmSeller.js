@@ -13,6 +13,7 @@ class ESMSellerController {
    */
   async register(req, res, next) {
     try {
+      // Data transformation is now handled by middleware
       const result = await esmSellerService.registerSeller(req.body);
       res.status(201).json(result);
     } catch (error) {

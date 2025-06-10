@@ -5,6 +5,7 @@ const path = require('path');
 
 // Test Configuration
 const BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'http://localhost:4000';
 const API_URL = 'http://localhost:4000/api';
 
 const testData = {
@@ -287,8 +288,8 @@ async function runPerformanceTests() {
     // Test API Response Times
     console.log('\nAPI Response Times:');
     const apiEndpoints = [
-      { url: '/products', name: 'Products API' },
-      { url: '/services', name: 'Services API' }
+      { url: '/esm/products', name: 'ESM Products API' },
+      { url: '/esm/services', name: 'ESM Services API' }
     ];
     
     for (const { url, name } of apiEndpoints) {

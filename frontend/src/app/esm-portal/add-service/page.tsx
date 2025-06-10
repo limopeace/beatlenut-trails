@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faUpload, faInfoCircle, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import esmServiceService from '@/services/api/esmServiceService';
+import { useEsmAuth } from '@/hooks/useEsmAuth';
 
 // Service categories
 const serviceCategories = [
@@ -22,8 +24,7 @@ const serviceCategories = [
 ];
 
 export default function AddServicePage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isAuthenticated, loading } = useEsmAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -52,29 +53,17 @@ export default function AddServicePage() {
 
   // Check if user is authenticated
   useEffect(() => {
-    const checkAuth = () => {
-      // First check sessionStorage (non-persistent login)
-      let token = sessionStorage.getItem('auth_token');
-      let userData = sessionStorage.getItem('user');
-      
-      // If not found, check localStorage (persistent login)
-      if (!token) {
-        token = localStorage.getItem('auth_token');
-        userData = localStorage.getItem('user');
-      }
-      
-      if (token && userData) {
-        setIsAuthenticated(true);
-      } else {
-        // Redirect to login if not authenticated
-        router.push('/esm-portal/login');
-      }
-      
-      setIsLoading(false);
-    };
+    if (!loading && !isAuthenticated) {
+      router.push('/esm-portal/login');
+      return;
+    }
     
-    checkAuth();
-  }, [router]);
+    // Check if user is a seller
+    if (user && user.role !== 'seller') {
+      router.push('/esm-portal');
+      return;
+    }
+  }, [isAuthenticated, user, router, loading]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -245,24 +234,7 @@ export default function AddServicePage() {
       };
       
       // Call API endpoint
-      // Uncomment when API is ready
-      /*
-      const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
-      const response = await fetch('/api/esm/services', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(serviceData),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to create service');
-      }
-      */
+      const newService = await esmServiceService.createService(serviceData);
       
       // For now, simulate success
       setSuccessMessage('Service created successfully!');
@@ -298,7 +270,7 @@ export default function AddServicePage() {
     }
   };
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-forest-green"></div>

@@ -20,7 +20,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000; // Use port 3000 as specified in .env.example
+const PORT = process.env.PORT || 4000; // Use port 4000 for backend API
 
 // Connect to database
 if (process.env.NODE_ENV !== 'test') {
@@ -75,7 +75,7 @@ app.use(retryMiddleware({
 setupSwagger(app);
 
 // Routes
-app.use('/', routes);
+app.use('/api', routes);
 
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));

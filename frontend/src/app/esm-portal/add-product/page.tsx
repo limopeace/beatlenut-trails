@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faUpload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import esmProductService from '@/services/api/esmProductService';
+import { useEsmAuth } from '@/hooks/useEsmAuth';
 
 // Product categories
 const productCategories = [
@@ -21,8 +23,7 @@ const productCategories = [
 ];
 
 export default function AddProductPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isAuthenticated, loading } = useEsmAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,29 +47,17 @@ export default function AddProductPage() {
 
   // Check if user is authenticated
   useEffect(() => {
-    const checkAuth = () => {
-      // First check sessionStorage (non-persistent login)
-      let token = sessionStorage.getItem('auth_token');
-      let userData = sessionStorage.getItem('user');
-      
-      // If not found, check localStorage (persistent login)
-      if (!token) {
-        token = localStorage.getItem('auth_token');
-        userData = localStorage.getItem('user');
-      }
-      
-      if (token && userData) {
-        setIsAuthenticated(true);
-      } else {
-        // Redirect to login if not authenticated
-        router.push('/esm-portal/login');
-      }
-      
-      setIsLoading(false);
-    };
+    if (!loading && !isAuthenticated) {
+      router.push('/esm-portal/login');
+      return;
+    }
     
-    checkAuth();
-  }, [router]);
+    // Check if user is a seller
+    if (user && user.role !== 'seller') {
+      router.push('/esm-portal');
+      return;
+    }
+  }, [isAuthenticated, user, router, loading]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -181,26 +170,7 @@ export default function AddProductPage() {
       };
       
       // Call API endpoint
-      // Uncomment when API is ready
-      /*
-      const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
-      const response = await fetch('/api/esm/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(productData),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to create product');
-      }
-      */
-      
-      // For now, simulate success
+      const newProduct = await esmProductService.createProduct(productData);
       setSuccessMessage('Product created successfully!');
       
       // Reset form after successful submission
@@ -230,7 +200,7 @@ export default function AddProductPage() {
     }
   };
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-forest-green"></div>

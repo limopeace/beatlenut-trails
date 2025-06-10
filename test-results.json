@@ -1,0 +1,122 @@
+{
+  "functional": [
+    {
+      "test": "ESM Homepage Load",
+      "status": "FAILED",
+      "message": "Title: ",
+      "timestamp": "2025-06-10T18:32:05.948Z"
+    },
+    {
+      "test": "Registration Page Access",
+      "status": "FAILED",
+      "message": "No register link found",
+      "timestamp": "2025-06-10T18:32:06.031Z"
+    },
+    {
+      "test": "Login Page Elements",
+      "status": "FAILED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:06.227Z"
+    },
+    {
+      "test": "Products Page Load",
+      "status": "FAILED",
+      "message": "No product content found",
+      "timestamp": "2025-06-10T18:32:06.349Z"
+    },
+    {
+      "test": "Services Page Load",
+      "status": "FAILED",
+      "message": "No service content found",
+      "timestamp": "2025-06-10T18:32:06.456Z"
+    },
+    {
+      "test": "Search Input",
+      "status": "FAILED",
+      "message": "No search field found",
+      "timestamp": "2025-06-10T18:32:06.600Z"
+    },
+    {
+      "test": "Route Separation",
+      "status": "FAILED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:08.210Z"
+    },
+    {
+      "test": "Style Separation",
+      "status": "WARNING",
+      "message": "No ESM-specific styles found",
+      "timestamp": "2025-06-10T18:32:08.356Z"
+    },
+    {
+      "test": "Admin Login Page",
+      "status": "FAILED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:09.022Z"
+    },
+    {
+      "test": "Admin Route Protection",
+      "status": "PASSED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:09.197Z"
+    },
+    {
+      "test": "Admin Sellers Page",
+      "status": "PASSED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:10.355Z"
+    },
+    {
+      "test": "Admin Approvals Page",
+      "status": "PASSED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:11.110Z"
+    }
+  ],
+  "errors": [
+    {
+      "test": "404 Error Page",
+      "status": "FAILED",
+      "message": "No error indication",
+      "timestamp": "2025-06-10T18:32:07.135Z"
+    },
+    {
+      "test": "API Error Response",
+      "status": "PASSED",
+      "message": "",
+      "timestamp": "2025-06-10T18:32:07.397Z"
+    }
+  ],
+  "performance": [
+    {
+      "test": "Homepage Load Time",
+      "status": "PASSED",
+      "message": "1998ms",
+      "timestamp": "2025-06-10T18:32:13.455Z"
+    },
+    {
+      "test": "Products Load Time",
+      "status": "PASSED",
+      "message": "1102ms",
+      "timestamp": "2025-06-10T18:32:14.557Z"
+    },
+    {
+      "test": "Services Load Time",
+      "status": "PASSED",
+      "message": "916ms",
+      "timestamp": "2025-06-10T18:32:15.474Z"
+    },
+    {
+      "test": "ESM Products API Response Time",
+      "status": "PASSED",
+      "message": "14ms",
+      "timestamp": "2025-06-10T18:32:15.489Z"
+    },
+    {
+      "test": "ESM Services API Response Time",
+      "status": "PASSED",
+      "message": "4ms",
+      "timestamp": "2025-06-10T18:32:15.493Z"
+    }
+  ]
+}

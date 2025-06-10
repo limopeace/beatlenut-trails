@@ -5,6 +5,7 @@ const { authenticate, authorize } = require('../middleware/auth');
 const isAdmin = authorize(['admin']);
 const { validate } = require('../middleware/validator');
 const esmSellerValidator = require('../validators/esmSeller');
+const { transformSellerRegistration } = require('../middleware/esmDataTransform');
 
 /**
  * @route POST /api/esm/sellers/register
@@ -13,6 +14,7 @@ const esmSellerValidator = require('../validators/esmSeller');
  */
 router.post(
   '/register',
+  transformSellerRegistration,
   validate(esmSellerValidator.register),
   esmSellerController.register
 );

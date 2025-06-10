@@ -338,7 +338,8 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       }
       
       // Submit the form
-      const response = await fetch('/api/esm/sellers/register', {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+      const response = await fetch(`${API_BASE_URL}/esm/sellers/register`, {
         method: 'POST',
         body: submitData,
       });

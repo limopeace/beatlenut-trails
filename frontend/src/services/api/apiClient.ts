@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
  * Base API client configuration
  * Creates axios instances with common configuration for all API requests
  */
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 // Admin portal API client
 const apiClient: AxiosInstance = axios.create({

@@ -1,5 +1,5 @@
 const ESMProduct = require('../models/esmProduct');
-const { getProductRepository } = require('../repositories/esmProductRepository');
+const esmProductRepository = require('../repositories/esmProductRepository');
 const { validationResult } = require('express-validator');
 const { BadRequestError, NotFoundError, ForbiddenError } = require('../utils/errors');
 
@@ -22,21 +22,11 @@ exports.getAllProducts = async (req, res, next) => {
       filters.status = 'active';
     }
     
-    const repository = getProductRepository();
-    const products = await repository.findAll(filters, { limit: parseInt(limit), skip });
-    const total = await repository.count(filters);
+    const result = await ESMProduct.getAll(filters, parseInt(page), parseInt(limit));
     
     res.status(200).json({
       success: true,
-      data: {
-        products,
-        pagination: {
-          total,
-          page: parseInt(page),
-          limit: parseInt(limit),
-          pages: Math.ceil(total / limit)
-        }
-      }
+      data: result
     });
   } catch (error) {
     next(error);
@@ -49,9 +39,8 @@ exports.getAllProducts = async (req, res, next) => {
 exports.getProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const repository = getProductRepository();
     
-    const product = await repository.findById(id);
+    const product = await ESMProduct.findById(id);
     if (!product) {
       throw new NotFoundError('Product not found');
     }
@@ -90,7 +79,6 @@ exports.createProduct = async (req, res, next) => {
       throw new BadRequestError('Missing required fields');
     }
     
-    const repository = getProductRepository();
     
     const productData = {
       name,
@@ -108,7 +96,7 @@ exports.createProduct = async (req, res, next) => {
       status: 'active'
     };
     
-    const product = await repository.create(productData);
+    const product = await ESMProduct.create(productData);
     
     res.status(201).json({
       success: true,
@@ -125,10 +113,9 @@ exports.createProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const repository = getProductRepository();
     
     // Find the product
-    const product = await repository.findById(id);
+    const product = await ESMProduct.findById(id);
     if (!product) {
       throw new NotFoundError('Product not found');
     }
@@ -151,7 +138,7 @@ exports.updateProduct = async (req, res, next) => {
       }
     });
     
-    const updatedProduct = await repository.update(id, updates);
+    const updatedProduct = await ESMProduct.update(id, updates);
     
     res.status(200).json({
       success: true,
@@ -168,10 +155,9 @@ exports.updateProduct = async (req, res, next) => {
 exports.deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const repository = getProductRepository();
     
     // Find the product
-    const product = await repository.findById(id);
+    const product = await ESMProduct.findById(id);
     if (!product) {
       throw new NotFoundError('Product not found');
     }
@@ -181,7 +167,7 @@ exports.deleteProduct = async (req, res, next) => {
       throw new ForbiddenError('You do not have permission to delete this product');
     }
     
-    await repository.delete(id);
+    await ESMProduct.delete(id);
     
     res.status(200).json({
       success: true,
@@ -198,7 +184,6 @@ exports.deleteProduct = async (req, res, next) => {
 exports.getProductsBySeller = async (req, res, next) => {
   try {
     const { sellerId } = req.params;
-    const repository = getProductRepository();
     
     // Check if requesting own products
     const isOwner = req.user && req.user.id === sellerId;
@@ -209,7 +194,7 @@ exports.getProductsBySeller = async (req, res, next) => {
       filters.status = 'active';
     }
     
-    const products = await repository.findAll(filters);
+    const products = await ESMProduct.getAll(filters);
     
     res.status(200).json({
       success: true,
@@ -226,9 +211,8 @@ exports.getProductsBySeller = async (req, res, next) => {
 exports.getFeaturedProducts = async (req, res, next) => {
   try {
     const { limit = 10 } = req.query;
-    const repository = getProductRepository();
     
-    const products = await repository.findAll({
+    const products = await ESMProduct.getAll({
       featured: true,
       status: 'active'
     }, { limit: parseInt(limit) });
@@ -236,6 +220,36 @@ exports.getFeaturedProducts = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: products
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+/**
+ * Upload product image
+ */
+exports.uploadImage = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      throw new BadRequestError('No image file provided');
+    }
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(req.file.mimetype)) {
+      throw new BadRequestError('Invalid file type. Only JPEG, PNG, and WebP are allowed');
+    }
+
+    // For now, we'll just return a mock URL
+    // In production, you would upload to cloud storage (AWS S3, Cloudinary, etc.)
+    const imageUrl = `/uploads/products/${Date.now()}-${req.file.originalname}`;
+    
+    res.status(200).json({
+      success: true,
+      data: {
+        url: imageUrl
+      },
+      message: 'Image uploaded successfully'
     });
   } catch (error) {
     next(error);

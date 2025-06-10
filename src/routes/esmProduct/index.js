@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const esmProductController = require('../../controllers/esmProduct');
 const { authenticate, authorize } = require('../../middleware/auth');
+const { authenticateESM, authenticateESMSeller } = require('../../middleware/esmAuth');
+const multer = require('multer');
+
+// Configure multer for memory storage
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  }
+});
 
 /**
  * @swagger
@@ -133,7 +143,7 @@ router.get('/:id', esmProductController.getProductById);
  *       500:
  *         description: Server error
  */
-router.post('/', authenticate, esmProductController.createProduct);
+router.post('/', authenticateESMSeller, esmProductController.createProduct);
 
 /**
  * @swagger
@@ -200,7 +210,7 @@ router.post('/', authenticate, esmProductController.createProduct);
  *       500:
  *         description: Server error
  */
-router.put('/:id', authenticate, esmProductController.updateProduct);
+router.put('/:id', authenticateESMSeller, esmProductController.updateProduct);
 
 /**
  * @swagger
@@ -229,7 +239,7 @@ router.put('/:id', authenticate, esmProductController.updateProduct);
  *       500:
  *         description: Server error
  */
-router.delete('/:id', authenticate, esmProductController.deleteProduct);
+router.delete('/:id', authenticateESMSeller, esmProductController.deleteProduct);
 
 /**
  * @swagger
@@ -274,5 +284,35 @@ router.get('/seller/:sellerId', esmProductController.getProductsBySeller);
  *         description: Server error
  */
 router.get('/featured', esmProductController.getFeaturedProducts);
+
+/**
+ * @swagger
+ * /api/esm/products/upload:
+ *   post:
+ *     summary: Upload product image
+ *     tags: [ESM Products]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Image uploaded successfully
+ *       400:
+ *         description: Invalid file
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Server error
+ */
+router.post('/upload', authenticateESMSeller, upload.single('image'), esmProductController.uploadImage);
 
 module.exports = router;

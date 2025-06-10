@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const esmServiceController = require('../../controllers/esmService');
 const { authenticate, authorize } = require('../../middleware/auth');
+const { authenticateESM, authenticateESMSeller } = require('../../middleware/esmAuth');
 
 /**
  * @swagger
@@ -141,7 +142,7 @@ router.get('/:id', esmServiceController.getServiceById);
  *       500:
  *         description: Server error
  */
-router.post('/', authenticate, esmServiceController.createService);
+router.post('/', authenticateESMSeller, esmServiceController.createService);
 
 /**
  * @swagger
@@ -215,7 +216,7 @@ router.post('/', authenticate, esmServiceController.createService);
  *       500:
  *         description: Server error
  */
-router.put('/:id', authenticate, esmServiceController.updateService);
+router.put('/:id', authenticateESMSeller, esmServiceController.updateService);
 
 /**
  * @swagger
@@ -244,7 +245,7 @@ router.put('/:id', authenticate, esmServiceController.updateService);
  *       500:
  *         description: Server error
  */
-router.delete('/:id', authenticate, esmServiceController.deleteService);
+router.delete('/:id', authenticateESMSeller, esmServiceController.deleteService);
 
 /**
  * @swagger
