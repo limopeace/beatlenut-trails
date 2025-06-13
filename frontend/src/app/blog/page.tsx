@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -48,8 +48,8 @@ const CATEGORIES = [
   { value: 'other', label: 'Other' },
 ];
 
-// Blog page component
-export default function BlogPage() {
+// Blog page component content
+function BlogPageContent() {
   // States
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [pagination, setPagination] = useState<Pagination>({
@@ -510,5 +510,14 @@ export default function BlogPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+// Main component with Suspense wrapper
+export default function BlogPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <BlogPageContent />
+    </Suspense>
   );
 }
