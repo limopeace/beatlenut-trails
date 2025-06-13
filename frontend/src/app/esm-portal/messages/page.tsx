@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ConversationList from '@/components/marketplace/messages/ConversationList';
 import ConversationContainer from '@/components/marketplace/messages/ConversationContainer';
@@ -21,7 +21,7 @@ const getUserId = (): string => {
   return '';
 };
 
-export default function MessagesPage() {
+function MessagesPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedConversation, setSelectedConversation] = useState<string | null>(
@@ -139,5 +139,13 @@ export default function MessagesPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function MessagesPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <MessagesPageContent />
+    </Suspense>
   );
 }
