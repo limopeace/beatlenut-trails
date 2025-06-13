@@ -1115,7 +1115,7 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
               Previous
             </button>
           ) : (
-            <div></div> {/* Empty div to maintain flex spacing */}
+            <div></div>
           )}
           
           {currentStep < 6 ? (

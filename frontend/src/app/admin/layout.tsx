@@ -14,9 +14,32 @@ interface AdminLayoutProps {
 // Inner layout component that uses the auth context
 const AdminLayoutInner: React.FC<AdminLayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<number>(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
   const pathname = usePathname();
   const router = useRouter();
   const { user, isAuthenticated, loading, logout } = useAdminAuth();
+  
+  // Handle authentication redirect in useEffect to avoid setState during render
+  useEffect(() => {
+    if (!loading && !isAuthenticated && pathname !== '/admin/login') {
+      router.push('/admin/login');
+    }
+  }, [isAuthenticated, loading, pathname, router]);
+  
+  // Track window width for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
   
   // If on login page, just render children
   if (pathname === '/admin/login') {
@@ -33,6 +56,7 @@ const AdminLayoutInner: React.FC<AdminLayoutProps> = ({ children }) => {
   
   const navItems = [
     { name: 'Dashboard', path: '/admin/dashboard', icon: 'fas fa-tachometer-alt' },
+    { name: 'Blog', path: '/admin/blog', icon: 'fas fa-edit' },
     { name: 'Orders', path: '/admin/orders', icon: 'fas fa-shopping-cart' },
     { name: 'Products', path: '/admin/products', icon: 'fas fa-box' },
     { name: 'Services', path: '/admin/services', icon: 'fas fa-cogs' },
@@ -55,28 +79,10 @@ const AdminLayoutInner: React.FC<AdminLayoutProps> = ({ children }) => {
       </div>
     );
   }
-  
+
   if (!isAuthenticated && pathname !== '/admin/login') {
-    router.push('/admin/login');
     return null;
   }
-  
-  // Track window width for responsive design
-  const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    
-    if (typeof window !== 'undefined') {
-      setWindowWidth(window.innerWidth);
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, []);
   
   const isMobile = windowWidth < 768;
 

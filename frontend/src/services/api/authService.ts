@@ -38,7 +38,7 @@ export interface VerifyResponse {
  */
 export const adminLogin = async (email: string, password: string): Promise<LoginResponse> => {
   try {
-    const response = await adminApiClient.post<LoginResponse>('/auth/admin/login', { email, password });
+    const response = await adminApiClient.post<LoginResponse>('/auth/login', { email, password });
     return response.data;
   } catch (error: any) {
     const errorMessage = error.response?.data?.message || 'Login failed';

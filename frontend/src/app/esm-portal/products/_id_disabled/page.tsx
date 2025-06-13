@@ -658,7 +658,7 @@ export default function ProductDetailPage() {
                       name={product.name}
                       price={parseFloat(product.discountedPrice?.replace('₹', '').replace(',', '') || product.price.replace('₹', '').replace(',', ''))}
                       imageUrl={product.images[0]}
-                      sellerId="seller-" + product.seller.name.toLowerCase().replace(/\s+/g, '-')
+                      sellerId={`seller-${product.seller.name.toLowerCase().replace(/\s+/g, '-')}`}
                       sellerName={product.seller.name}
                       options={[
                         { name: 'Size', values: ['Small', 'Medium', 'Large'] },

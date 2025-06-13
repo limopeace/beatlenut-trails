@@ -189,7 +189,7 @@ const Gallery = () => {
             <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
               Take a visual tour through the breathtaking landscapes, vibrant cultures, and unforgettable experiences awaiting you in Northeast India.
             </p>
-          </motion.div>
+          </div>
           
           {/* Tab Navigation */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">

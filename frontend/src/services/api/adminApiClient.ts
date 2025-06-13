@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
  * Admin API client configuration
  * Creates an axios instance specifically for admin panel operations
  */
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 // Create admin-specific API client
 export const adminApiClient: AxiosInstance = axios.create({
