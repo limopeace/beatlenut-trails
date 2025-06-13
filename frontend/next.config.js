@@ -28,9 +28,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // Ignore ESLint errors during build
   },
-  experimental: {
-    missingSuspenseWithCSRBailout: false, // Handle SSR issues
-  },
+  // experimental: {
+  //   missingSuspenseWithCSRBailout: false, // Handle SSR issues  
+  // },
   // Remove standalone output for Vercel
   // output: 'standalone',
 }
