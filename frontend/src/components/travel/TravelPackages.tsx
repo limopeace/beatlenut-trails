@@ -79,6 +79,30 @@ const packages = [
     href: '/travel-listings/nepal-overland-expedition',
     category: 'Adventure',
     emoji: '🛣️'
+  },
+  {
+    id: 7,
+    title: '🌸 Bhutan Bike Loop - Last Shangri-La',
+    duration: '8-10 Days',
+    price: 125000,
+    description: 'Highland pilgrimage through prayer flag passes measuring Gross National Happiness. Experience Himalayan kingdom\'s Tiger\'s Nest Monastery.',
+    highlights: ['Tiger\'s Nest Monastery', 'Paro-Thimphu Circuit', 'Prayer Flag Passes', 'Dzongs Tour', 'Bhutanese Culture'],
+    imageSrc: '/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg',
+    href: '/travel-listings/bhutan-bike-loop',
+    category: 'Spiritual',
+    emoji: '🏔️'
+  },
+  {
+    id: 8,
+    title: '🏔️ Upper Assam Superbike Circuit',
+    duration: '6-8 Days',
+    price: 58000,
+    description: 'Tea estates, rhino lands, and river islands - a superbike adventure through Assam\'s heritage and biodiversity corridors.',
+    highlights: ['Tea Estate Roads', 'Kaziranga Circuit', 'Majuli Ferry Crossing', 'Heritage Bungalows', 'Wild Mahseer Trails'],
+    imageSrc: '/images/real/pexels-dizitalboost-11622977-min.jpg',
+    href: '/travel-listings/upper-assam-superbike',
+    category: 'Adventure',
+    emoji: '🏍️'
   }
 ];
 

@@ -9,51 +9,69 @@ import SectionContainer from '@/components/common/SectionContainer';
 const destinations = [
   {
     id: 1,
-    name: 'Shillong',
+    name: 'Meghalaya Explorer',
     state: 'Meghalaya',
-    description: 'The Scotland of the East with beautiful lakes and waterfalls.',
+    description: 'Trek 3,000+ steps to living root bridges in Nongriat, drift crystal-clear Dawki waters, and explore Asia\'s cleanest village Mawlynnong.',
     imageSrc: '/images/real/pexels-travelerchitect-18736328-min.jpg',
-    href: '/travel-listings/shillong',
+    href: '/travel-listings/meghalaya-explorer',
+    highlights: ['Living Root Bridge Trek', 'Dawki River Drift', 'Mawlynnong Village'],
+    duration: '6 Days',
+    difficulty: 'Moderate'
   },
   {
     id: 2,
-    name: 'Kaziranga',
+    name: 'Kaziranga Wildlife Safari',
     state: 'Assam',
-    description: 'Home to the one-horned rhinoceros and diverse wildlife.',
+    description: 'Great Indian One-Horned Rhino sanctuary with jeep safaris, elephant rides, and birding in UNESCO World Heritage grasslands.',
     imageSrc: '/images/real/pexels-dizitalboost-11622977-min.jpg',
-    href: '/travel-listings/kaziranga',
+    href: '/travel-listings/kaziranga-safari',
+    highlights: ['One-horned Rhino Spotting', 'Jeep Safari', 'Bird Watching'],
+    duration: '3 Days',
+    difficulty: 'Easy'
   },
   {
     id: 3,
-    name: 'Tawang',
+    name: 'Arunachal Monastic Circuit',
     state: 'Arunachal Pradesh',
-    description: 'Buddhist monasteries amidst breathtaking Himalayan landscapes.',
+    description: 'India\'s largest monastery with 450+ monks, sacred 108 Chortens at 12,000+ feet, and Indo-Tibetan border spirituality.',
     imageSrc: '/images/real/pexels-dipinder-rainu-247864103-16258336-min.jpg',
-    href: '/travel-listings/tawang',
+    href: '/travel-listings/tawang-monastery',
+    highlights: ['Tawang Monastery', 'Mandala Top Ridge', '108 Chortens Walk'],
+    duration: '5 Days',
+    difficulty: 'Moderate'
   },
   {
     id: 4,
-    name: 'Majuli',
+    name: 'Majuli River Island',
     state: 'Assam',
-    description: 'The largest river island with unique cultural heritage.',
+    description: 'World\'s largest river island with ancient satras (monasteries), traditional mask-making, and unique neo-Vaishnavite culture.',
     imageSrc: '/images/real/pexels-sajal-devnath-15363403-6418951-min.jpg',
-    href: '/travel-listings/majuli',
+    href: '/travel-listings/majuli-cultural',
+    highlights: ['Satra Monasteries', 'Mask Making Workshop', 'River Island Culture'],
+    duration: '4 Days',
+    difficulty: 'Easy'
   },
   {
     id: 5,
-    name: 'Cherrapunji',
-    state: 'Meghalaya',
-    description: 'One of the wettest places on Earth with living root bridges.',
+    name: 'Dzukou Valley Trek',
+    state: 'Nagaland',
+    description: 'Valley of Flowers of Northeast with emerald meadows, seasonal lilies, and high-altitude camping at the Nagaland-Manipur border.',
     imageSrc: '/images/real/pexels-nans1419-20519339-min.jpg',
-    href: '/travel-listings/cherrapunji',
+    href: '/travel-listings/dzukou-valley-trek',
+    highlights: ['Wildflower Meadows', 'High-altitude Camping', 'Sunrise Views'],
+    duration: '3 Days',
+    difficulty: 'Challenging'
   },
   {
     id: 6,
-    name: 'Dzukou Valley',
-    state: 'Nagaland',
-    description: 'A hidden paradise known for its seasonal flowers and gentle hills.',
+    name: 'Upper Assam Tea Trail',
+    state: 'Assam',
+    description: 'Colonial heritage bungalows, tea estate cycling, wild mahseer biodiversity corridor, and authentic Assamese cuisine.',
     imageSrc: '/images/real/pexels-kanishka-211910-679492-min.jpg',
-    href: '/travel-listings/dzukou-valley',
+    href: '/travel-listings/assam-tea-heritage',
+    highlights: ['Heritage Tea Estates', 'Colonial Bungalows', 'Authentic Cuisine'],
+    duration: '4 Days',
+    difficulty: 'Easy'
   },
 ];
 
@@ -104,9 +122,40 @@ const FeaturedDestinations = () => {
                   <h3 className="text-lg sm:text-xl font-bold text-deep-forest mb-1 sm:mb-2 font-clash">
                     {destination.name}
                   </h3>
-                  <p className="text-deep-forest/70 mb-3 sm:mb-4 text-sm sm:text-base flex-grow">{destination.description}</p>
-                  <div className="text-forest-green font-medium group-hover:underline inline-flex items-center text-sm sm:text-base">
-                    Explore
+                  <p className="text-deep-forest/70 mb-3 text-sm sm:text-base flex-grow">{destination.description}</p>
+                  
+                  {/* Duration and Difficulty */}
+                  <div className="flex items-center gap-3 mb-3 text-xs sm:text-sm">
+                    <span className="bg-forest-green/10 text-forest-green px-2 py-1 rounded-md font-medium">
+                      {destination.duration}
+                    </span>
+                    <span className={`px-2 py-1 rounded-md font-medium ${
+                      destination.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
+                      destination.difficulty === 'Moderate' ? 'bg-yellow-100 text-yellow-700' :
+                      'bg-red-100 text-red-700'
+                    }`}>
+                      {destination.difficulty}
+                    </span>
+                  </div>
+                  
+                  {/* Highlights */}
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1">
+                      {destination.highlights.slice(0, 2).map((highlight, index) => (
+                        <span key={index} className="text-xs bg-moss-green/20 text-deep-forest px-2 py-1 rounded-md">
+                          {highlight}
+                        </span>
+                      ))}
+                      {destination.highlights.length > 2 && (
+                        <span className="text-xs text-deep-forest/60">
+                          +{destination.highlights.length - 2} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="text-forest-green font-medium group-hover:underline inline-flex items-center text-sm sm:text-base mt-auto">
+                    Explore Package
                     <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:ml-2 transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
