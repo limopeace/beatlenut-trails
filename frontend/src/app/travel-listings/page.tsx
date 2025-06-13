@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FadeIn } from '@/components/animations';
@@ -122,7 +122,7 @@ const PRICE_RANGES = [
   { value: '1000+', label: '$1000 & Above' },
 ];
 
-const TravelListingsPage: React.FC = () => {
+const TravelListingsContent: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -537,6 +537,14 @@ const TravelListingsPage: React.FC = () => {
         </FadeIn>
       </main>
     </div>
+  );
+};
+
+const TravelListingsPage: React.FC = () => {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <TravelListingsContent />
+    </Suspense>
   );
 };
 
