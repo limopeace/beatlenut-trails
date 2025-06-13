@@ -75,7 +75,7 @@ const MOCK_HOMEPAGE_REVIEWS = [
 ];
 
 // Function to filter and sort homepage reviews
-const getFilteredReviews = (reviews, searchTerm = '', showFeatured = false) => {
+const getFilteredReviews = (reviews: any[], searchTerm = '', showFeatured = false) => {
   let filtered = [...reviews];
   
   // Apply search filter

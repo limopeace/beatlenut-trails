@@ -5,6 +5,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faTimes, faImages, faVideo, faLeaf } from '@fortawesome/free-solid-svg-icons';
 
+interface GalleryItem {
+  id: string;
+  type: 'image' | 'video';
+  src: string;
+  alt: string;
+  caption: string;
+  thumbnail?: string;
+}
+
+interface GalleryItems {
+  [key: string]: GalleryItem[];
+}
+
 const VaaniGallery = () => {
   const [activeTab, setActiveTab] = useState('estate');
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -17,7 +30,7 @@ const VaaniGallery = () => {
     { id: 'activities', label: 'Activities' }
   ];
   
-  const galleryItems = {
+  const galleryItems: GalleryItems = {
     estate: [
       {
         id: 'e1',
@@ -162,17 +175,17 @@ const VaaniGallery = () => {
   };
   
   const nextImage = () => {
-    const images = galleryItems[activeTab].filter(item => item.type === 'image');
+    const images = galleryItems[activeTab]?.filter((item: GalleryItem) => item.type === 'image') || [];
     setActiveImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
   
   const prevImage = () => {
-    const images = galleryItems[activeTab].filter(item => item.type === 'image');
+    const images = galleryItems[activeTab]?.filter((item: GalleryItem) => item.type === 'image') || [];
     setActiveImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
   
-  const images = galleryItems[activeTab].filter(item => item.type === 'image');
-  const currentItems = galleryItems[activeTab];
+  const images = galleryItems[activeTab]?.filter((item: GalleryItem) => item.type === 'image') || [];
+  const currentItems = galleryItems[activeTab] || [];
 
   return (
     <section className="py-24 bg-white">
@@ -218,7 +231,7 @@ const VaaniGallery = () => {
         
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentItems.map((item, index) => (
+          {currentItems.map((item: GalleryItem, index: number) => (
             <motion.div
               key={item.id}
               className="relative rounded-xl overflow-hidden shadow-lg group h-64 md:h-80"

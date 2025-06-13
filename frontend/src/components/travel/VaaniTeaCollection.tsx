@@ -5,7 +5,25 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf, faShoppingCart, faHeart, faShieldAlt, faAward, faBalanceScale } from '@fortawesome/free-solid-svg-icons';
 
-const TeaCard = ({ tea, index }) => {
+interface Tea {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+  description: string;
+  features: string[];
+  inStock: boolean;
+  bestseller?: boolean;
+  organic?: boolean;
+}
+
+interface TeaCardProps {
+  tea: Tea;
+  index: number;
+}
+
+const TeaCard = ({ tea, index }: TeaCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -87,7 +105,7 @@ const TeaCard = ({ tea, index }) => {
         
         {/* Features */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {tea.features.map((feature, i) => (
+          {tea.features.map((feature: string, i: number) => (
             <span key={i} className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">
               {feature}
             </span>

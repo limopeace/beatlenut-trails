@@ -34,7 +34,7 @@ interface NewBlogPost {
   content: string;
   category: string;
   tags: string[];
-  status: 'draft' | 'published';
+  status: 'draft' | 'published' | 'archived';
   isHighlighted: boolean;
 }
 
@@ -200,7 +200,7 @@ export default function AdminBlogPage() {
       const newTags = tagInput.split(',').map(tag => tag.trim()).filter(tag => tag);
       setFormData(prev => ({
         ...prev,
-        tags: [...new Set([...prev.tags, ...newTags])]
+        tags: Array.from(new Set([...prev.tags, ...newTags]))
       }));
       setTagInput('');
     }

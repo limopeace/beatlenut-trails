@@ -6,7 +6,29 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FadeIn } from '@/components/animations';
 
-const activities = [
+interface Activity {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  locations: string[];
+  bestTime?: string;
+  difficulty?: string;
+  specialFeatures?: string[];
+  highlight?: string;
+  experience?: string;
+  atmosphere?: string;
+  skills?: string[];
+  included?: string;
+  experiences?: string[];
+  essence?: string;
+  rituals?: string[];
+  philosophy?: string;
+  equipment?: string;
+  seasons?: string;
+}
+
+const activities: Activity[] = [
   {
     id: 1,
     title: '🦜 Bird Watching',
@@ -271,15 +293,15 @@ const ActivitiesPage = () => {
                         </div>
                       )}
                       
-                      {activity.equipment && (
+                      {activity.included && (
                         <div className="text-xs sm:text-sm text-deep-forest/80">
-                          <span className="font-semibold text-forest-green">Note: </span>{activity.equipment}
+                          <span className="font-semibold text-forest-green">Included: </span>{activity.included}
                         </div>
                       )}
                       
-                      {activity.seasons && (
+                      {activity.atmosphere && (
                         <div className="text-xs sm:text-sm text-deep-forest/80">
-                          <span className="font-semibold text-forest-green">Seasons: </span>{activity.seasons}
+                          <span className="font-semibold text-forest-green">Atmosphere: </span>{activity.atmosphere}
                         </div>
                       )}
                     </div>

@@ -11,7 +11,8 @@ import {
   faTrash,
   faFlag,
   faArchive,
-  faArrowLeft
+  faArrowLeft,
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import { FadeIn } from '@/components/animations';
 

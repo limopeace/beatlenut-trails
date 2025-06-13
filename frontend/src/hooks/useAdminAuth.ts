@@ -38,8 +38,8 @@ export const useAdminAuth = (): UseAdminAuthReturn => {
       }
 
       try {
-        const { valid, user } = await AuthService.verifyToken();
-        if (valid && user) {
+        const user = await AuthService.verifyToken();
+        if (user) {
           setUser(user);
         } else {
           localStorage.removeItem('adminToken');
@@ -66,7 +66,7 @@ export const useAdminAuth = (): UseAdminAuthReturn => {
     setError(null);
 
     try {
-      const response = await AuthService.login({ email, password });
+      const response = await AuthService.adminLogin(email, password);
       const { user, token } = response;
 
       // Check if user has admin role

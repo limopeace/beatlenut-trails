@@ -5,10 +5,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
-  OrderService, 
   Order, 
-  UpdateOrderStatusPayload, 
-  UpdateTrackingInfoPayload 
+  getOrderById,
+  updateOrderStatus
 } from '@/services/api/orderService';
 import Cookies from 'js-cookie';
 
@@ -60,7 +59,7 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
         
         // Initialize status and tracking forms with current values
         setStatusUpdate({
-          status: orderData.currentStatus,
+          status: orderData.status,
           notes: '',
         });
         
@@ -156,7 +155,7 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
   };
 
   // Get status badge class based on status
-  const getStatusBadgeClass = (status: Order['currentStatus']): string => {
+  const getStatusBadgeClass = (status: Order['status']): string => {
     switch (status) {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
@@ -178,7 +177,7 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     switch (status) {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
-      case 'paid':
+      case 'completed':
         return 'bg-green-100 text-green-800';
       case 'failed':
         return 'bg-red-100 text-red-800';
@@ -274,8 +273,8 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="text-gray-600">Current Status:</span>
-              <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(order.currentStatus)}`}>
-                {order.currentStatus.charAt(0).toUpperCase() + order.currentStatus.slice(1)}
+              <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(order.status)}`}>
+                {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
               </span>
             </div>
             <div className="flex justify-between">
@@ -303,8 +302,8 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4 border-b pb-2">Buyer Information</h2>
           <div className="space-y-2">
-            <p><span className="font-medium">Name:</span> {order.buyerName}</p>
-            <p><span className="font-medium">Buyer ID:</span> {order.buyerId}</p>
+            <p><span className="font-medium">Name:</span> {order.customer.name}</p>
+            <p><span className="font-medium">Buyer ID:</span> {order.customer.id}</p>
             <h3 className="font-medium mt-4 mb-2">Shipping Address:</h3>
             <p>{order.shippingAddress.fullName}</p>
             <p>{order.shippingAddress.addressLine1}</p>
@@ -327,11 +326,11 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Tax:</span>
-              <span>{formatCurrency(order.tax)}</span>
+              <span>{formatCurrency(order.tax || 0)}</span>
             </div>
             <div className="flex justify-between font-bold border-t pt-2 mt-2">
               <span>Total:</span>
-              <span>{formatCurrency(order.totalAmount)}</span>
+              <span>{formatCurrency(order.total)}</span>
             </div>
             <div className="flex justify-between mt-4">
               <span className="text-gray-600">Total Items:</span>

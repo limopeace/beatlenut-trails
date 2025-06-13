@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { EsmAuthService, EsmUser } from '@/services/api/esmAuthService';
+import EsmAuthService, { EsmUser } from '@/services/api/esmAuthService';
 import Cookies from 'js-cookie';
 
 interface UseEsmAuthReturn {
