@@ -255,17 +255,17 @@ export default function ESMPortal() {
       </section>
 
       {/* How It Works */}
-      <section className="section bg-moss-green/30 py-16">
+      <section className="section bg-moss-green/30 py-20 overflow-visible">
         <div className="container-custom">
           <SectionTitle
             title="How It Works"
             subtitle="Simple steps to start buying or selling on our ESM marketplace"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16 px-4">
             {/* For Buyers */}
             <div className="card p-8 pt-16 flex flex-col h-full relative border-t-4 border-forest-green">
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md z-10">
                 1
               </div>
               <h3 className="text-xl font-semibold mb-6 text-center text-deep-forest">For Buyers</h3>
@@ -307,7 +307,7 @@ export default function ESMPortal() {
 
             {/* For Sellers */}
             <div className="card p-8 pt-16 flex flex-col h-full relative border-t-4 border-forest-green">
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md z-10">
                 2
               </div>
               <h3 className="text-xl font-semibold mb-6 text-center text-deep-forest">For Sellers</h3>
@@ -349,7 +349,7 @@ export default function ESMPortal() {
 
             {/* Support */}
             <div className="card p-8 pt-16 flex flex-col h-full relative border-t-4 border-forest-green">
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-forest-green text-pale-straw flex items-center justify-center text-2xl font-bold shadow-md z-10">
                 3
               </div>
               <h3 className="text-xl font-semibold mb-6 text-center text-deep-forest">Our Support</h3>
