@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -42,7 +42,7 @@ const MOCK_LISTINGS = [
   // Other listings would be here
 ];
 
-const BookingPage: React.FC = () => {
+const BookingPageContent: React.FC = () => {
   const router = useRouter();
   const { slug } = useParams<{ slug: string }>();
   const searchParams = useSearchParams();
@@ -456,4 +456,10 @@ const BookingPage: React.FC = () => {
   );
 };
 
-export default BookingPage;
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <BookingPageContent />
+    </Suspense>
+  );
+}

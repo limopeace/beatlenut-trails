@@ -109,6 +109,21 @@ const galleryItems = [
 const categories = ['Nature', 'Beach', 'Architecture', 'Urban', 'Videos'];
 
 export default function GalleryDemoPage() {
+  // Transform data to match component expectations
+  const galleryCategories = categories.map(cat => ({
+    id: cat.toLowerCase(),
+    name: cat,
+    items: galleryItems.filter(item => item.category === cat).map(item => ({
+      src: item.src,
+      width: item.width,
+      height: item.height,
+      alt: item.alt,
+      caption: item.alt,
+      isVideo: item.type === 'video',
+      videoSrc: item.type === 'video' ? (item as any).videoSrc : undefined
+    }))
+  }));
+
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-3xl font-bold mb-8">PhotoSwipe V5 Gallery Demo</h1>
@@ -116,7 +131,7 @@ export default function GalleryDemoPage() {
         Click on any image or video to open the lightbox gallery. Use the category tabs to filter content.
       </p>
       
-      <PhotoSwipeV5Gallery items={galleryItems} categories={categories} />
+      <PhotoSwipeV5Gallery categories={galleryCategories} />
       
       <div className="mt-12 p-4 bg-gray-100 rounded-lg">
         <h2 className="text-xl font-semibold mb-2">About This Component</h2>
