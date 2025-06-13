@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import ComposeMessage from '@/components/marketplace/messages/ComposeMessage';
@@ -33,7 +33,7 @@ interface Seller {
   };
 }
 
-export default function NewMessagePage() {
+function NewMessagePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -403,5 +403,13 @@ export default function NewMessagePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function NewMessagePage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <NewMessagePageContent />
+    </Suspense>
   );
 }
