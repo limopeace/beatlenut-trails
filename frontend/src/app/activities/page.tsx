@@ -199,7 +199,7 @@ const ActivitiesPage = () => {
           </div>
           
           <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 pt-16 sm:pt-20 md:pt-24">
-            <div className="max-w-3xl">
+            <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 animate-fadeIn font-clash leading-tight">
                 🌿 Activities with Beatlenut Trails
               </h1>
