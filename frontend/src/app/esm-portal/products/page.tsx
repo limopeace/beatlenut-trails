@@ -6,7 +6,7 @@ import Button from '@/components/common/Button';
 import SectionTitle from '@/components/common/SectionTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { EsmProductService, EsmProduct } from '@/services/api/esmProductService';
+import EsmProductService, { EsmProduct } from '@/services/api/esmProductService';
 
 // Function to get product images from our real images collection
 const getProductImage = (id: number) => {

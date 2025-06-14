@@ -35,13 +35,18 @@ A comprehensive travel business platform with a robust Node.js Express RESTful A
 - **API Integration**: Axios-based API client with interceptors
 
 ### ESM Portal Features
-- **Seller Registration**: Complete workflow for Ex-Servicemen to register
+- **Enhanced Seller Registration**: Multi-step registration with improved UX
+  - Comprehensive service categories (OLX/Quikr style)
+  - "Other" option with custom categories input
+  - Enhanced document upload with visual feedback
+  - Real-time validation and progress tracking
 - **Product Management**: CRUD operations for products with image upload
 - **Service Listings**: Service providers can list their offerings
 - **Authentication**: Separate auth system for ESM portal
 - **Admin Oversight**: Admin panel integration for monitoring
 - **Messaging System**: Built-in communication between buyers and sellers
 - **Approval Workflow**: Admin approval system for new sellers
+- **Responsive Design**: Mobile-first approach with touch-friendly interfaces
 
 ## 📋 Prerequisites
 
@@ -72,7 +77,33 @@ cp .env.example .env
 
 ## 🏃‍♂️ Running the Application
 
-### Backend
+### Quick Start (Recommended)
+
+For local testing, use the automated setup script:
+
+```bash
+# Make the script executable (first time only)
+chmod +x local-testing.sh
+
+# Start both backend and frontend servers
+./local-testing.sh
+```
+
+This will:
+- Set up environment files
+- Install dependencies for both backend and frontend
+- Start backend server on port 4000
+- Start frontend server on port 3000
+- Display helpful testing information
+
+To stop all servers:
+```bash
+./stop-servers.sh
+```
+
+### Manual Setup
+
+#### Backend
 
 ```bash
 # Start the server
@@ -82,9 +113,9 @@ npm start
 npm run dev
 ```
 
-The server will start at http://localhost:3000
+The backend API server will start at http://localhost:4000
 
-### Frontend
+#### Frontend
 
 ```bash
 # Navigate to frontend directory
@@ -94,7 +125,14 @@ cd frontend
 npm run dev
 ```
 
-The frontend will be available at http://localhost:3001
+The frontend will be available at http://localhost:3000
+
+### Access Points
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:4000
+- **API Health Check**: http://localhost:4000/health
+- **API Documentation**: http://localhost:4000/api-docs (when available)
 
 ## 📚 API Documentation
 
@@ -143,8 +181,9 @@ For complete documentation:
 
 ## 🧪 Testing
 
+### Backend Testing (Jest)
 ```bash
-# Run all tests
+# Run all backend tests
 npm test
 
 # Run tests in watch mode
@@ -159,6 +198,35 @@ npm run test:unit
 # Run only integration tests
 npm run test:integration
 ```
+
+### Frontend E2E Testing (Playwright)
+```bash
+# Navigate to frontend directory first
+cd frontend
+
+# Run all end-to-end tests
+npm run test:e2e
+
+# Run tests with UI interface
+npm run test:e2e:ui
+
+# Run tests in headed mode (visible browser)
+npm run test:e2e:headed
+
+# Run specific test suites
+npm run test:esm        # ESM Portal tests
+npm run test:admin      # Admin Portal tests
+npm run test:website    # Main Website tests
+
+# View test report
+npm run test:report
+```
+
+### Test Coverage
+- **ESM Portal**: Registration, login, products, services, responsive design
+- **Admin Portal**: Dashboard, sellers, orders, approvals, authentication
+- **Main Website**: Homepage, navigation, responsiveness
+- **API Integration**: Backend endpoints, error handling
 
 ## 📁 Project Structure
 

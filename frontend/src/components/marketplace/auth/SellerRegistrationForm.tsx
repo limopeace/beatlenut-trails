@@ -32,6 +32,7 @@ interface ExtendedFormData extends EsmRegistrationData {
   
   // Service Categories
   categories: string[];
+  customCategories: string; // Comma-separated custom categories
   
   // Documents
   identityProof: File | null;
@@ -44,24 +45,83 @@ interface ExtendedFormData extends EsmRegistrationData {
   acceptPrivacyPolicy: boolean;
 }
 
-// Available service categories
+// Available service categories (similar to OLX/Quikr/Craigslist)
 const availableCategories = [
-  'Adventure Tours',
-  'Trekking Guide',
-  'Motorcycle Tours',
-  'Expedition Planning',
-  'Survival Training',
-  'Wildlife Photography',
-  'Equipment Rental',
+  // Electronics & Technology
+  'Mobile Phones',
+  'Computers & Laptops',
+  'Electronics & Appliances',
+  'Cameras & Photography',
+  'Gaming & Entertainment',
+  
+  // Vehicles
+  'Cars & Motorcycles',
+  'Commercial Vehicles',
+  'Spare Parts',
+  'Bicycles',
+  
+  // Home & Living
+  'Furniture',
+  'Home Decor',
+  'Garden & Outdoor',
+  'Kitchen & Dining',
+  'Home Appliances',
+  
+  // Fashion & Beauty
+  'Clothing & Accessories',
+  'Shoes',
+  'Watches',
+  'Jewelry',
+  'Beauty & Personal Care',
+  
+  // Hobbies & Sports
+  'Sports Equipment',
+  'Musical Instruments',
+  'Books & Magazines',
+  'Art & Collectibles',
+  'Toys & Games',
+  
+  // Services
+  'Home Services',
+  'Repair & Maintenance',
+  'Professional Services',
+  'Education & Training',
+  'Health & Wellness',
+  'Event Services',
+  'Security Services',
   'Transport Services',
-  'Accommodation',
-  'Local Cuisine',
-  'Cultural Experiences',
-  'Safety & Rescue',
-  'Mountaineering',
-  'Skiing/Snowboarding',
-  'Water Sports',
-  'Camping'
+  'Consulting',
+  'Digital Services',
+  
+  // Business & Industrial
+  'Business Equipment',
+  'Industrial Machinery',
+  'Office Supplies',
+  'Raw Materials',
+  
+  // Agriculture & Farming
+  'Agricultural Equipment',
+  'Seeds & Plants',
+  'Livestock',
+  'Farm Produce',
+  
+  // Real Estate & Property
+  'Property Sales',
+  'Property Rentals',
+  'Commercial Property',
+  'Land & Plots',
+  
+  // Jobs & Employment
+  'Full-time Jobs',
+  'Part-time Jobs',
+  'Freelancing',
+  'Internships',
+  
+  // Community & Social
+  'Community Services',
+  'Volunteer Work',
+  'Social Events',
+  'Local News & Updates'
 ];
 
 const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId }) => {
@@ -91,6 +151,7 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
     serviceRadius: '50',
     
     categories: [],
+    customCategories: '',
     
     identityProof: null,
     serviceProof: null,
@@ -250,6 +311,11 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
         setError('Please select at least one service category');
         return false;
       }
+      // If "Other" is selected, custom categories must be provided
+      if (formData.categories.includes('Other') && !formData.customCategories.trim()) {
+        setError('Please specify your custom categories when "Other" is selected');
+        return false;
+      }
     }
     
     // Validation for step 5: Documents
@@ -305,12 +371,20 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       // Add all text fields
       Object.entries(formData).forEach(([key, value]) => {
         if (key === 'categories') {
-          // Add categories as a JSON string
-          submitData.append('categories', JSON.stringify(value));
+          // Combine selected categories with custom categories if "Other" is selected
+          let allCategories = [...value] as string[];
+          if (formData.categories.includes('Other') && formData.customCategories.trim()) {
+            const customCats = formData.customCategories
+              .split(',')
+              .map(cat => cat.trim())
+              .filter(cat => cat.length > 0);
+            allCategories = [...allCategories.filter(cat => cat !== 'Other'), ...customCats];
+          }
+          submitData.append('categories', JSON.stringify(allCategories));
         } else if (key !== 'identityProof' && key !== 'serviceProof' && 
                    key !== 'businessProof' && key !== 'profileImage' && 
-                   key !== 'logoImage') {
-          // Add all non-file fields
+                   key !== 'logoImage' && key !== 'customCategories') {
+          // Add all non-file fields (excluding customCategories as it's merged with categories)
           submitData.append(key, String(value));
         }
       });
@@ -710,7 +784,48 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                   </div>
                 </div>
               ))}
+              
+              {/* Other option */}
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="category-other"
+                    name="category"
+                    type="checkbox"
+                    value="Other"
+                    checked={formData.categories.includes('Other')}
+                    onChange={handleCheckboxChange}
+                    className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <label htmlFor="category-other" className="font-medium text-gray-700">
+                    Other (Please specify)
+                  </label>
+                </div>
+              </div>
             </div>
+            
+            {/* Custom categories input */}
+            {formData.categories.includes('Other') && (
+              <div className="mt-4">
+                <label htmlFor="customCategories" className="block text-sm font-medium text-gray-700">
+                  Custom Categories*
+                </label>
+                <textarea
+                  id="customCategories"
+                  name="customCategories"
+                  value={formData.customCategories}
+                  onChange={handleChange}
+                  placeholder="Enter your service categories separated by commas (e.g., Custom Electronics Repair, Specialized Training, Unique Consulting)"
+                  rows={3}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+                <p className="mt-2 text-sm text-gray-500">
+                  Please separate multiple categories with commas. These will be reviewed by our team.
+                </p>
+              </div>
+            )}
             
             <p className="text-sm text-gray-500 mt-4">
               You must select at least one category that best represents your services.
@@ -732,14 +847,49 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                 <label className="block text-sm font-medium text-gray-700">
                   Identity Proof*
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                  <div className="space-y-1 text-center">
-                    <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4h-12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <div className="flex text-sm text-gray-600">
-                      <label htmlFor="identityProof" className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
-                        <span>Upload a file</span>
+                {!formData.identityProof ? (
+                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-gray-400 transition-colors">
+                    <div className="space-y-1 text-center">
+                      <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4h-12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <div className="flex text-sm text-gray-600">
+                        <label htmlFor="identityProof" className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
+                          <span>Upload a file</span>
+                          <input 
+                            id="identityProof" 
+                            name="identityProof" 
+                            type="file" 
+                            accept=".pdf,.jpg,.jpeg,.png" 
+                            onChange={handleFileUpload} 
+                            className="sr-only" 
+                            required 
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        PDF, JPG, PNG up to 5MB
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-1 flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-md">
+                    <div className="flex items-center">
+                      <svg className="h-8 w-8 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <p className="text-sm font-medium text-green-800">File uploaded successfully</p>
+                        <p className="text-sm text-green-600">{formData.identityProof.name}</p>
+                        <p className="text-xs text-green-500">
+                          {(formData.identityProof.size / 1024 / 1024).toFixed(2)} MB
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <label htmlFor="identityProof" className="cursor-pointer text-blue-600 hover:text-blue-500 text-sm font-medium">
+                        Change
                         <input 
                           id="identityProof" 
                           name="identityProof" 
@@ -747,24 +897,21 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                           accept=".pdf,.jpg,.jpeg,.png" 
                           onChange={handleFileUpload} 
                           className="sr-only" 
-                          required 
                         />
                       </label>
-                      <p className="pl-1">or drag and drop</p>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, identityProof: null }))}
+                        className="text-red-600 hover:text-red-500 text-sm font-medium"
+                      >
+                        Remove
+                      </button>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      PDF, JPG, PNG up to 5MB
-                    </p>
                   </div>
-                </div>
+                )}
                 <p className="mt-2 text-sm text-gray-500">
                   Acceptable documents: Aadhaar Card, PAN Card, Passport, Voter ID
                 </p>
-                {formData.identityProof && (
-                  <p className="mt-2 text-sm text-green-600">
-                    Selected file: {formData.identityProof.name}
-                  </p>
-                )}
               </div>
               
               <div>
