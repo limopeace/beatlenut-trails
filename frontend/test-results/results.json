@@ -1,0 +1,579 @@
+{
+  "config": {
+    "configFile": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/playwright.config.ts",
+    "rootDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "visual-workflow.spec.ts",
+      "file": "visual-workflow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Complete Visual Workflow Documentation",
+          "file": "visual-workflow.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete Admin Panel and ESM Portal Visual Workflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 32693,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📁 Screenshots will be saved to: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991877572\n"
+                        },
+                        {
+                          "text": "🚀 Starting Complete Visual Workflow Test\n"
+                        },
+                        {
+                          "text": "\n🏛️ === ADMIN PANEL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 1: admin-portal-landing\n"
+                        },
+                        {
+                          "text": "📸 Step 2: admin-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 3: admin-login-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 4: admin-after-login-redirect\n"
+                        },
+                        {
+                          "text": "📸 Step 5: admin-dashboard-overview\n"
+                        },
+                        {
+                          "text": "📸 Step 6: admin-sellers-management\n"
+                        },
+                        {
+                          "text": "📸 Step 7: admin-orders-management\n"
+                        },
+                        {
+                          "text": "📸 Step 8: admin-approvals-page\n"
+                        },
+                        {
+                          "text": "\n🏪 === ESM PORTAL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 9: esm-portal-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 10: esm-registration-page\n"
+                        },
+                        {
+                          "text": "📸 Step 11: esm-registration-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 12: esm-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 13: esm-products-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 14: esm-services-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 15: esm-add-product-protected\n"
+                        },
+                        {
+                          "text": "\n🔄 === CROSS-SYSTEM COMPARISON ===\n"
+                        },
+                        {
+                          "text": "📸 Step 16: admin-messages-interface\n"
+                        },
+                        {
+                          "text": "📸 Step 17: esm-messages-interface\n"
+                        },
+                        {
+                          "text": "\n📱 === RESPONSIVE DESIGN TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 18: admin-dashboard-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 19: esm-portal-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 20: admin-sellers-tablet\n"
+                        },
+                        {
+                          "text": "📸 Step 21: esm-products-tablet\n"
+                        },
+                        {
+                          "text": "\n🌐 === MAIN WEBSITE TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 22: main-website-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 23: main-website-about\n"
+                        },
+                        {
+                          "text": "📸 Step 24: main-website-contact\n"
+                        },
+                        {
+                          "text": "\n🔍 === ADMIN PANEL DEEP DIVE ===\n"
+                        },
+                        {
+                          "text": "📸 Step 25: admin-blog-management\n"
+                        },
+                        {
+                          "text": "📸 Step 26: admin-reviews-management\n"
+                        },
+                        {
+                          "text": "📸 Step 27: admin-dashboard-final\n"
+                        },
+                        {
+                          "text": "\n✅ Visual Workflow Test Complete!\n"
+                        },
+                        {
+                          "text": "📸 Total Screenshots: 27\n"
+                        },
+                        {
+                          "text": "📁 Location: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991877572\n"
+                        },
+                        {
+                          "text": "📄 Visual report generated: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991877572/VISUAL_WORKFLOW_REPORT.md\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-15T12:51:17.574Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0949162164a6ea2fd3f8-1b03214b8c7a3c3ca570",
+              "file": "visual-workflow.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "Complete Admin Panel and ESM Portal Visual Workflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 29428,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📁 Screenshots will be saved to: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991911217\n"
+                        },
+                        {
+                          "text": "🚀 Starting Complete Visual Workflow Test\n"
+                        },
+                        {
+                          "text": "\n🏛️ === ADMIN PANEL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 1: admin-portal-landing\n"
+                        },
+                        {
+                          "text": "📸 Step 2: admin-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 3: admin-login-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 4: admin-after-login-redirect\n"
+                        },
+                        {
+                          "text": "📸 Step 5: admin-dashboard-overview\n"
+                        },
+                        {
+                          "text": "📸 Step 6: admin-sellers-management\n"
+                        },
+                        {
+                          "text": "📸 Step 7: admin-orders-management\n"
+                        },
+                        {
+                          "text": "📸 Step 8: admin-approvals-page\n"
+                        },
+                        {
+                          "text": "\n🏪 === ESM PORTAL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 9: esm-portal-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 10: esm-registration-page\n"
+                        },
+                        {
+                          "text": "📸 Step 11: esm-registration-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 12: esm-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 13: esm-products-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 14: esm-services-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 15: esm-add-product-protected\n"
+                        },
+                        {
+                          "text": "\n🔄 === CROSS-SYSTEM COMPARISON ===\n"
+                        },
+                        {
+                          "text": "📸 Step 16: admin-messages-interface\n"
+                        },
+                        {
+                          "text": "📸 Step 17: esm-messages-interface\n"
+                        },
+                        {
+                          "text": "\n📱 === RESPONSIVE DESIGN TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 18: admin-dashboard-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 19: esm-portal-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 20: admin-sellers-tablet\n"
+                        },
+                        {
+                          "text": "📸 Step 21: esm-products-tablet\n"
+                        },
+                        {
+                          "text": "\n🌐 === MAIN WEBSITE TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 22: main-website-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 23: main-website-about\n"
+                        },
+                        {
+                          "text": "📸 Step 24: main-website-contact\n"
+                        },
+                        {
+                          "text": "\n🔍 === ADMIN PANEL DEEP DIVE ===\n"
+                        },
+                        {
+                          "text": "📸 Step 25: admin-blog-management\n"
+                        },
+                        {
+                          "text": "📸 Step 26: admin-reviews-management\n"
+                        },
+                        {
+                          "text": "📸 Step 27: admin-dashboard-final\n"
+                        },
+                        {
+                          "text": "\n✅ Visual Workflow Test Complete!\n"
+                        },
+                        {
+                          "text": "📸 Total Screenshots: 27\n"
+                        },
+                        {
+                          "text": "📁 Location: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991911217\n"
+                        },
+                        {
+                          "text": "📄 Visual report generated: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991911217/VISUAL_WORKFLOW_REPORT.md\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-15T12:51:51.221Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0949162164a6ea2fd3f8-0d9c28d060bae7b1fbfc",
+              "file": "visual-workflow.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "Complete Admin Panel and ESM Portal Visual Workflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23715,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📁 Screenshots will be saved to: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991941774\n"
+                        },
+                        {
+                          "text": "🚀 Starting Complete Visual Workflow Test\n"
+                        },
+                        {
+                          "text": "\n🏛️ === ADMIN PANEL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 1: admin-portal-landing\n"
+                        },
+                        {
+                          "text": "📸 Step 2: admin-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 3: admin-login-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 4: admin-after-login-redirect\n"
+                        },
+                        {
+                          "text": "📸 Step 5: admin-dashboard-overview\n"
+                        },
+                        {
+                          "text": "📸 Step 6: admin-sellers-management\n"
+                        },
+                        {
+                          "text": "📸 Step 7: admin-orders-management\n"
+                        },
+                        {
+                          "text": "📸 Step 8: admin-approvals-page\n"
+                        },
+                        {
+                          "text": "\n🏪 === ESM PORTAL WORKFLOW ===\n"
+                        },
+                        {
+                          "text": "📸 Step 9: esm-portal-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 10: esm-registration-page\n"
+                        },
+                        {
+                          "text": "📸 Step 11: esm-registration-form-filled\n"
+                        },
+                        {
+                          "text": "📸 Step 12: esm-login-page\n"
+                        },
+                        {
+                          "text": "📸 Step 13: esm-products-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 14: esm-services-browse\n"
+                        },
+                        {
+                          "text": "📸 Step 15: esm-add-product-protected\n"
+                        },
+                        {
+                          "text": "\n🔄 === CROSS-SYSTEM COMPARISON ===\n"
+                        },
+                        {
+                          "text": "📸 Step 16: admin-messages-interface\n"
+                        },
+                        {
+                          "text": "📸 Step 17: esm-messages-interface\n"
+                        },
+                        {
+                          "text": "\n📱 === RESPONSIVE DESIGN TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 18: admin-dashboard-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 19: esm-portal-mobile\n"
+                        },
+                        {
+                          "text": "📸 Step 20: admin-sellers-tablet\n"
+                        },
+                        {
+                          "text": "📸 Step 21: esm-products-tablet\n"
+                        },
+                        {
+                          "text": "\n🌐 === MAIN WEBSITE TESTING ===\n"
+                        },
+                        {
+                          "text": "📸 Step 22: main-website-homepage\n"
+                        },
+                        {
+                          "text": "📸 Step 23: main-website-about\n"
+                        },
+                        {
+                          "text": "📸 Step 24: main-website-contact\n"
+                        },
+                        {
+                          "text": "\n🔍 === ADMIN PANEL DEEP DIVE ===\n"
+                        },
+                        {
+                          "text": "📸 Step 25: admin-blog-management\n"
+                        },
+                        {
+                          "text": "📸 Step 26: admin-reviews-management\n"
+                        },
+                        {
+                          "text": "📸 Step 27: admin-dashboard-final\n"
+                        },
+                        {
+                          "text": "\n✅ Visual Workflow Test Complete!\n"
+                        },
+                        {
+                          "text": "📸 Total Screenshots: 27\n"
+                        },
+                        {
+                          "text": "📁 Location: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991941774\n"
+                        },
+                        {
+                          "text": "📄 Visual report generated: /Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/visual-workflows/test-1749991941774/VISUAL_WORKFLOW_REPORT.md\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-15T12:52:21.777Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0949162164a6ea2fd3f8-91e78f19dda6b16ce5cf",
+              "file": "visual-workflow.spec.ts",
+              "line": 32,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-15T12:51:16.896Z",
+    "duration": 89096.531,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

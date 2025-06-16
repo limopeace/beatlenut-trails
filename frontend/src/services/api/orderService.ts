@@ -206,7 +206,7 @@ export const processRefund = async (
   return response.data;
 };
 
-const OrderService = {
+export const OrderService = {
   getOrders,
   getOrderById,
   updateOrderStatus,

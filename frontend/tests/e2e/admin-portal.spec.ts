@@ -11,12 +11,12 @@ test.describe('Admin Portal Tests', () => {
 
   test.beforeEach(async ({ page }) => {
     // Start from admin portal
-    await page.goto('/admin');
+    await page.goto('http://localhost:3000/admin');
   });
 
   test.describe('Admin Portal Access & Navigation', () => {
     test('should redirect to admin login page', async ({ page }) => {
-      await page.goto('/admin');
+      await page.goto('http://localhost:3000/admin');
       
       // Should redirect to login or show login form
       if (page.url().includes('/login')) {
@@ -28,7 +28,7 @@ test.describe('Admin Portal Tests', () => {
     });
 
     test('should display admin login form', async ({ page }) => {
-      await page.goto('/admin/login');
+      await page.goto('http://localhost:3000/admin/login');
       
       await expect(page.getByRole('heading', { name: /admin.*login|login/i })).toBeVisible();
       await expect(page.locator('input[type="email"], input[name="email"]')).toBeVisible();
@@ -37,7 +37,7 @@ test.describe('Admin Portal Tests', () => {
     });
 
     test('should handle login form submission', async ({ page }) => {
-      await page.goto('/admin/login');
+      await page.goto('http://localhost:3000/admin/login');
       
       // Fill login form
       await page.fill('input[type="email"], input[name="email"]', testAdmin.email);
@@ -71,7 +71,7 @@ test.describe('Admin Portal Tests', () => {
     });
 
     test('should test development login fallback', async ({ page }) => {
-      await page.goto('/admin/login');
+      await page.goto('http://localhost:3000/admin/login');
       
       // Use development credentials if they exist
       await page.fill('input[type="email"], input[name="email"]', 'admin@beatlenut.com');
@@ -91,7 +91,7 @@ test.describe('Admin Portal Tests', () => {
   test.describe('Admin Dashboard', () => {
     test('should display dashboard (if accessible)', async ({ page }) => {
       // Try direct access to dashboard
-      await page.goto('/admin/dashboard');
+      await page.goto('http://localhost:3000/admin/dashboard');
       
       if (page.url().includes('/login')) {
         // Redirected to login - expected behavior
@@ -109,7 +109,7 @@ test.describe('Admin Portal Tests', () => {
     });
 
     test('should show navigation menu (if authenticated)', async ({ page }) => {
-      await page.goto('/admin/dashboard');
+      await page.goto('http://localhost:3000/admin/dashboard');
       
       if (!page.url().includes('/login')) {
         // Look for navigation elements
@@ -127,7 +127,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Sellers Management', () => {
     test('should display sellers page', async ({ page }) => {
-      await page.goto('/admin/sellers');
+      await page.goto('http://localhost:3000/admin/sellers');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -147,7 +147,7 @@ test.describe('Admin Portal Tests', () => {
     });
 
     test('should test seller search functionality', async ({ page }) => {
-      await page.goto('/admin/sellers');
+      await page.goto('http://localhost:3000/admin/sellers');
       
       if (!page.url().includes('/login')) {
         const searchInput = page.locator('input[type="search"], input[placeholder*="search"]');
@@ -162,7 +162,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Orders Management', () => {
     test('should display orders page', async ({ page }) => {
-      await page.goto('/admin/orders');
+      await page.goto('http://localhost:3000/admin/orders');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -184,7 +184,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Approvals Management', () => {
     test('should display approvals page', async ({ page }) => {
-      await page.goto('/admin/approvals');
+      await page.goto('http://localhost:3000/admin/approvals');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -206,7 +206,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Analytics', () => {
     test('should display analytics page', async ({ page }) => {
-      await page.goto('/admin/analytics');
+      await page.goto('http://localhost:3000/admin/analytics');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -228,7 +228,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Reviews Management', () => {
     test('should display reviews page', async ({ page }) => {
-      await page.goto('/admin/reviews');
+      await page.goto('http://localhost:3000/admin/reviews');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -240,7 +240,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Messages', () => {
     test('should display messages page', async ({ page }) => {
-      await page.goto('/admin/messages');
+      await page.goto('http://localhost:3000/admin/messages');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -252,7 +252,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Blog Management', () => {
     test('should display blog management page', async ({ page }) => {
-      await page.goto('/admin/blog');
+      await page.goto('http://localhost:3000/admin/blog');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -264,7 +264,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Account Settings', () => {
     test('should display account settings page', async ({ page }) => {
-      await page.goto('/admin/account');
+      await page.goto('http://localhost:3000/admin/account');
       
       if (page.url().includes('/login')) {
         await expect(page.getByRole('heading', { name: /login/i })).toBeVisible();
@@ -277,7 +277,7 @@ test.describe('Admin Portal Tests', () => {
   test.describe('Admin Responsive Design', () => {
     test('should work on mobile viewport', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
-      await page.goto('/admin/login');
+      await page.goto('http://localhost:3000/admin/login');
       
       // Login form should be visible and usable on mobile
       await expect(page.locator('input[type="email"]')).toBeVisible();
@@ -292,7 +292,7 @@ test.describe('Admin Portal Tests', () => {
 
     test('should work on tablet viewport', async ({ page }) => {
       await page.setViewportSize({ width: 768, height: 1024 });
-      await page.goto('/admin/dashboard');
+      await page.goto('http://localhost:3000/admin/dashboard');
       
       // Should adapt to tablet layout
       await expect(page.locator('body')).toBeVisible();
@@ -308,7 +308,7 @@ test.describe('Admin Portal Tests', () => {
         }
       });
       
-      await page.goto('/admin/dashboard');
+      await page.goto('http://localhost:3000/admin/dashboard');
       
       // Wait for any network requests to complete
       await page.waitForTimeout(3000);
@@ -324,7 +324,7 @@ test.describe('Admin Portal Tests', () => {
       ];
       
       for (const route of protectedRoutes) {
-        await page.goto(route);
+        await page.goto(`http://localhost:3000${route}`);
         
         // Should either show login page or the protected content
         const isLoginPage = page.url().includes('/login') || 
@@ -341,7 +341,7 @@ test.describe('Admin Portal Tests', () => {
 
   test.describe('Admin Error Handling', () => {
     test('should handle 404 pages gracefully', async ({ page }) => {
-      await page.goto('/admin/nonexistent-page');
+      await page.goto('http://localhost:3000/admin/nonexistent-page');
       
       // Should show 404 page or redirect
       const notFoundElements = page.locator('h1, [class*="404"], [class*="not-found"]');
@@ -356,7 +356,7 @@ test.describe('Admin Portal Tests', () => {
         route.abort();
       });
       
-      await page.goto('/admin/dashboard');
+      await page.goto('http://localhost:3000/admin/dashboard');
       
       // Should handle network failures gracefully
       await page.waitForTimeout(2000);

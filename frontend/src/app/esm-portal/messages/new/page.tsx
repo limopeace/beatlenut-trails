@@ -10,6 +10,11 @@ import Cookies from 'js-cookie';
 // Get user info from cookie
 const getUserId = (): string => {
   try {
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined') {
+      return '';
+    }
+    
     const userCookie = Cookies.get('esm_user');
     if (userCookie) {
       const userData = JSON.parse(userCookie);

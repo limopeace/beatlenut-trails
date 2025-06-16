@@ -1,0 +1,30 @@
+{
+  "name": "beatlenuts-workflow-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive workflow testing for Beatlenuts-GR admin panel and ESM portal",
+  "main": "run-all-tests.js",
+  "scripts": {
+    "test:admin-login": "node admin-login-workflow.js",
+    "test:admin-dashboard": "node admin-dashboard-workflow.js",
+    "test:esm-registration": "node esm-registration-workflow.js",
+    "test:all": "node run-all-tests.js",
+    "test:admin": "npm run test:admin-login && npm run test:admin-dashboard",
+    "test:esm": "npm run test:esm-registration",
+    "clean": "rm -rf ../test-results/*/",
+    "report": "node generate-summary-report.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.6.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "testing",
+    "puppeteer",
+    "workflow",
+    "admin",
+    "esm",
+    "automation"
+  ],
+  "author": "Beatlenuts-GR Test Suite",
+  "license": "MIT"
+}

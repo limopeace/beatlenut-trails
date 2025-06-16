@@ -38,10 +38,20 @@ export interface VerifyResponse {
  */
 export const adminLogin = async (email: string, password: string): Promise<LoginResponse> => {
   try {
-    const response = await adminApiClient.post<LoginResponse>('/auth/login', { email, password });
-    return response.data;
+    const response = await adminApiClient.post('/auth/login', { email, password });
+    
+    // Handle the backend response format: { success: true, data: { user, token }, message }
+    if (response.data.success && response.data.data) {
+      return {
+        user: response.data.data.user,
+        token: response.data.data.token,
+        message: response.data.message
+      };
+    } else {
+      throw new Error(response.data.message || 'Login failed');
+    }
   } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Login failed';
+    const errorMessage = error.response?.data?.message || error.message || 'Login failed';
     const errorStatus = error.response?.status;
     throw { message: errorMessage, status: errorStatus } as AuthError;
   }
@@ -53,8 +63,18 @@ export const adminLogin = async (email: string, password: string): Promise<Login
  */
 export const verifyToken = async (): Promise<AdminUser | null> => {
   try {
-    const response = await adminApiClient.get<{ user: AdminUser }>('/auth/admin/verify');
-    return response.data.user;
+    const response = await adminApiClient.get('/auth/admin/verify');
+    
+    // Handle the backend response format: { success: true, user: {...}, message }
+    if (response.data.success && response.data.user) {
+      return {
+        id: response.data.user.id || response.data.user._id,
+        email: response.data.user.email,
+        name: response.data.user.name,
+        role: response.data.user.role
+      };
+    }
+    return null;
   } catch (error) {
     return null;
   }

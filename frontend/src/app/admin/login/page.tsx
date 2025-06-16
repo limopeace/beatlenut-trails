@@ -32,12 +32,12 @@ const AdminLogin: React.FC = () => {
     setLoading(true);
     
     try {
-      // For development/testing fallback
-      if (process.env.NODE_ENV === 'development' && email === 'admin@beatlenut.com' && password === 'admin123') {
-        // Mock successful login
-        router.push('/admin/dashboard');
-        return;
-      }
+      // For development/testing fallback - disabled, using real auth
+      // if (process.env.NODE_ENV === 'development' && email === 'admin@beatlenut.com' && password === 'admin123') {
+      //   // Mock successful login
+      //   router.push('/admin/dashboard');
+      //   return;
+      // }
       
       // Call the login method from AuthContext
       const result = await login(email, password);

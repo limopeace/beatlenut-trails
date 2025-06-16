@@ -136,6 +136,10 @@ class EsmAuthService {
     }
     return null;
   }
+
+  getToken(): string | null {
+    return Cookies.get('esm_token') || null;
+  }
 }
 
 export default new EsmAuthService();

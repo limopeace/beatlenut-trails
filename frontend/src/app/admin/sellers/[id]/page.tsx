@@ -14,7 +14,7 @@ import {
   faShieldAlt,
   faStar,
   faStore,
-  faPackage,
+  faBox,
   faUserShield,
   faSpinner,
   faFileAlt
@@ -254,7 +254,7 @@ const SellerDetailsPage: React.FC = () => {
               <h3 className="text-lg font-medium text-gray-900 mb-4">Seller Type</h3>
               <div className="flex space-x-4">
                 <div className={`px-4 py-2 rounded-lg ${seller.sellerType.products ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-400'}`}>
-                  <FontAwesomeIcon icon={faPackage} className="mr-2" />
+                  <FontAwesomeIcon icon={faBox} className="mr-2" />
                   Products
                 </div>
                 <div className={`px-4 py-2 rounded-lg ${seller.sellerType.services ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-400'}`}>
