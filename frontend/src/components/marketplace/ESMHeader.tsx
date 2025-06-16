@@ -171,6 +171,7 @@ const ESMHeader = () => {
               { name: 'Home', path: '/' },
               { name: 'Packages & Listings', path: '/travel-listings' },
               { name: 'Activities', path: '/activities' },
+              { name: 'Blog', path: '/blog' },
               { name: 'About Us', path: '/about' },
               { name: 'Contact', path: '/contact' },
             ].map(item => (

@@ -46,6 +46,24 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // Check for demo/localStorage token first
+        const demoToken = localStorage.getItem('admin_token');
+        const demoUserData = localStorage.getItem('admin_user');
+        
+        if (demoToken && demoUserData) {
+          try {
+            const userData = JSON.parse(demoUserData);
+            setUser(userData);
+            setLoading(false);
+            return;
+          } catch (err) {
+            console.error('Demo user data parsing failed:', err);
+            localStorage.removeItem('admin_token');
+            localStorage.removeItem('admin_user');
+          }
+        }
+        
+        // Check cookie token for real auth
         const token = Cookies.get('admin_token');
         
         if (!token) {
@@ -106,7 +124,10 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = (): void => {
+    // Clear both cookie and localStorage data
     Cookies.remove('admin_token');
+    localStorage.removeItem('admin_token');
+    localStorage.removeItem('admin_user');
     setUser(null);
     router.push('/admin/login');
   };

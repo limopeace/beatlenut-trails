@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,12 +12,13 @@ import {
 import Cookies from 'js-cookie';
 
 interface OrderDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
+  const resolvedParams = use(params);
   const router = useRouter();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,14 +46,14 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     }
     
     fetchOrderDetails();
-  }, [params.id, router]);
+  }, [resolvedParams.id, router]);
 
   const fetchOrderDetails = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await OrderService.adminGetOrderById(params.id);
+      const response = await OrderService.adminGetOrderById(resolvedParams.id);
       if (response.data.success) {
         const orderData = response.data.data;
         setOrder(orderData);

@@ -239,8 +239,8 @@ const SellersManagementPage: React.FC = () => {
       };
       
       const response = await SellersService.getSellers(filters, page, 10);
-      setSellers(response.sellers);
-      setTotalPages(response.pagination.totalPages);
+      setSellers(response.sellers || []);
+      setTotalPages(response.pagination?.totalPages || 1);
     } catch (err: any) {
       setError(err.message || 'Failed to fetch sellers');
       console.error('Error fetching sellers:', err);

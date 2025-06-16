@@ -82,6 +82,12 @@ const Header = () => {
             Packages
           </button>
           <Link
+            href="/blog"
+            className="font-clash font-medium hover:text-forest-green transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
             href="/contact"
             className="font-clash font-medium hover:text-forest-green transition-colors"
           >
@@ -161,6 +167,13 @@ const Header = () => {
           >
             Packages
           </button>
+          <Link
+            href="/blog"
+            className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Blog
+          </Link>
           <Link
             href="/contact"
             className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"

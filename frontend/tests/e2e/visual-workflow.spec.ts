@@ -48,13 +48,13 @@ test.describe('Complete Visual Workflow Documentation', () => {
       console.log('\n🏛️ === ADMIN PANEL WORKFLOW ===');
 
       // Step 1: Admin Portal Landing
-      await adminPage.goto('http://localhost:3000/admin');
+      await adminPage.goto('http://localhost:3002/admin');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-portal-landing');
 
       // Step 2: Admin Login Page
       if (!adminPage.url().includes('/login')) {
-        await adminPage.goto('http://localhost:3000/admin/login');
+        await adminPage.goto('http://localhost:3002/admin/login');
         await adminPage.waitForLoadState('networkidle');
       }
       await takeNamedScreenshot(adminPage, 'admin-login-page');
@@ -70,22 +70,22 @@ test.describe('Complete Visual Workflow Documentation', () => {
       await takeNamedScreenshot(adminPage, 'admin-after-login-redirect');
 
       // Step 5: Admin Dashboard
-      await adminPage.goto('http://localhost:3000/admin/dashboard');
+      await adminPage.goto('http://localhost:3002/admin/dashboard');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-dashboard-overview');
 
       // Step 6: Admin Sellers Management
-      await adminPage.goto('http://localhost:3000/admin/sellers');
+      await adminPage.goto('http://localhost:3002/admin/sellers');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-sellers-management');
 
       // Step 7: Admin Orders Management
-      await adminPage.goto('http://localhost:3000/admin/orders');
+      await adminPage.goto('http://localhost:3002/admin/orders');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-orders-management');
 
       // Step 8: Admin Approvals
-      await adminPage.goto('http://localhost:3000/admin/approvals');
+      await adminPage.goto('http://localhost:3002/admin/approvals');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-approvals-page');
 
@@ -93,12 +93,12 @@ test.describe('Complete Visual Workflow Documentation', () => {
       console.log('\n🏪 === ESM PORTAL WORKFLOW ===');
 
       // Step 9: ESM Portal Homepage
-      await esmPage.goto('http://localhost:3000/esm-portal');
+      await esmPage.goto('http://localhost:3002/esm-portal');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-portal-homepage');
 
       // Step 10: ESM Registration Page
-      await esmPage.goto('http://localhost:3000/esm-portal/register');
+      await esmPage.goto('http://localhost:3002/esm-portal/register');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-registration-page');
 
@@ -125,22 +125,22 @@ test.describe('Complete Visual Workflow Documentation', () => {
       await takeNamedScreenshot(esmPage, 'esm-registration-form-filled');
 
       // Step 12: ESM Login Page
-      await esmPage.goto('http://localhost:3000/esm-portal/login');
+      await esmPage.goto('http://localhost:3002/esm-portal/login');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-login-page');
 
       // Step 13: ESM Products Browsing
-      await esmPage.goto('http://localhost:3000/esm-portal/products');
+      await esmPage.goto('http://localhost:3002/esm-portal/products');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-products-browse');
 
       // Step 14: ESM Services Browsing
-      await esmPage.goto('http://localhost:3000/esm-portal/services');
+      await esmPage.goto('http://localhost:3002/esm-portal/services');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-services-browse');
 
       // Step 15: ESM Add Product (protected route)
-      await esmPage.goto('http://localhost:3000/esm-portal/add-product');
+      await esmPage.goto('http://localhost:3002/esm-portal/add-product');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-add-product-protected');
 
@@ -148,12 +148,12 @@ test.describe('Complete Visual Workflow Documentation', () => {
       console.log('\n🔄 === CROSS-SYSTEM COMPARISON ===');
 
       // Step 16: Admin Messages
-      await adminPage.goto('http://localhost:3000/admin/messages');
+      await adminPage.goto('http://localhost:3002/admin/messages');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-messages-interface');
 
       // Step 17: ESM Messages
-      await esmPage.goto('http://localhost:3000/esm-portal/messages');
+      await esmPage.goto('http://localhost:3002/esm-portal/messages');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-messages-interface');
 
@@ -162,23 +162,23 @@ test.describe('Complete Visual Workflow Documentation', () => {
 
       // Step 18-19: Mobile Views
       await adminPage.setViewportSize({ width: 375, height: 667 }); // iPhone
-      await adminPage.goto('http://localhost:3000/admin/dashboard');
+      await adminPage.goto('http://localhost:3002/admin/dashboard');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-dashboard-mobile');
 
       await esmPage.setViewportSize({ width: 375, height: 667 });
-      await esmPage.goto('http://localhost:3000/esm-portal');
+      await esmPage.goto('http://localhost:3002/esm-portal');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-portal-mobile');
 
       // Step 20-21: Tablet Views
       await adminPage.setViewportSize({ width: 768, height: 1024 }); // iPad
-      await adminPage.goto('http://localhost:3000/admin/sellers');
+      await adminPage.goto('http://localhost:3002/admin/sellers');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-sellers-tablet');
 
       await esmPage.setViewportSize({ width: 768, height: 1024 });
-      await esmPage.goto('http://localhost:3000/esm-portal/products');
+      await esmPage.goto('http://localhost:3002/esm-portal/products');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'esm-products-tablet');
 
@@ -189,17 +189,17 @@ test.describe('Complete Visual Workflow Documentation', () => {
       await esmPage.setViewportSize({ width: 1200, height: 800 });
 
       // Step 22: Main Homepage
-      await esmPage.goto('http://localhost:3000');
+      await esmPage.goto('http://localhost:3002');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'main-website-homepage');
 
       // Step 23: About Page
-      await esmPage.goto('http://localhost:3000/about');
+      await esmPage.goto('http://localhost:3002/about');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'main-website-about');
 
       // Step 24: Contact Page
-      await esmPage.goto('http://localhost:3000/contact');
+      await esmPage.goto('http://localhost:3002/contact');
       await esmPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(esmPage, 'main-website-contact');
 
@@ -210,17 +210,17 @@ test.describe('Complete Visual Workflow Documentation', () => {
       await adminPage.setViewportSize({ width: 1200, height: 800 });
 
       // Step 25: Admin Blog Management
-      await adminPage.goto('http://localhost:3000/admin/blog');
+      await adminPage.goto('http://localhost:3002/admin/blog');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-blog-management');
 
       // Step 26: Admin Reviews Management
-      await adminPage.goto('http://localhost:3000/admin/reviews');
+      await adminPage.goto('http://localhost:3002/admin/reviews');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-reviews-management');
 
       // Step 27: Final Dashboard View
-      await adminPage.goto('http://localhost:3000/admin/dashboard');
+      await adminPage.goto('http://localhost:3002/admin/dashboard');
       await adminPage.waitForLoadState('networkidle');
       await takeNamedScreenshot(adminPage, 'admin-dashboard-final');
 
@@ -252,7 +252,7 @@ test.describe('Complete Visual Workflow Documentation', () => {
 **Test ID:** ${testId}  
 **Date:** ${new Date().toLocaleString()}  
 **Total Screenshots:** ${screenshots.length}  
-**Environment:** Development (localhost:3000 frontend, localhost:4000 backend)
+**Environment:** Development (localhost:3002 frontend, localhost:4000 backend)
 
 ## Test Overview
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { 
   Chart as ChartJS, 
   CategoryScale, 
@@ -695,7 +696,12 @@ const AdminDashboard: React.FC = () => {
           </div>
           
           {/* Seller Verifications */}
-          <h4 className="text-md font-medium text-gray-700 mb-2">Seller Verifications ({dashboardData?.sellers.pendingVerification || 0})</h4>
+          <div className="flex justify-between items-center mb-2">
+            <h4 className="text-md font-medium text-gray-700">Seller Verifications ({dashboardData?.sellers.pendingVerification || 0})</h4>
+            <Link href="/admin/sellers?status=pending" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+              View All
+            </Link>
+          </div>
           <div className="mb-4 space-y-2">
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
               <div>
@@ -703,12 +709,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">Adventure Gear Co. • Ex-Army</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/sellers"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
@@ -717,12 +723,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">Mountain Explorers • Ex-Air Force</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/sellers"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
@@ -731,18 +737,23 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">Himalayan Treks • Ex-Navy</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/sellers"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
           </div>
           
           {/* Product Approvals */}
-          <h4 className="text-md font-medium text-gray-700 mb-2">Product Approvals ({dashboardData?.products.pendingApproval || 0})</h4>
+          <div className="flex justify-between items-center mb-2">
+            <h4 className="text-md font-medium text-gray-700">Product Approvals ({dashboardData?.products.pendingApproval || 0})</h4>
+            <Link href="/admin/products?status=pending" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+              View All
+            </Link>
+          </div>
           <div className="space-y-2">
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
               <div>
@@ -750,12 +761,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">By Adventure Gear Co. • ₹5,200</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/products"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
@@ -764,12 +775,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">By Bike Service Pro • ₹1,800</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/products"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
@@ -778,12 +789,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">By Outdoor Essentials • ₹8,500</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/products"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
             <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
@@ -792,12 +803,12 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-sm text-gray-500">By Mountain Explorers • ₹12,000</p>
               </div>
               <div className="flex space-x-2">
-                <button className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
-                  Approve
-                </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-                  Reject
-                </button>
+                <Link 
+                  href="/admin/products"
+                  className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                >
+                  Review
+                </Link>
               </div>
             </div>
           </div>

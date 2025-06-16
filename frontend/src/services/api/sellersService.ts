@@ -130,8 +130,43 @@ export const getSellers = async (
     }
   });
   
-  const response = await adminApiClient.get(`/admin/sellers?${queryParams.toString()}`);
-  return response.data;
+  try {
+    const response = await adminApiClient.get(`/admin/sellers?${queryParams.toString()}`);
+    
+    // Handle different response structures
+    if (response.data.sellers) {
+      return response.data;
+    } else if (response.data.data) {
+      return response.data.data;
+    } else {
+      // Fallback for empty or malformed responses
+      return {
+        sellers: [],
+        pagination: {
+          total: 0,
+          page: 1,
+          limit: 10,
+          totalPages: 1,
+          hasNextPage: false,
+          hasPrevPage: false
+        }
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching sellers:', error);
+    // Return empty result on error
+    return {
+      sellers: [],
+      pagination: {
+        total: 0,
+        page: 1,
+        limit: 10,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false
+      }
+    };
+  }
 };
 
 /**
@@ -168,8 +203,25 @@ export const updateSellerVerification = async (
  * @returns Seller statistics
  */
 export const getSellerStats = async (): Promise<SellerStats> => {
-  const response = await adminApiClient.get('/admin/dashboard');
-  return response.data.sellerStats;
+  try {
+    const response = await adminApiClient.get('/admin/dashboard');
+    return response.data.sellerStats || {
+      total: 0,
+      pending: 0,
+      active: 0,
+      rejected: 0,
+      suspended: 0
+    };
+  } catch (error) {
+    console.error('Error fetching seller stats:', error);
+    return {
+      total: 0,
+      pending: 0,
+      active: 0,
+      rejected: 0,
+      suspended: 0
+    };
+  }
 };
 
 /**

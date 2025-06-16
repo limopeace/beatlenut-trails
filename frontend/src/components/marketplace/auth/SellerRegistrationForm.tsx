@@ -17,6 +17,8 @@ interface ExtendedFormData extends EsmRegistrationData {
   // Additional fields not in the base schema
   firstName: string;
   lastName: string;
+  password: string;
+  confirmPassword: string;
   serviceBackground: string;
   
   // Business Information
@@ -137,6 +139,8 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
     lastName: '',
     email: '',
     phone: '',
+    password: '', // Add password field
+    confirmPassword: '', // Add confirm password field
     serviceBackground: '',
     
     businessName: '',
@@ -251,6 +255,20 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
         setError('Valid 10-digit phone number is required');
         return false;
       }
+      if (!formData.password.trim() || formData.password.length < 6) {
+        setError('Password must be at least 6 characters long');
+        return false;
+      }
+      // Stronger password validation
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+      if (!passwordRegex.test(formData.password)) {
+        setError('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character');
+        return false;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        setError('Passwords do not match');
+        return false;
+      }
       if (!formData.serviceBackground.trim() || formData.serviceBackground.length < 50) {
         setError('Please provide more details about your service background (minimum 50 characters)');
         return false;
@@ -357,8 +375,113 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('🔍 Form submission started');
+    console.log('📋 Current form data:', formData);
+    console.log('📍 Current step:', currentStep);
+    
     if (!validateCurrentStep()) {
+      console.log('❌ Current step validation failed');
       return;
+    }
+    
+    // Validate all steps before final submission
+    if (currentStep === 6) {
+      console.log('🔍 Final validation - checking all steps');
+      
+      // Check for autofilled values that didn't trigger onChange (Chrome autofill issue)
+      const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+      const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const phoneInput = document.getElementById('phone') as HTMLInputElement;
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      
+      // Update formData with actual DOM values (handles autofill)
+      const actualFormData = {
+        ...formData,
+        firstName: firstNameInput?.value || formData.firstName,
+        lastName: lastNameInput?.value || formData.lastName,
+        email: emailInput?.value || formData.email,
+        phone: phoneInput?.value || formData.phone,
+        password: passwordInput?.value || formData.password
+      };
+      
+      console.log('🔍 Actual form values (including autofill):', actualFormData);
+      
+      // Check all required fields are present
+      const requiredFields = {
+        firstName: actualFormData.firstName,
+        lastName: actualFormData.lastName, 
+        email: actualFormData.email,
+        phone: actualFormData.phone,
+        password: actualFormData.password,
+        serviceBackground: actualFormData.serviceBackground,
+        businessName: actualFormData.businessName,
+        businessDescription: actualFormData.businessDescription,
+        address: actualFormData.address,
+        city: actualFormData.city,
+        state: actualFormData.state,
+        pincode: actualFormData.pincode,
+        categories: actualFormData.categories,
+        identityProof: actualFormData.identityProof,
+        serviceProof: actualFormData.serviceProof,
+        profileImage: actualFormData.profileImage,
+        acceptTerms: actualFormData.acceptTerms,
+        acceptPrivacyPolicy: actualFormData.acceptPrivacyPolicy
+      };
+      
+      console.log('🔍 Required fields check:', requiredFields);
+      
+      // Check for missing required fields
+      const missingFields = [];
+      if (!actualFormData.firstName?.trim()) missingFields.push('First Name');
+      if (!actualFormData.lastName?.trim()) missingFields.push('Last Name');
+      if (!actualFormData.email?.trim()) missingFields.push('Email');
+      if (!actualFormData.phone?.trim()) missingFields.push('Phone Number');
+      if (!actualFormData.password?.trim()) missingFields.push('Password');
+      if (!actualFormData.serviceBackground?.trim()) missingFields.push('Service Background');
+      if (!actualFormData.businessName?.trim()) missingFields.push('Business Name');
+      if (!actualFormData.businessDescription?.trim()) missingFields.push('Business Description');
+      if (!actualFormData.address?.trim()) missingFields.push('Address');
+      if (!actualFormData.city?.trim()) missingFields.push('City');
+      if (!actualFormData.state?.trim()) missingFields.push('State');
+      if (!actualFormData.pincode?.trim()) missingFields.push('Pincode');
+      if (!actualFormData.categories?.length) missingFields.push('Service Categories');
+      if (!actualFormData.identityProof) missingFields.push('Identity Proof');
+      if (!actualFormData.serviceProof) missingFields.push('Service Proof');
+      if (!actualFormData.profileImage) missingFields.push('Profile Image');
+      if (!actualFormData.acceptTerms) missingFields.push('Terms Acceptance');
+      if (!actualFormData.acceptPrivacyPolicy) missingFields.push('Privacy Policy Acceptance');
+      
+      if (missingFields.length > 0) {
+        console.log('❌ Missing required fields:', missingFields);
+        setError(`Please fill in all required fields: ${missingFields.join(', ')}`);
+        return;
+      }
+      
+      // Email validation
+      if (!/\S+@\S+\.\S+/.test(actualFormData.email)) {
+        console.log('❌ Invalid email format');
+        setError('Please enter a valid email address');
+        return;
+      }
+      
+      // Phone validation
+      if (!/^\d{10}$/.test(actualFormData.phone.replace(/[^0-9]/g, ''))) {
+        console.log('❌ Invalid phone format');
+        setError('Please enter a valid 10-digit phone number');
+        return;
+      }
+      
+      // Password validation
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+      if (!passwordRegex.test(actualFormData.password)) {
+        console.log('❌ Invalid password format');
+        setError('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character');
+        return;
+      }
+      
+      // Update formData with actual values before submission
+      setFormData(actualFormData);
     }
     
     setIsSubmitting(true);
@@ -368,26 +491,71 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       // Create FormData to send files
       const submitData = new FormData();
       
-      // Add all text fields
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key === 'categories') {
-          // Combine selected categories with custom categories if "Other" is selected
-          let allCategories = [...value] as string[];
-          if (formData.categories.includes('Other') && formData.customCategories.trim()) {
-            const customCats = formData.customCategories
-              .split(',')
-              .map(cat => cat.trim())
-              .filter(cat => cat.length > 0);
-            allCategories = [...allCategories.filter(cat => cat !== 'Other'), ...customCats];
-          }
-          submitData.append('categories', JSON.stringify(allCategories));
-        } else if (key !== 'identityProof' && key !== 'serviceProof' && 
-                   key !== 'businessProof' && key !== 'profileImage' && 
-                   key !== 'logoImage' && key !== 'customCategories') {
-          // Add all non-file fields (excluding customCategories as it's merged with categories)
+      console.log('📦 Preparing form data for submission...');
+      
+      // Get actual values from DOM (handles autofill)
+      const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+      const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const phoneInput = document.getElementById('phone') as HTMLInputElement;
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      const confirmPasswordInput = document.getElementById('confirmPassword') as HTMLInputElement;
+      
+      const actualFirstName = firstNameInput?.value || formData.firstName;
+      const actualLastName = lastNameInput?.value || formData.lastName;
+      const actualEmail = emailInput?.value || formData.email;
+      const actualPhone = phoneInput?.value || formData.phone;
+      const actualPassword = passwordInput?.value || formData.password;
+      const actualConfirmPassword = confirmPasswordInput?.value || formData.confirmPassword;
+      
+      // Create name from firstName and lastName (to match schema)
+      const name = `${actualFirstName.trim()} ${actualLastName.trim()}`;
+      submitData.append('name', name);
+      
+      console.log('📝 Using actual values:', {
+        name,
+        email: actualEmail,
+        password: actualPassword ? '***masked***' : 'empty',
+        phone: actualPhone
+      });
+      
+      // Add all text fields with proper mapping
+      const fieldMappings = {
+        email: actualEmail,
+        password: actualPassword,
+        confirmPassword: actualConfirmPassword,
+        phoneNumber: actualPhone, // Map phone to phoneNumber for schema
+        businessName: formData.businessName,
+        businessDescription: formData.businessDescription,
+        serviceBackground: formData.serviceBackground,
+        establishmentYear: formData.establishmentYear,
+        website: formData.website,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+        serviceRadius: formData.serviceRadius,
+        role: 'seller', // Set role as seller by default
+        termsAccepted: formData.acceptTerms, // Map acceptTerms to termsAccepted for schema
+        acceptPrivacyPolicy: formData.acceptPrivacyPolicy
+      };
+      
+      Object.entries(fieldMappings).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
           submitData.append(key, String(value));
         }
       });
+      
+      // Handle categories
+      let allCategories = [...formData.categories];
+      if (formData.categories.includes('Other') && formData.customCategories.trim()) {
+        const customCats = formData.customCategories
+          .split(',')
+          .map(cat => cat.trim())
+          .filter(cat => cat.length > 0);
+        allCategories = [...allCategories.filter(cat => cat !== 'Other'), ...customCats];
+      }
+      submitData.append('categories', JSON.stringify(allCategories));
       
       // Add user ID if provided
       if (userId) {
@@ -397,31 +565,54 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       // Add file fields
       if (formData.identityProof) {
         submitData.append('identityProof', formData.identityProof);
+        console.log('📎 Added identity proof:', formData.identityProof.name);
       }
       if (formData.serviceProof) {
         submitData.append('serviceProof', formData.serviceProof);
+        console.log('📎 Added service proof:', formData.serviceProof.name);
       }
       if (formData.businessProof) {
         submitData.append('businessProof', formData.businessProof);
+        console.log('📎 Added business proof:', formData.businessProof.name);
       }
       if (formData.profileImage) {
         submitData.append('profileImage', formData.profileImage);
+        console.log('📎 Added profile image:', formData.profileImage.name);
       }
       if (formData.logoImage) {
         submitData.append('logoImage', formData.logoImage);
+        console.log('📎 Added logo image:', formData.logoImage.name);
+      }
+      
+      // Log what we're sending
+      console.log('📤 Submitting to API...');
+      for (const [key, value] of submitData.entries()) {
+        if (value instanceof File) {
+          console.log(`📎 ${key}: ${value.name} (${value.size} bytes)`);
+        } else {
+          console.log(`📝 ${key}: ${value}`);
+        }
       }
       
       // Submit the form
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+      console.log('🌐 API endpoint:', `${API_BASE_URL}/esm/sellers/register`);
+      
       const response = await fetch(`${API_BASE_URL}/esm/sellers/register`, {
         method: 'POST',
         body: submitData,
       });
       
+      console.log('📥 Response status:', response.status);
+      
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('❌ Server error response:', errorData);
         throw new Error(errorData.message || 'Registration failed');
       }
+      
+      const responseData = await response.json();
+      console.log('✅ Registration successful:', responseData);
       
       // Show success message and redirect
       setSuccess(true);
@@ -432,8 +623,25 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       }, 3000);
       
     } catch (error) {
-      console.error('Registration error:', error);
-      setError(error instanceof Error ? error.message : 'Registration failed. Please try again.');
+      console.error('❌ Registration error:', error);
+      
+      // Better error handling with user-friendly messages
+      if (error instanceof Error) {
+        // Parse specific validation errors from server
+        if (error.message.includes('fullName') || error.message.includes('name') && error.message.includes('empty')) {
+          setError('Please fill in your first and last name.');
+        } else if (error.message.includes('Email is required')) {
+          setError('Please enter your email address.');
+        } else if (error.message.includes('Password must include')) {
+          setError('Please set a strong password with uppercase, lowercase, number, and special character.');
+        } else if (error.message.includes('Phone number is required')) {
+          setError('Please enter your phone number.');
+        } else {
+          setError(error.message);
+        }
+      } else {
+        setError('Registration failed. Please check all fields and try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -513,6 +721,13 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.firstName) {
+                      setFormData(prev => ({ ...prev, firstName: e.target.value }));
+                    }
+                  }}
+                  autoComplete="given-name"
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -528,6 +743,13 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.lastName) {
+                      setFormData(prev => ({ ...prev, lastName: e.target.value }));
+                    }
+                  }}
+                  autoComplete="family-name"
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -543,6 +765,13 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.email) {
+                      setFormData(prev => ({ ...prev, email: e.target.value }));
+                    }
+                  }}
+                  autoComplete="email"
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -558,9 +787,65 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.phone) {
+                      setFormData(prev => ({ ...prev, phone: e.target.value }));
+                    }
+                  }}
+                  autoComplete="tel"
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="10-digit mobile number"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password*
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.password) {
+                      setFormData(prev => ({ ...prev, password: e.target.value }));
+                    }
+                  }}
+                  autoComplete="new-password"
+                  required
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Create a strong password"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  Must include uppercase, lowercase, number, and special character
+                </p>
+              </div>
+              
+              <div>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                  Confirm Password*
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={(e) => {
+                    // Handle autofill on blur
+                    if (e.target.value !== formData.confirmPassword) {
+                      setFormData(prev => ({ ...prev, confirmPassword: e.target.value }));
+                    }
+                  }}
+                  autoComplete="new-password"
+                  required
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Confirm your password"
                 />
               </div>
               
