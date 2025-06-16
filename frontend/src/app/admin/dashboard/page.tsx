@@ -118,13 +118,13 @@ const AdminDashboard: React.FC = () => {
       const dashboardData: DashboardData = {
         orders: {
           overall: {
-            totalOrders: stats.orderStats.total || 0,
-            totalRevenue: stats.orderStats.totalRevenue || 0,
-            averageOrderValue: stats.orderStats.averageOrderValue || 0,
-            pendingOrders: stats.orderStats.pending || 0,
-            processingOrders: stats.orderStats.processing || 0,
-            completedOrders: stats.orderStats.completed || 0,
-            cancelledOrders: stats.orderStats.cancelled || 0
+            totalOrders: stats?.orderStats?.total || 0,
+            totalRevenue: stats?.orderStats?.totalRevenue || 0,
+            averageOrderValue: stats?.orderStats?.averageOrderValue || 0,
+            pendingOrders: stats?.orderStats?.pending || 0,
+            processingOrders: stats?.orderStats?.processing || 0,
+            completedOrders: stats?.orderStats?.completed || 0,
+            cancelledOrders: stats?.orderStats?.cancelled || 0
           },
           monthlySales: [
             // For now, use mock monthly data until API provides it
@@ -143,22 +143,22 @@ const AdminDashboard: React.FC = () => {
           ]
         },
         users: {
-          totalUsers: stats.userStats.total || 0,
-          newUsersThisMonth: stats.userStats.newThisMonth || 0,
-          activeUsers: stats.userStats.buyers || 0,
-          inactiveUsers: Math.max(0, (stats.userStats.total || 0) - (stats.userStats.buyers || 0))
+          totalUsers: stats?.userStats?.total || 0,
+          newUsersThisMonth: stats?.userStats?.newThisMonth || 0,
+          activeUsers: stats?.userStats?.buyers || 0,
+          inactiveUsers: Math.max(0, (stats?.userStats?.total || 0) - (stats?.userStats?.buyers || 0))
         },
         sellers: {
-          totalSellers: stats.sellerStats.total || 0,
-          pendingVerification: stats.sellerStats.pending || 0,
-          activeSellers: stats.sellerStats.active || 0,
-          suspendedSellers: stats.sellerStats.suspended || 0
+          totalSellers: stats?.sellerStats?.total || 0,
+          pendingVerification: stats?.sellerStats?.pending || 0,
+          activeSellers: stats?.sellerStats?.active || 0,
+          suspendedSellers: stats?.sellerStats?.suspended || 0
         },
         products: {
-          totalProducts: stats.productStats.total || 0,
-          totalServices: stats.serviceStats.total || 0,
-          pendingApproval: (stats.productStats.pending || 0) + (stats.serviceStats.pending || 0),
-          activeProducts: (stats.productStats.active || 0) + (stats.serviceStats.active || 0),
+          totalProducts: stats?.productStats?.total || 0,
+          totalServices: stats?.serviceStats?.total || 0,
+          pendingApproval: (stats?.productStats?.pending || 0) + (stats?.serviceStats?.pending || 0),
+          activeProducts: (stats?.productStats?.active || 0) + (stats?.serviceStats?.active || 0),
           soldOutProducts: 0 // Not provided by API yet
         },
         categoryBreakdown: [

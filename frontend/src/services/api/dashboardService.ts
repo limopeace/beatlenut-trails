@@ -53,7 +53,7 @@ export interface DashboardStats {
  */
 export const getDashboardStats = async (): Promise<DashboardStats> => {
   const response = await adminApiClient.get('/admin/dashboard');
-  return response.data;
+  return response.data.data || response.data;
 };
 
 /**
