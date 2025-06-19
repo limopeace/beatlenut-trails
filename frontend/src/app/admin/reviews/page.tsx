@@ -17,7 +17,8 @@ import {
   faHeart,
   faReply,
   faComment,
-  faThumbsUp
+  faThumbsUp,
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 import { FadeIn } from '@/components/animations';
 import { Button } from '@/components/common';
