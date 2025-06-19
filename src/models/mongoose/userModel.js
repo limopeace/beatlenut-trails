@@ -37,13 +37,40 @@ const userSchema = new mongoose.Schema({
   
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user', 'admin', 'seller', 'buyer'],
     default: 'user'
   },
   
   active: {
     type: Boolean,
     default: true
+  },
+  
+  // ESM Portal specific fields
+  phoneNumber: {
+    type: String,
+    trim: true
+  },
+  
+  businessName: {
+    type: String,
+    trim: true
+  },
+  
+  businessDescription: {
+    type: String,
+    trim: true
+  },
+  
+  approved: {
+    type: Boolean,
+    default: false
+  },
+  
+  identityProof: {
+    filename: String,
+    path: String,
+    uploadedAt: Date
   },
   
   passwordChangedAt: Date,

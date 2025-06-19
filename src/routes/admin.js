@@ -66,4 +66,88 @@ router.post(
   adminController.processBatchApprovals
 );
 
+/**
+ * @route GET /api/admin/orders
+ * @desc Get all orders for admin management
+ * @access Private (Admin)
+ */
+router.get(
+  '/orders',
+  authenticate,
+  isAdmin,
+  adminController.getOrders
+);
+
+/**
+ * @route GET /api/admin/orders/:id
+ * @desc Get specific order details by ID
+ * @access Private (Admin)
+ */
+router.get(
+  '/orders/:id',
+  authenticate,
+  isAdmin,
+  adminController.getOrderById
+);
+
+/**
+ * @route PUT /api/admin/orders/:id/status
+ * @desc Update order status (admin override)
+ * @access Private (Admin)
+ */
+router.put(
+  '/orders/:id/status',
+  authenticate,
+  isAdmin,
+  adminController.updateOrderStatus
+);
+
+/**
+ * @route PUT /api/admin/orders/:id/payment-status
+ * @desc Update payment status (admin override)
+ * @access Private (Admin)
+ */
+router.put(
+  '/orders/:id/payment-status',
+  authenticate,
+  isAdmin,
+  adminController.updatePaymentStatus
+);
+
+/**
+ * @route POST /api/admin/orders/:id/cancel
+ * @desc Cancel order (admin action)
+ * @access Private (Admin)
+ */
+router.post(
+  '/orders/:id/cancel',
+  authenticate,
+  isAdmin,
+  adminController.cancelOrder
+);
+
+/**
+ * @route POST /api/admin/orders/:id/refund
+ * @desc Process refund (admin action)
+ * @access Private (Admin)
+ */
+router.post(
+  '/orders/:id/refund',
+  authenticate,
+  isAdmin,
+  adminController.processRefund
+);
+
+/**
+ * @route GET /api/admin/orders/stats
+ * @desc Get comprehensive order statistics
+ * @access Private (Admin)
+ */
+router.get(
+  '/orders/stats',
+  authenticate,
+  isAdmin,
+  adminController.getOrderStats
+);
+
 module.exports = router;

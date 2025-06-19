@@ -22,9 +22,17 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const app = express();
 const PORT = process.env.PORT || 4000; // Use port 4000 for backend API
 
-// Connect to database
+// Connect to database and setup admin user
 if (process.env.NODE_ENV !== 'test') {
-  connectDB().catch(err => {
+  connectDB().then(async () => {
+    // Create default admin user if it doesn't exist
+    try {
+      const { createDefaultAdmin } = require('./scripts/createDefaultAdmin');
+      await createDefaultAdmin();
+    } catch (error) {
+      console.warn('Warning: Could not create default admin user:', error.message);
+    }
+  }).catch(err => {
     console.error('Database connection error:', err);
     process.exit(1);
   });
@@ -90,8 +98,16 @@ app.use(errorHandler);
 
 // Start server
 if (process.env.NODE_ENV !== 'test') {
-  const server = app.listen(PORT, () => {
+  const http = require('http');
+  const server = http.createServer(app);
+  
+  // Initialize Socket.IO
+  const { initializeSocket } = require('./socket/socketHandler');
+  initializeSocket(server);
+  
+  server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`WebSocket server initialized`);
   });
   
   // Set server timeout

@@ -9,6 +9,7 @@ const esmProductRoutes = require('./esmProduct/index');
 const esmServiceRoutes = require('./esmService/index');
 const orderRoutes = require('./order');
 const messageRoutes = require('./message');
+const messagesRoutes = require('./messages');
 const travelListingRoutes = require('./travelListing');
 const bookingRoutes = require('./booking');
 const travelReviewRoutes = require('./travelReview');
@@ -67,6 +68,9 @@ router.use('/esm/products', esmProductRoutes);
 router.use('/esm/services', esmServiceRoutes);
 router.use('/esm/orders', orderRoutes);
 router.use('/esm/messages', messageRoutes);
+
+// Mount real-time messaging routes
+router.use('/messages', messagesRoutes);
 
 // Mount Travel routes
 router.use('/travel-listings', travelListingRoutes);

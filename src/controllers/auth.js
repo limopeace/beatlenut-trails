@@ -178,8 +178,7 @@ const authController = {
       
       res.json({
         success: true,
-        token: result.token,
-        user: result.user,
+        data: result,
         message: 'Admin login successful'
       });
     } catch (error) {

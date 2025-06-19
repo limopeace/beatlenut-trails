@@ -328,7 +328,13 @@ class AuthService {
       });
 
       return {
-        user: this.formatUserResponse(user),
+        user: {
+          id: user._id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          createdAt: user.createdAt
+        },
         token
       };
     } catch (error) {

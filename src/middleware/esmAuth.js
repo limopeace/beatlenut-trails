@@ -2,7 +2,7 @@
  * ESM Portal authentication middleware
  */
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/mongoose/userModel');
 const { UnauthorizedError } = require('../utils/errors');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';

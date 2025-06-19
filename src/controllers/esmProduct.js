@@ -1,6 +1,5 @@
 const ESMProduct = require('../models/esmProduct');
-const esmProductRepository = require('../repositories/esmProductRepository');
-const { validationResult } = require('express-validator');
+// Validation will be handled by middleware
 const { BadRequestError, NotFoundError, ForbiddenError } = require('../utils/errors');
 
 /**
@@ -64,36 +63,39 @@ exports.getProductById = async (req, res, next) => {
  */
 exports.createProduct = async (req, res, next) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      throw new BadRequestError('Validation failed', errors.array());
-    }
-    
     const {
       name, price, salePrice, category, description,
       stock, weight, dimensions, tags, featured, images
     } = req.body;
     
     // Validate required fields
-    if (!name || !price || !category || !description || !images || !images.length) {
-      throw new BadRequestError('Missing required fields');
+    if (!name || !price || !category || !description || !images || !Array.isArray(images) || images.length === 0) {
+      throw new BadRequestError('Missing required fields: name, price, category, description, and at least one image');
     }
     
     
     const productData = {
       name,
-      price,
-      salePrice,
-      category,
+      price: {
+        amount: price,
+        currency: 'INR',
+        unit: 'item',
+        isNegotiable: false
+      },
+      category: category === 'electronics' ? 'technical-services' : category, // Map electronics to valid enum
       description,
-      stock: stock || 1,
-      weight,
-      dimensions,
-      tags,
-      featured: featured || false,
-      images,
+      stock: {
+        available: stock || 1,
+        isLimited: true
+      },
+      images: Array.isArray(images) ? images.map(img => ({
+        url: typeof img === 'string' ? img : img.url,
+        alt: typeof img === 'string' ? name : img.alt || name,
+        isMain: false
+      })) : [],
       seller: req.user.id,
-      status: 'active'
+      status: 'active',
+      type: 'product'
     };
     
     const product = await ESMProduct.create(productData);
