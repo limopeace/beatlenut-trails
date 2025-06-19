@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SectionContainer from '@/components/common/SectionContainer';
 import FadeIn from '@/components/animations/FadeIn';
@@ -115,6 +115,21 @@ const formatPrice = (price: number) => {
 };
 
 const TravelPackages = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const displayedPackages = isMobile ? packages.slice(0, 4) : packages;
+
   return (
     <SectionContainer
       background="pale-straw"
@@ -136,7 +151,7 @@ const TravelPackages = () => {
         
         {/* Packages Grid - improved for mobile with better responsive columns */}
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-          {packages.map((pkg) => (
+          {displayedPackages.map((pkg) => (
             <StaggerItem key={pkg.id} className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col border border-moss-green/20 hover:shadow-lg transition-all duration-300">
               <div className="relative h-40 sm:h-44 md:h-48 w-full overflow-hidden">
                 <img 
@@ -194,11 +209,11 @@ const TravelPackages = () => {
         </StaggerContainer>
         
         {/* View All Button */}
-        <FadeIn direction="up" delay={0.5} className="mt-8 sm:mt-10 md:mt-12 text-center">
+        <FadeIn direction="up" delay={0.5} className="mt-8 sm:mt-10 md:mt-12 text-center px-4">
           <Link 
             href="/travel-listings" 
-            className="inline-block px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 bg-forest-green text-pale-straw text-xs sm:text-sm font-medium rounded-md hover:bg-deep-forest transition duration-300 shadow-md">
-            View All Packages
+            className="inline-block px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-forest-green text-pale-straw text-sm sm:text-base font-medium rounded-md hover:bg-deep-forest transition duration-300 shadow-md max-w-full">
+            View All Tours
           </Link>
         </FadeIn>
       </div>

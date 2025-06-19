@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -51,6 +51,21 @@ const services = [
 ];
 
 const FeaturedServices = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const displayedServices = isMobile ? services.slice(0, 2) : services;
+
   return (
     <SectionContainer
       background="pale-straw"
@@ -69,7 +84,7 @@ const FeaturedServices = () => {
         
         {/* Services Grid - improved for better mobile layout */}
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-          {services.map((service) => (
+          {displayedServices.map((service) => (
             <StaggerItem key={service.id} className="transform transition duration-300 hover:-translate-y-2">
               <Link href={service.href} className="block h-full">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden h-full border border-forest-green/10">

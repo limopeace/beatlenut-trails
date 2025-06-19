@@ -116,11 +116,11 @@ const VideoHero = () => {
       
       {/* Content Container */}
       <div className="relative z-10 h-full w-full flex flex-col justify-center items-center">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 3xl:px-12 4xl:px-16 max-w-7xl 3xl:max-w-[1920px]">
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 3xl:px-16 4xl:px-20 max-w-7xl 3xl:max-w-[1920px]">
           {slideTexts.map((text, index) => (
             <div 
               key={index}
-              className={`max-w-[90%] xs:max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl 3xl:max-w-6xl mx-auto text-center ${
+              className={`w-full max-w-[95%] sm:max-w-md md:max-w-2xl lg:max-w-4xl 3xl:max-w-6xl mx-auto text-center ${
                 currentText === index ? 'block' : 'hidden'
               }`}
             >
@@ -151,25 +151,25 @@ const VideoHero = () => {
                 {text.description}
               </p>
               
-              {/* Action Buttons */}
+              {/* Action Buttons - Mobile optimized */}
               <div 
-                className={`flex flex-col xs:flex-row justify-center gap-3 sm:gap-4 transition-all duration-700 w-full sm:w-auto ${
+                className={`flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 transition-all duration-700 w-full max-w-lg mx-auto ${
                   animationPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
                 <Link 
                   href="/travel-listings"
-                  className="w-full sm:w-auto bg-forest-green hover:bg-moss-green text-pale-straw px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-base sm:text-lg font-medium tracking-wide gap-2"
+                  className="w-full sm:w-auto bg-forest-green hover:bg-moss-green text-pale-straw px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-sm sm:text-base md:text-lg font-medium tracking-wide gap-2"
                 >
-                  <FontAwesomeIcon icon={faCalendarAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <FontAwesomeIcon icon={faCalendarAlt} className="w-4 h-4" />
                   <span>Explore Tours</span>
                 </Link>
 
                 <Link 
                   href="/activities"
-                  className="w-full sm:w-auto bg-transparent border-2 border-pale-straw text-pale-straw hover:bg-pale-straw hover:text-deep-forest px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-base sm:text-lg font-medium tracking-wide gap-2"
+                  className="w-full sm:w-auto bg-transparent border-2 border-pale-straw text-pale-straw hover:bg-pale-straw hover:text-deep-forest px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 text-sm sm:text-base md:text-lg font-medium tracking-wide gap-2"
                 >
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4" />
                   <span>Activities</span>
                 </Link>
               </div>

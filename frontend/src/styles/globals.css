@@ -53,6 +53,40 @@
     color: #374151;
     background-color: #F8F6F2;
     font-family: var(--font-satoshi);
+    line-height: 1.6; /* Better readability */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+
+  /* Mobile-first improvements for accessibility */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* Ensure minimum readable font size */
+      line-height: 1.7; /* Extra line height for mobile */
+    }
+    
+    /* Ensure touch targets are at least 44px */
+    button, 
+    a,
+    input,
+    select,
+    textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better spacing for mobile */
+    p {
+      margin-bottom: 1.25rem;
+    }
+    
+    /* Larger text for older users */
+    .text-sm {
+      font-size: 0.9rem !important;
+    }
+    
+    .text-xs {
+      font-size: 0.8rem !important;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {

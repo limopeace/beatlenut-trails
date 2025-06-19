@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import FadeIn from '@/components/animations/FadeIn';
 import StaggerContainer, { StaggerItem } from '@/components/animations/StaggerContainer';
@@ -76,6 +76,21 @@ const destinations = [
 ];
 
 const FeaturedDestinations = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const displayedDestinations = isMobile ? destinations.slice(0, 4) : destinations;
+
   return (
     <SectionContainer
       id="destinations"
@@ -99,7 +114,7 @@ const FeaturedDestinations = () => {
           delay={0.2} 
           staggerChildren={0.15}
         >
-          {destinations.map((destination) => (
+          {displayedDestinations.map((destination) => (
             <StaggerItem 
               key={destination.id} 
               direction="up" 
@@ -167,12 +182,12 @@ const FeaturedDestinations = () => {
         </StaggerContainer>
       </div>
 
-      <FadeIn direction="up" delay={0.5} className="mt-8 sm:mt-10 md:mt-12 text-center">
+      <FadeIn direction="up" delay={0.5} className="mt-8 sm:mt-10 md:mt-12 text-center px-4">
         <Link 
           href="/travel-listings" 
-          className="inline-block px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 bg-forest-green hover:bg-moss-green text-pale-straw font-medium rounded-md shadow-md transition duration-300 text-sm sm:text-base"
+          className="inline-block px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-forest-green hover:bg-moss-green text-pale-straw font-medium rounded-md shadow-md transition duration-300 text-sm sm:text-base max-w-full"
         >
-          Browse All Travel Listings
+          Browse All Destinations
         </Link>
       </FadeIn>
       
