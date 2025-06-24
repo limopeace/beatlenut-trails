@@ -100,8 +100,18 @@ const SellerDetailsPage: React.FC = () => {
       setSeller(response);
       setNotes(response.verificationNotes || '');
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch seller details');
       console.error('Error fetching seller:', err);
+      
+      // Handle specific error types
+      if (err.response?.status === 404) {
+        setError(`Seller with ID "${id}" not found.`);
+      } else if (err.response?.status === 400) {
+        setError(`Invalid seller ID "${id}". Please check the URL and try again.`);
+      } else if (err.response?.status === 403) {
+        setError('You do not have permission to view this seller.');
+      } else {
+        setError(err.response?.data?.message || err.message || 'Failed to fetch seller details');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -155,17 +165,38 @@ const SellerDetailsPage: React.FC = () => {
   
   if (error || !seller) {
     return (
-      <div className="p-6">
+      <div className="p-6 max-w-2xl mx-auto">
         <div className="bg-red-50 border border-red-200 rounded-md p-4">
-          <p className="text-red-600">{error || 'Seller not found'}</p>
+          <h3 className="text-lg font-medium text-red-800 mb-2">Unable to Load Seller</h3>
+          <p className="text-red-600 mb-4">{error || 'Seller not found'}</p>
+          
+          <div className="text-sm text-red-700">
+            <p className="mb-2">Possible solutions:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Check if the seller ID in the URL is correct</li>
+              <li>Ensure the seller exists in the system</li>
+              <li>Try refreshing the page</li>
+              <li>Return to the sellers list and select a different seller</li>
+            </ul>
+          </div>
         </div>
-        <button
-          onClick={() => router.back()}
-          className="mt-4 text-blue-600 hover:text-blue-800"
-        >
-          <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-          Back to sellers
-        </button>
+        
+        <div className="mt-6 flex gap-3">
+          <button
+            onClick={() => router.back()}
+            className="text-blue-600 hover:text-blue-800 flex items-center"
+          >
+            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+            Back to sellers
+          </button>
+          <button
+            onClick={() => window.location.reload()}
+            className="text-gray-600 hover:text-gray-800 flex items-center"
+          >
+            <FontAwesomeIcon icon={faSpinner} className="mr-2" />
+            Refresh page
+          </button>
+        </div>
       </div>
     );
   }
@@ -204,7 +235,7 @@ const SellerDetailsPage: React.FC = () => {
                       <img src={seller.profileImg} alt={seller.fullName} className="w-full h-full rounded-full object-cover" />
                     ) : (
                       <span className="text-xl font-semibold text-gray-600">
-                        {seller.fullName.split(' ').map(n => n[0]).join('').toUpperCase()}
+                        {seller.fullName?.split(' ').map(n => n[0]).join('').toUpperCase() || 'N/A'}
                       </span>
                     )}
                   </div>

@@ -127,12 +127,12 @@ const SellerListItem = ({
             <img src={seller.profileImg} alt={seller.fullName} className="w-full h-full object-cover" />
           ) : (
             <span className="text-lg font-semibold text-gray-600">
-              {seller.fullName.split(' ').map(n => n[0]).join('').toUpperCase()}
+              {seller.fullName?.split(' ').map(n => n[0]).join('').toUpperCase() || 'N/A'}
             </span>
           )}
         </div>
         <div className="flex-1">
-          <h3 className="font-semibold text-gray-900">{seller.fullName}</h3>
+          <h3 className="font-semibold text-gray-900">{seller.fullName || 'Unknown'}</h3>
           <p className="text-sm text-gray-600">{seller.businessName || seller.category}</p>
         </div>
         <div className="relative">
@@ -448,13 +448,13 @@ const SellersManagementPage: React.FC = () => {
                                     <img className="h-10 w-10 rounded-full" src={seller.profileImg} alt="" />
                                   ) : (
                                     <span className="text-sm font-semibold text-gray-600">
-                                      {seller.fullName.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                      {seller.fullName?.split(' ').map(n => n[0]).join('').toUpperCase() || 'N/A'}
                                     </span>
                                   )}
                                 </div>
                               </div>
                               <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">{seller.fullName}</div>
+                                <div className="text-sm font-medium text-gray-900">{seller.fullName || 'Unknown'}</div>
                                 <div className="text-sm text-gray-500">{seller.email}</div>
                               </div>
                             </div>

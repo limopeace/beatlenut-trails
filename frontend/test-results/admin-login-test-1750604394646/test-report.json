@@ -1,0 +1,140 @@
+{
+  "timestamp": "2025-06-22T14:59:59.151Z",
+  "logs": [
+    "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "verbose: [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "networkRequests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app-pages-internals.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/layout.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/error.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/not-found.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/admin/layout.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/admin/login/page.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/_next/static/chunks/app/global-error.js",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/images/beatlenut-logo.png",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/favicon.ico",
+      "headers": {
+        "sec-ch-ua-platform": "\"macOS\"",
+        "referer": "http://localhost:3000/admin/login",
+        "accept-language": "en-US,en;q=0.9",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/admin/login?email=admin%40beatlenut.com&password=admin123",
+      "headers": {
+        "accept-language": "en-US,en;q=0.9",
+        "referer": "http://localhost:3000/admin/login",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\""
+      }
+    }
+  ],
+  "screenshotDir": "/Users/kashishkumar/Documents/G_drive/beatlenuts-gr/frontend/test-results/admin-login-test-1750604394646"
+}

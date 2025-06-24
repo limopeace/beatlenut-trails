@@ -33,8 +33,32 @@ export interface VerifyResponse {
 
 /**
  * Admin login with email and password
- * @param credentials Login credentials (email, password)
- * @returns Login response with user and token
+ * 
+ * IMPORTANT: This function connects to the real backend API at /api/auth/login
+ * 
+ * Backend API Details:
+ * - Endpoint: POST /api/auth/login
+ * - Expects: { email: string, password: string }
+ * - Returns: { success: boolean, data: { user, token }, message }
+ * 
+ * Authentication Flow:
+ * 1. Validates credentials against database
+ * 2. Generates JWT token for authenticated user
+ * 3. Returns user data and token for frontend storage
+ * 
+ * Default Admin Credentials:
+ * - Email: admin@beatlenut.com
+ * - Password: admin123
+ * - These are created by src/scripts/createDefaultAdmin.js
+ * 
+ * Error Handling:
+ * - 401: Invalid credentials
+ * - 500: Server error
+ * - Network errors are caught and re-thrown with user-friendly messages
+ * 
+ * @param email Admin email address
+ * @param password Admin password
+ * @returns Promise<LoginResponse> Login response with user and token
  */
 export const adminLogin = async (email: string, password: string): Promise<LoginResponse> => {
   try {

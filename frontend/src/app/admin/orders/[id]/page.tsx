@@ -4,12 +4,22 @@ import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Order, 
-  getOrderById,
-  updateOrderStatus
+import OrderService, { 
+  Order
 } from '@/services/api/orderService';
 import Cookies from 'js-cookie';
+
+interface UpdateOrderStatusPayload {
+  status: string;
+  notes: string;
+}
+
+interface UpdateTrackingInfoPayload {
+  carrier: string;
+  trackingNumber: string;
+  trackingUrl: string;
+  estimatedDelivery: string;
+}
 
 interface OrderDetailPageProps {
   params: Promise<{
@@ -53,9 +63,9 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     setError(null);
 
     try {
-      const response = await OrderService.adminGetOrderById(resolvedParams.id);
-      if (response.data.success) {
-        const orderData = response.data.data;
+      const response = await OrderService.getOrderById(resolvedParams.id);
+      if (response) {
+        const orderData = response;
         setOrder(orderData);
         
         // Initialize status and tracking forms with current values
@@ -71,7 +81,7 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
           estimatedDelivery: orderData.trackingInfo?.estimatedDelivery || '',
         });
       } else {
-        setError('Failed to fetch order details');
+        setError('Order not found');
       }
     } catch (err: any) {
       console.error('Error fetching order details:', err);
@@ -86,9 +96,9 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     if (!order) return;
 
     try {
-      const response = await OrderService.adminUpdateOrderStatus(order.id, statusUpdate);
-      if (response.data.success) {
-        setOrder(response.data.data);
+      const response = await OrderService.updateOrderStatus(order.id, statusUpdate.status, statusUpdate.notes);
+      if (response.order) {
+        setOrder(response.order);
         setIsStatusModalOpen(false);
       } else {
         setError('Failed to update order status');
@@ -104,9 +114,9 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     if (!order) return;
 
     try {
-      const response = await OrderService.adminUpdateTrackingInfo(order.id, trackingUpdate);
-      if (response.data.success) {
-        setOrder(response.data.data);
+      const response = await OrderService.updateOrderStatus(order.id, order.status, `Tracking updated: ${trackingUpdate.carrier} - ${trackingUpdate.trackingNumber}`);
+      if (response.order) {
+        setOrder(response.order);
         setIsTrackingModalOpen(false);
       } else {
         setError('Failed to update tracking information');
@@ -121,11 +131,12 @@ const AdminOrderDetailPage = ({ params }: OrderDetailPageProps) => {
     if (!order) return;
 
     try {
-      const response = await OrderService.adminDeleteOrder(order.id);
-      if (response.data.success) {
-        router.push('/admin/orders');
+      const response = await OrderService.cancelOrder(order.id, 'Cancelled by admin');
+      if (response.order) {
+        setOrder(response.order);
+        setIsConfirmDeleteModalOpen(false);
       } else {
-        setError('Failed to delete order');
+        setError('Failed to cancel order');
         setIsConfirmDeleteModalOpen(false);
       }
     } catch (err: any) {
