@@ -63,6 +63,43 @@ const upload = multer({
 // Middleware for handling file uploads in messages
 const messageFileUpload = upload.array('attachments', 5);
 
+// ESM Seller registration file upload middleware
+const esmSellerUpload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      let uploadPath = 'uploads/esm-sellers/';
+      
+      // Create directory if it doesn't exist
+      if (!fs.existsSync(uploadPath)) {
+        fs.mkdirSync(uploadPath, { recursive: true });
+      }
+      
+      cb(null, uploadPath);
+    },
+    filename: function (req, file, cb) {
+      // Generate unique filename
+      const uniqueSuffix = crypto.randomBytes(16).toString('hex');
+      const ext = path.extname(file.originalname);
+      const fileName = `${Date.now()}-${uniqueSuffix}${ext}`;
+      cb(null, fileName);
+    }
+  }),
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB limit per file
+    files: 10 // Maximum 10 files per upload
+  }
+});
+
+// Specific fields for ESM seller registration
+const esmSellerFileUpload = esmSellerUpload.fields([
+  { name: 'identityProof', maxCount: 1 },
+  { name: 'serviceProof', maxCount: 1 },
+  { name: 'businessProof', maxCount: 1 },
+  { name: 'profileImage', maxCount: 1 },
+  { name: 'logoImage', maxCount: 1 }
+]);
+
 // Error handling middleware for file uploads
 const handleUploadError = (err, req, res, next) => {
   if (err instanceof multer.MulterError) {
@@ -112,6 +149,7 @@ const cleanupFiles = (files) => {
 
 module.exports = {
   messageFileUpload,
+  esmSellerFileUpload,
   handleUploadError,
   cleanupFiles
 };

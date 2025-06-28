@@ -6,6 +6,7 @@ const isAdmin = authorize(['admin']);
 const { validate } = require('../middleware/validator');
 const esmSellerValidator = require('../validators/esmSeller');
 const { transformSellerRegistration } = require('../middleware/esmDataTransform');
+const { esmSellerFileUpload, handleUploadError } = require('../middleware/fileUpload');
 
 /**
  * @route POST /api/esm/sellers/register
@@ -14,6 +15,8 @@ const { transformSellerRegistration } = require('../middleware/esmDataTransform'
  */
 router.post(
   '/register',
+  esmSellerFileUpload,
+  handleUploadError,
   transformSellerRegistration,
   validate(esmSellerValidator.register),
   esmSellerController.register

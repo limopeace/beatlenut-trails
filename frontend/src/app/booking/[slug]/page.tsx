@@ -67,6 +67,14 @@ const BookingPageContent: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showDateSelection, setShowDateSelection] = useState(false);
+  
+  // State for date selection
+  const [dateSelection, setDateSelection] = useState({
+    startDate: '',
+    endDate: '',
+    guests: 1
+  });
   
   // Format dates from URL parameters
   const startDate = startDateParam ? new Date(startDateParam) : null;
@@ -149,17 +157,194 @@ const BookingPageContent: React.FC = () => {
     router.back();
   };
   
-  if (!listing || !startDate || !endDate) {
+  // Handle date selection form
+  const handleDateSelection = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    
+    if (!dateSelection.startDate || !dateSelection.endDate) {
+      setError('Please select check-in and check-out dates');
+      return;
+    }
+    
+    const start = new Date(dateSelection.startDate);
+    const end = new Date(dateSelection.endDate);
+    
+    if (start >= end) {
+      setError('Check-out date must be after check-in date');
+      return;
+    }
+    
+    if (start < new Date(new Date().setHours(0, 0, 0, 0))) {
+      setError('Check-in date cannot be in the past');
+      return;
+    }
+    
+    // Update URL with selected dates
+    const params = new URLSearchParams();
+    params.set('start', dateSelection.startDate);
+    params.set('end', dateSelection.endDate);
+    params.set('guests', dateSelection.guests.toString());
+    
+    router.push(`/booking/${slug}?${params.toString()}`);
+  };
+  
+  // Handle date input changes to clear errors
+  const handleDateChange = (field: string, value: string) => {
+    setError(null);
+    setDateSelection(prev => ({ ...prev, [field]: value }));
+  };
+  
+  // Show listing not found error
+  if (!listing) {
     return (
       <div className="min-h-screen flex flex-col">
         <main className="flex-grow container mx-auto px-4 py-16 mt-24">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Invalid Booking Request</h1>
-            <p className="mb-8">Missing required booking information. Please select dates and try again.</p>
+            <h1 className="text-3xl font-bold mb-4">Listing Not Found</h1>
+            <p className="mb-8">The listing you are looking for does not exist or has been removed.</p>
             <Button onClick={() => router.push('/travel-listings')}>
               Back to Listings
             </Button>
           </div>
+        </main>
+      </div>
+    );
+  }
+  
+  // Show date selection form if dates are missing
+  if (!startDate || !endDate) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-grow container mx-auto px-4 py-8 mt-24">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto">
+              {/* Header with back button */}
+              <div className="mb-6">
+                <button 
+                  onClick={handleBack}
+                  className="flex items-center text-green-600 hover:text-green-800 transition-colors"
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                  <span>Back to listing</span>
+                </button>
+              </div>
+              
+              <h1 className="text-3xl font-bold mb-6">Book {listing.title}</h1>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Date selection form */}
+                <div className="lg:col-span-2">
+                  <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-xl font-semibold mb-4">Select Your Dates</h2>
+                    <p className="text-gray-600 mb-6">Please choose your check-in and check-out dates to proceed with booking.</p>
+                    
+                    {error && (
+                      <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-md">
+                        {error}
+                      </div>
+                    )}
+                    
+                    <form onSubmit={handleDateSelection}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                          <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-1">
+                            Check-in Date *
+                          </label>
+                          <input
+                            type="date"
+                            id="startDate"
+                            value={dateSelection.startDate}
+                            onChange={(e) => handleDateChange('startDate', e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            min={new Date().toISOString().split('T')[0]}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-1">
+                            Check-out Date *
+                          </label>
+                          <input
+                            type="date"
+                            id="endDate"
+                            value={dateSelection.endDate}
+                            onChange={(e) => handleDateChange('endDate', e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            min={dateSelection.startDate || new Date().toISOString().split('T')[0]}
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="mb-6">
+                        <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+                          Number of Guests
+                        </label>
+                        <select
+                          id="guests"
+                          value={dateSelection.guests}
+                          onChange={(e) => setDateSelection(prev => ({ ...prev, guests: parseInt(e.target.value) }))}
+                          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+                          {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+                            <option key={num} value={num}>
+                              {num} {num === 1 ? 'Guest' : 'Guests'}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      <button
+                        type="submit"
+                        className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors"
+                      >
+                        Continue to Booking Details
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                
+                {/* Listing summary */}
+                <div className="lg:col-span-1">
+                  <div className="bg-white rounded-lg shadow-md sticky top-24 p-6">
+                    <h3 className="text-lg font-semibold mb-4">Booking Summary</h3>
+                    <div className="flex mb-4">
+                      <div className="w-20 h-20 relative rounded-md overflow-hidden mr-3 flex-shrink-0">
+                        <img
+                          src={listing.images[0]}
+                          alt={listing.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="font-medium">{listing.title}</h4>
+                        <div className="flex items-center text-sm text-gray-600 mt-1">
+                          <FontAwesomeIcon icon={faLocationDot} className="mr-1 text-gray-400" />
+                          <span>{listing.location.city}, {listing.location.country}</span>
+                        </div>
+                        <div className="flex items-center text-sm mt-1">
+                          <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
+                          <span>{listing.reviews.average.toFixed(1)}</span>
+                          <span className="text-gray-600 ml-1">({listing.reviews.count} reviews)</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border-t border-gray-200 pt-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-gray-700">Rate</span>
+                        <span className="font-semibold">₹{listing.price.amount.toLocaleString('en-IN')} / night</span>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        Select dates to see total price
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </main>
       </div>
     );

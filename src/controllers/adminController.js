@@ -1,6 +1,7 @@
 // Admin controller for comprehensive admin operations
 const { BadRequestError, NotFoundError } = require('../utils/errors');
 const Order = require('../models/mongoose/orderModel');
+const ESMSeller = require('../models/mongoose/esmSellerModel');
 
 /**
  * Controller for admin operations
@@ -108,17 +109,63 @@ class AdminController {
    */
   async getSellers(req, res, next) {
     try {
-      // Return mock sellers data for now
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = (page - 1) * limit;
+      
+      // Build filter object
+      const filter = {};
+      if (req.query.status) {
+        filter.status = req.query.status;
+      }
+      if (req.query.verified !== undefined) {
+        filter.isVerified = req.query.verified === 'true';
+      }
+      if (req.query.search) {
+        filter.$or = [
+          { fullName: { $regex: req.query.search, $options: 'i' } },
+          { email: { $regex: req.query.search, $options: 'i' } },
+          { businessName: { $regex: req.query.search, $options: 'i' } }
+        ];
+      }
+
+      // Get sellers with pagination
+      const sellers = await ESMSeller.find(filter)
+        .select('-password') // Exclude password field
+        .sort({ createdAt: -1 }) // Most recent first
+        .skip(skip)
+        .limit(limit);
+
+      // Get total count for pagination
+      const total = await ESMSeller.countDocuments(filter);
+      const totalPages = Math.ceil(total / limit);
+
+      // Transform data to match frontend expectations
+      const transformedSellers = sellers.map(seller => ({
+        id: seller._id.toString(),
+        name: seller.fullName,
+        email: seller.email,
+        status: seller.status,
+        businessName: seller.businessName || `${seller.fullName} Services`,
+        phone: seller.phone,
+        location: seller.location,
+        category: seller.category,
+        isVerified: seller.isVerified,
+        serviceBranch: seller.serviceBranch,
+        rank: seller.rank,
+        createdAt: seller.createdAt,
+        updatedAt: seller.updatedAt
+      }));
+
       const sellersData = {
-        sellers: [
-          { id: '1', name: 'Test Seller 1', email: 'seller1@test.com', status: 'active', businessName: 'Business 1' },
-          { id: '2', name: 'Test Seller 2', email: 'seller2@test.com', status: 'pending', businessName: 'Business 2' }
-        ],
+        sellers: transformedSellers,
         pagination: {
-          page: 1,
-          limit: 10,
-          total: 2,
-          pages: 1
+          page,
+          limit,
+          total,
+          pages: totalPages,
+          hasNext: page < totalPages,
+          hasPrev: page > 1
         }
       };
       
@@ -142,14 +189,40 @@ class AdminController {
       const { id } = req.params;
       const { isVerified, notes, status } = req.body;
       
-      // Mock verification response
+      // Find the seller by ID
+      const seller = await ESMSeller.findById(id);
+      if (!seller) {
+        throw new NotFoundError('Seller not found');
+      }
+      
+      // Update verification fields
+      const updateData = {};
+      if (isVerified !== undefined) {
+        updateData.isVerified = isVerified;
+      }
+      if (status) {
+        updateData.status = status;
+      }
+      if (notes) {
+        updateData.verificationNotes = notes;
+      }
+      
+      // Update the seller
+      const updatedSeller = await ESMSeller.findByIdAndUpdate(
+        id,
+        updateData,
+        { new: true, select: '-password' }
+      );
+      
       res.json({
         success: true,
         data: {
-          id,
-          isVerified: isVerified !== undefined ? isVerified : true,
-          status: status || 'active',
-          notes: notes || 'Verified by admin'
+          id: updatedSeller._id,
+          name: updatedSeller.fullName,
+          email: updatedSeller.email,
+          isVerified: updatedSeller.isVerified,
+          status: updatedSeller.status,
+          verificationNotes: updatedSeller.verificationNotes
         },
         message: 'Seller verification updated successfully'
       });

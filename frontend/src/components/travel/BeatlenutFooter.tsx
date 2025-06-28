@@ -195,7 +195,7 @@ const BeatlenutFooter = () => {
           <p className="text-moss-green text-xs mb-4">Curated travel experiences in Northeast India by Army veterans.</p>
           <p className="text-xs text-moss-green flex items-center justify-center">
             Made with <FontAwesomeIcon icon={faHeart} className="w-3 h-3 text-red-400 mx-1" /> by 
-            <a href="https://betafactory.tech" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-pale-straw transition-colors">
+            <a href="https://www.betafactory.io" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-pale-straw transition-colors">
               Beta Factory
             </a>
           </p>

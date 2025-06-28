@@ -34,10 +34,10 @@ export interface VerifyResponse {
 /**
  * Admin login with email and password
  * 
- * IMPORTANT: This function connects to the real backend API at /api/auth/login
+ * IMPORTANT: This function connects to the real backend API at /api/auth/admin/login
  * 
  * Backend API Details:
- * - Endpoint: POST /api/auth/login
+ * - Endpoint: POST /api/auth/admin/login
  * - Expects: { email: string, password: string }
  * - Returns: { success: boolean, data: { user, token }, message }
  * 
@@ -62,7 +62,7 @@ export interface VerifyResponse {
  */
 export const adminLogin = async (email: string, password: string): Promise<LoginResponse> => {
   try {
-    const response = await adminApiClient.post('/auth/login', { email, password });
+    const response = await adminApiClient.post('/auth/admin/login', { email, password });
     
     // Handle the backend response format: { success: true, data: { user, token }, message }
     if (response.data.success && response.data.data) {

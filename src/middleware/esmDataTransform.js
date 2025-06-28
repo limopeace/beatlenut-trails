@@ -10,10 +10,14 @@
  */
 const transformSellerRegistration = (req, res, next) => {
   try {
+    
     const {
+      name,
       firstName,
       lastName,
       email,
+      password,
+      phoneNumber,
       phone,
       serviceBackground,
       businessName,
@@ -26,6 +30,7 @@ const transformSellerRegistration = (req, res, next) => {
       pincode,
       serviceRadius,
       categories,
+      termsAccepted,
       acceptTerms,
       acceptPrivacyPolicy,
       ...otherFields
@@ -55,12 +60,22 @@ const transformSellerRegistration = (req, res, next) => {
       return categoryMap[category] || 'other';
     };
 
+    // Parse categories if it's a JSON string
+    let parsedCategories = categories;
+    if (typeof categories === 'string') {
+      try {
+        parsedCategories = JSON.parse(categories);
+      } catch (e) {
+        parsedCategories = [categories]; // Single category as string
+      }
+    }
+
     // Transform data to match backend model
     const transformedData = {
-      fullName: `${firstName || ''} ${lastName || ''}`.trim(),
+      fullName: name || `${firstName || ''} ${lastName || ''}`.trim(),
       email,
-      phone,
-      password: 'TempPass123', // Temporary strong password
+      phone: phoneNumber || phone || '',
+      password: password || 'TempPass123',
       location: `${address || ''}, ${city || ''}, ${state || ''} - ${pincode || ''}`.replace(/^, , /, ''),
       
       // Service details
@@ -75,10 +90,10 @@ const transformSellerRegistration = (req, res, next) => {
       // Business information
       businessName: businessName || `${firstName || ''} ${lastName || ''} Services`.trim(),
       sellerType: {
-        products: categories ? categories.some(cat => ['Local Cuisine', 'Equipment Rental'].includes(cat)) : false,
+        products: parsedCategories ? parsedCategories.some(cat => ['Local Cuisine', 'Equipment Rental'].includes(cat)) : false,
         services: true // Default to services if no specific product categories are selected
       },
-      category: categories && categories.length > 0 ? mapCategoryToEnum(categories[0]) : 'other',
+      category: parsedCategories && parsedCategories.length > 0 ? mapCategoryToEnum(parsedCategories[0]) : 'other',
       description: businessDescription || serviceBackground || 'Professional services by ex-serviceman',
       
       // Validation required field - temporary document reference
@@ -92,6 +107,7 @@ const transformSellerRegistration = (req, res, next) => {
       ...otherFields
     };
 
+    
     // Replace req.body with transformed data
     req.body = transformedData;
     
