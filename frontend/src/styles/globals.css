@@ -77,6 +77,39 @@
     overflow: hidden;
   }
 
+  /* Hide all scrollbars globally */
+  * {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  }
+
+  *::-webkit-scrollbar {
+    display: none !important; /* WebKit */
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Force hide scrollbars on HTML and body */
+  html {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  html::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+  }
+
   /* Hide scrollbars while keeping functionality */
   .no-scrollbar {
     scrollbar-width: none; /* Firefox */
@@ -85,6 +118,59 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none; /* WebKit */
+  }
+
+  /* Ensure sections don't create scroll overflow */
+  .section, section, main, div {
+    overflow-x: hidden;
+  }
+
+  /* Prevent any element from causing horizontal scroll */
+  .container, .container-custom, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Override any scrollbar colors that might appear */
+  * {
+    scrollbar-color: transparent transparent !important;
+  }
+
+  /* Specifically target any remaining scrollbars and make them invisible */
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+
+  /* Force all animations and transitions to respect container bounds */
+  .animate-marquee, .animate-marquee-slower, .animate-marquee-fast {
+    contain: layout style paint !important;
+    will-change: transform !important;
+    transform: translateZ(0) !important; /* Force hardware acceleration */
+  }
+
+  /* Ensure marquee containers never show scrollbars */
+  .animate-marquee, .animate-marquee-slower, .animate-marquee-fast,
+  [class*="animate-marquee"] {
+    overflow: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Target the parent containers of marquee elements */
+  div:has(.animate-marquee), 
+  div:has(.animate-marquee-slower), 
+  div:has(.animate-marquee-fast),
+  section:has([class*="animate-marquee"]) {
+    overflow: hidden !important;
+    max-width: 100vw !important;
   }
 
   /* Fix marquee overflow issues */
