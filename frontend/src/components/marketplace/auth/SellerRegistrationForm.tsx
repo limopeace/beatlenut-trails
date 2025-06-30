@@ -259,8 +259,8 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
         setError('Password must be at least 6 characters long');
         return false;
       }
-      // Stronger password validation
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+      // Password validation to match backend
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(formData.password)) {
         setError('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character');
         return false;
@@ -371,12 +371,39 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
     return true;
   };
   
+  // Force detection of autofilled values
+  const captureAutofillValues = () => {
+    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const phoneInput = document.getElementById('phone') as HTMLInputElement;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    const confirmPasswordInput = document.getElementById('confirmPassword') as HTMLInputElement;
+    
+    // Force update formData with actual DOM values (handles Chrome autofill)
+    const updatedData = {
+      ...formData,
+      firstName: firstNameInput?.value || formData.firstName,
+      lastName: lastNameInput?.value || formData.lastName,
+      email: emailInput?.value || formData.email,
+      phone: phoneInput?.value || formData.phone,
+      password: passwordInput?.value || formData.password,
+      confirmPassword: confirmPasswordInput?.value || formData.confirmPassword,
+    };
+    
+    setFormData(updatedData);
+    return updatedData;
+  };
+
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     console.log('🔍 Form submission started');
-    console.log('📋 Current form data:', formData);
+    
+    // Capture autofill values before validation
+    const actualFormData = captureAutofillValues();
+    console.log('📋 Current form data (with autofill):', actualFormData);
     console.log('📍 Current step:', currentStep);
     
     if (!validateCurrentStep()) {
@@ -473,7 +500,7 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
       }
       
       // Password validation
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(actualFormData.password)) {
         console.log('❌ Invalid password format');
         setError('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character');
@@ -647,6 +674,37 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
     }
   };
   
+  // Set up autofill detection
+  React.useEffect(() => {
+    const handleAutofill = () => {
+      setTimeout(() => {
+        captureAutofillValues();
+      }, 100);
+    };
+
+    // Add event listeners for autofill detection
+    const inputs = ['firstName', 'lastName', 'email', 'phone', 'password', 'confirmPassword'];
+    const elements: HTMLInputElement[] = [];
+    
+    inputs.forEach(id => {
+      const element = document.getElementById(id) as HTMLInputElement;
+      if (element) {
+        elements.push(element);
+        element.addEventListener('animationstart', handleAutofill);
+        element.addEventListener('input', handleAutofill);
+        element.addEventListener('change', handleAutofill);
+      }
+    });
+
+    return () => {
+      elements.forEach(element => {
+        element.removeEventListener('animationstart', handleAutofill);
+        element.removeEventListener('input', handleAutofill);
+        element.removeEventListener('change', handleAutofill);
+      });
+    };
+  }, [currentStep]);
+
   // Clean up preview URLs when component unmounts
   React.useEffect(() => {
     return () => {
@@ -1584,3 +1642,17 @@ const SellerRegistrationForm: React.FC<SellerRegistrationFormProps> = ({ userId 
 };
 
 export default SellerRegistrationForm;
+
+// Add CSS to detect autofill
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes autofill {
+      0%, 100% { background: transparent; }
+    }
+    input:-webkit-autofill {
+      animation: autofill 0s forwards;
+    }
+  `;
+  document.head.appendChild(style);
+}

@@ -116,12 +116,12 @@ export default function About() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-96 md:h-128 overflow-hidden">
+      <div className="relative h-screen md:h-128 overflow-hidden">
         <div className="absolute inset-0 bg-deep-forest/70 z-10"></div>
         <div className="absolute inset-0 bg-[url('/images/about-hero-placeholder.jpg')] bg-cover bg-center"></div>
-        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-pale-straw mb-6 font-clash">Our Story</h1>
-          <p className="text-xl text-pale-straw/90 max-w-2xl">
+        <div className="relative z-20 container mx-auto px-6 sm:px-8 h-full flex flex-col justify-center items-center text-center">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-pale-straw mb-6 md:mb-8 font-clash leading-tight">Our Story</h1>
+          <p className="text-xl sm:text-2xl md:text-3xl text-pale-straw/90 max-w-4xl leading-relaxed">
             "A soldier and a storyteller. A rider and a host. A trail that called — and two who answered."
           </p>
         </div>
@@ -130,67 +130,67 @@ export default function About() {
       {/* About Section */}
       <SectionContainer
         background="pale-straw"
-        className="relative overflow-hidden py-16 md:py-24"
+        className="relative overflow-hidden py-12 sm:py-16 md:py-24"
         id="about-section"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           <FadeIn direction="right">
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-deep-forest font-clash">Our Story</h2>
-              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-deep-forest/90">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 md:mb-10 text-deep-forest font-clash leading-tight">Our Story</h2>
+              <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-deep-forest/90 leading-relaxed">
                 <strong>Beatlenut Trails</strong> was born out of a simple truth: that the most memorable journeys are those that change something within us.
               </p>
-              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-deep-forest/90">
+              <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-deep-forest/90 leading-relaxed">
                 We are <strong>an adventure travel company founded by a retired Indian Army Veteran</strong> and <strong>Hame Kurbah</strong>, a hospitality expert and native of the Northeast. With decades of discipline, grit, and wanderlust between us, we left conventional careers behind to build something far more personal — a soulful, high-touch travel outfit that curates <strong>luxury expeditions, long-distance cycling and biking tours, forest immersions, and sacred trails</strong> across India and beyond.
               </p>
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="flex items-start">
-                  <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-4 md:mr-5 flex-shrink-0">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Real Access</strong> — Not tourist trails, but roads less taken: monasteries before dawn, villages that still tell stories, campsites where stars speak louder than words.</p>
+                  <p className="text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed"><strong>Real Access</strong> — Not tourist trails, but roads less taken: monasteries before dawn, villages that still tell stories, campsites where stars speak louder than words.</p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-4 md:mr-5 flex-shrink-0">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Safety First</strong> — As veterans of terrain and time, we prioritize your security without compromising on freedom or exploration.</p>
+                  <p className="text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed"><strong>Safety First</strong> — As veterans of terrain and time, we prioritize your security without compromising on freedom or exploration.</p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-4 md:mr-5 flex-shrink-0">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Local Partnership</strong> — We work directly with tribal hosts, farmers, monks, and artists — ensuring every trip uplifts communities and preserves their voice.</p>
+                  <p className="text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed"><strong>Local Partnership</strong> — We work directly with tribal hosts, farmers, monks, and artists — ensuring every trip uplifts communities and preserves their voice.</p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-3 md:mr-4 flex-shrink-0">
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-forest-green flex items-center justify-center text-pale-straw mt-1 mr-4 md:mr-5 flex-shrink-0">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-deep-forest/80"><strong>Mindful Travel</strong> — Whether you're riding through cloud forests or sitting still in a monastery courtyard, every moment is curated to reconnect you with what matters.</p>
+                  <p className="text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed"><strong>Mindful Travel</strong> — Whether you're riding through cloud forests or sitting still in a monastery courtyard, every moment is curated to reconnect you with what matters.</p>
                 </div>
               </div>
             </div>
           </FadeIn>
           
           <FadeIn direction="left">
-            <div className="relative h-80 sm:h-96 md:h-[450px] rounded-lg overflow-hidden shadow-lg border border-moss-green/10">
+            <div className="relative h-96 sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-moss-green/10">
               <img 
                 src="/images/real/pexels-dizitalboost-11622977-min.jpg" 
                 alt="Our mission"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-pale-straw mb-2 sm:mb-3 font-clash">Why We Ride</h3>
-                <p className="text-sm sm:text-base md:text-lg text-pale-straw/90">We believe that travel is not escape — it is <strong>return</strong>. To the land. To wonder. To stillness. And that when done right, it can be a prayer on two wheels, a poem by the fire, and a story passed on forever.</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/70 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 sm:p-8 md:p-10 w-full">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pale-straw mb-3 sm:mb-4 font-clash">Why We Ride</h3>
+                <p className="text-base sm:text-lg md:text-xl text-pale-straw/90 leading-relaxed">We believe that travel is not escape — it is <strong>return</strong>. To the land. To wonder. To stillness. And that when done right, it can be a prayer on two wheels, a poem by the fire, and a story passed on forever.</p>
               </div>
             </div>
           </FadeIn>
@@ -203,50 +203,50 @@ export default function About() {
       </SectionContainer>
 
       {/* Founders Section */}
-      <SectionContainer background="pale-straw" className="relative overflow-hidden py-16 md:py-24" id="founders-section">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-deep-forest font-clash">Meet the Founders</h2>
-          <p className="text-base sm:text-lg md:text-xl text-deep-forest/90">The road brought us together. Now we build the trail for others.</p>
+      <SectionContainer background="pale-straw" className="relative overflow-hidden py-12 sm:py-16 md:py-24" id="founders-section">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 text-deep-forest font-clash leading-tight">Meet the Founders</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-deep-forest/90 leading-relaxed">The road brought us together. Now we build the trail for others.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex flex-col items-center">
-            <div className="w-48 h-48 rounded-full overflow-hidden mb-4 border-4 border-moss-green/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="flex flex-col items-center text-center px-4">
+            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden mb-6 border-4 border-moss-green/30 shadow-xl">
               <TeamAvatar name="Gurpreet Singh" imagePath="/images/team/gurpreet.jpeg" />
             </div>
-            <h3 className="mt-4 text-xl font-bold text-deep-forest">🪖 Gurpreet Singh</h3>
-            <p className="text-sm text-deep-forest/70">Founder | Expedition Leader | Veteran</p>
-            <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
+            <h3 className="mt-4 text-2xl sm:text-3xl font-bold text-deep-forest">🪖 Gurpreet Singh</h3>
+            <p className="text-base sm:text-lg text-deep-forest/70 font-medium mb-4">Founder | Expedition Leader | Veteran</p>
+            <p className="mt-2 text-center text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed">
               A retired Indian Army officer with over 30 years of leadership and outdoor experience, Gurpreet is the compass behind every Beatlenut expedition. From commanding high-altitude missions to curating soulful motorcycle and cycling routes, he brings unmatched precision, safety, and storytelling to every trail.
             </p>
-            <p className="mt-1 text-sm text-deep-forest/80 italic">"Every journey should challenge the body, awaken the mind, and return you a little more alive."</p>
-            <div className="mt-3 text-sm text-deep-forest/80">
+            <p className="mt-3 text-base sm:text-lg text-deep-forest/80 italic leading-relaxed">"Every journey should challenge the body, awaken the mind, and return you a little more alive."</p>
+            <div className="mt-4 text-sm sm:text-base text-deep-forest/80 space-y-2">
               <p>🛡️ 30+ years of military, terrain, and leadership experience</p>
               <p>🏍️ Specialist in long-route biking, spiritual circuits, and luxury expeditions</p>
               <p>🗺️ Expert in offbeat Northeast India travel design</p>
             </div>
-            <p className="mt-2 text-sm text-deep-forest/90 font-medium">👉 Talk to Gurpreet: +91 9501229112</p>
+            <p className="mt-4 text-base sm:text-lg text-deep-forest/90 font-medium">👉 Talk to Gurpreet: +91 9501229112</p>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="w-48 h-48 rounded-full overflow-hidden mb-4 border-4 border-moss-green/20">
+          <div className="flex flex-col items-center text-center px-4">
+            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden mb-6 border-4 border-moss-green/30 shadow-xl">
               <TeamAvatar name="Hame Kurbah" imagePath="/images/founders/hame.jpg" />
             </div>
-            <h3 className="mt-4 text-xl font-bold text-deep-forest">🏡 Hame Kurbah</h3>
-            <p className="text-sm text-deep-forest/70">Co-Founder | Hospitality Curator | Cultural Specialist</p>
-            <p className="mt-2 text-center text-sm sm:text-base text-deep-forest/80">
+            <h3 className="mt-4 text-2xl sm:text-3xl font-bold text-deep-forest">🏡 Hame Kurbah</h3>
+            <p className="text-base sm:text-lg text-deep-forest/70 font-medium mb-4">Co-Founder | Hospitality Curator | Cultural Specialist</p>
+            <p className="mt-2 text-center text-base sm:text-lg md:text-xl text-deep-forest/80 leading-relaxed">
               A native of the Khasi hills and a seasoned hospitality expert, Hame has spent years hosting travelers and weaving culture into comfort. He brings heart, heritage, and deep local insight into every Beatlenut journey — from curated village stays to off-grid luxury camps.
             </p>
-            <p className="mt-1 text-sm text-deep-forest/80 italic">"I don't just want guests to see my homeland — I want them to feel it."</p>
-            <div className="mt-3 text-sm text-deep-forest/80">
+            <p className="mt-3 text-base sm:text-lg text-deep-forest/80 italic leading-relaxed">"I don't just want guests to see my homeland — I want them to feel it."</p>
+            <div className="mt-4 text-sm sm:text-base text-deep-forest/80 space-y-2">
               <p>🌾 10+ years of boutique hospitality and guest experience curation</p>
               <p>🧭 Cultural guide across Meghalaya, Nagaland, and Mizoram</p>
               <p>🔥 Crafts soulful village stays, tribal immersions, and community-based tourism</p>
             </div>
-            <p className="mt-2 text-sm text-deep-forest/90 font-medium">👉 Talk to Hame: +91 9362047953</p>
+            <p className="mt-4 text-base sm:text-lg text-deep-forest/90 font-medium">👉 Talk to Hame: +91 9362047953</p>
           </div>
         </div>
-        <div className="text-center mt-8">
-          <p className="text-base text-deep-forest/80 font-medium">🔗 Together, We Ride with Soul</p>
-          <p className="text-sm text-deep-forest/70 mt-1">This isn't just about adventure — it's about belonging. Come, ride with us where the road ends and stories begin.</p>
+        <div className="text-center mt-12 md:mt-16">
+          <p className="text-lg sm:text-xl text-deep-forest/80 font-semibold mb-3">🔗 Together, We Ride with Soul</p>
+          <p className="text-base sm:text-lg text-deep-forest/70 leading-relaxed max-w-3xl mx-auto">This isn't just about adventure — it's about belonging. Come, ride with us where the road ends and stories begin.</p>
         </div>
       </SectionContainer>
 

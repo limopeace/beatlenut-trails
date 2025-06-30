@@ -8,7 +8,7 @@ export default function ESMRegistrationPage() {
       <section className="bg-deep-forest pt-24 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-pale-straw">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-clash">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-clash mt-20">
               Ex-Servicemen Registration
             </h1>
             <p className="text-xl mb-0">

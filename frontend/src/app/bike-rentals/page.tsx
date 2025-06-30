@@ -488,24 +488,34 @@ const BikeRentalsPage = () => {
                       </ul>
                     </div>
                     
-                    {bike.availability ? (
-                      <WhatsAppButton 
-                        template="bikeRentals"
-                        source="bike-rentals-page"
-                        product={bike.name}
-                        className="w-full py-1.5 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
-                        showIcon={true}
-                        showText={true}
-                        text="Book Now via WhatsApp"
-                      />
-                    ) : (
-                      <button 
-                        className="w-full py-1.5 sm:py-2 rounded-full font-medium bg-gray-300 text-gray-600 cursor-not-allowed text-xs sm:text-sm"
-                        disabled
+                    <div className="flex flex-col gap-2">
+                      <Link 
+                        href={`/bike-rentals/${bike.id}`}
+                        className="w-full py-2 sm:py-3 rounded-full font-medium bg-forest-green hover:bg-moss-green text-pale-straw text-center transition-colors text-xs sm:text-sm"
                       >
-                        Currently Unavailable
-                      </button>
-                    )}
+                        View Details
+                      </Link>
+                      {bike.availability ? (
+                        <div onClick={(e) => e.stopPropagation()}>
+                          <WhatsAppButton 
+                            template="bikeRentals"
+                            source="bike-rentals-page"
+                            product={bike.name}
+                            className="w-full py-1.5 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
+                            showIcon={true}
+                            showText={true}
+                            text="Quick Book via WhatsApp"
+                          />
+                        </div>
+                      ) : (
+                        <button 
+                          className="w-full py-1.5 sm:py-2 rounded-full font-medium bg-gray-300 text-gray-600 cursor-not-allowed text-xs sm:text-sm"
+                          disabled
+                        >
+                          Currently Unavailable
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

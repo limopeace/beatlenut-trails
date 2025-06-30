@@ -1,0 +1,742 @@
+[
+  {
+    "page": "homepage",
+    "url": "http://localhost:3000",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 16105,
+      "viewportHeight": 667,
+      "bodyHeight": 16105,
+      "scrollRatio": 24.14542728635682
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "whitespace-nowrap animate-marquee inline-block",
+        "id": "",
+        "right": 2691.7652893066406,
+        "width": 2845.75,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "whitespace-nowrap animate-marquee inline-block",
+        "id": "",
+        "scrollWidth": 2846,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "inline-flex items-center text-[20px] xs:text-[24px] sm:text-[32px] md:text-[48px] lg:text-[64px] xl:text-[80px] font-normal tracking-tight leading-none font-clash",
+        "id": "",
+        "right": 2691.7652893066406,
+        "width": 2845.75,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "inline-flex items-center text-[20px] xs:text-[24px] sm:text-[32px] md:text-[48px] lg:text-[64px] xl:text-[80px] font-normal tracking-tight leading-none font-clash",
+        "id": "",
+        "scrollWidth": 2846,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "SPAN",
+        "className": "\n                  text-deep-forest \n                  transition-all duration-300 hover:scale-105 hover:opacity-90\n                  \n                ",
+        "id": "",
+        "right": 493.4371643066406,
+        "width": 135.640625,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "SPAN",
+        "className": "mx-3 xs:mx-4 sm:mx-5 md:mx-6 text-pale-straw/60",
+        "id": "",
+        "right": 508.2027893066406,
+        "width": 2.765625,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "SPAN",
+        "className": "\n                  text-pale-straw \n                  transition-all duration-300 hover:scale-105 hover:opacity-90\n                  font-medium\n                ",
+        "id": "",
+        "right": 797.3277587890625,
+        "width": 277.125,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "SPAN",
+        "className": "mx-3 xs:mx-4 sm:mx-5 md:mx-6 text-pale-straw/60",
+        "id": "",
+        "right": 812.0933837890625,
+        "width": 2.765625,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "about",
+    "url": "http://localhost:3000/about",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 11618,
+      "viewportHeight": 667,
+      "bodyHeight": 11618,
+      "scrollRatio": 17.418290854572714
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10",
+        "id": "",
+        "right": 495,
+        "width": 288,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10",
+        "id": "",
+        "right": 495,
+        "width": 288,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute top-0 right-0 w-96 h-96 bg-pale-straw/5 rounded-full -mr-32 -mt-16 -z-10",
+        "id": "",
+        "right": 495,
+        "width": 384,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute top-0 right-0 w-96 h-96 bg-pale-straw/5 rounded-full -mr-32 -mt-16 -z-10",
+        "id": "",
+        "scrollWidth": 384,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "services",
+    "url": "http://localhost:3000/services",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 15099,
+      "viewportHeight": 667,
+      "bodyHeight": 15099,
+      "scrollRatio": 22.63718140929535
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "activities",
+    "url": "http://localhost:3000/activities",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 11911,
+      "viewportHeight": 667,
+      "bodyHeight": 11911,
+      "scrollRatio": 17.857571214392802
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "destinations",
+    "url": "http://localhost:3000/destinations",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 5003,
+      "viewportHeight": 667,
+      "bodyHeight": 5003,
+      "scrollRatio": 7.500749625187407
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "travel-listings",
+    "url": "http://localhost:3000/travel-listings",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 5003,
+      "viewportHeight": 667,
+      "bodyHeight": 5003,
+      "scrollRatio": 7.500749625187407
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "contact",
+    "url": "http://localhost:3000/contact",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 6564,
+      "viewportHeight": 667,
+      "bodyHeight": 6564,
+      "scrollRatio": 9.841079460269865
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute bottom-0 right-0 w-72 h-72 bg-moss-green/10 rounded-full -mr-32 -mb-16 -z-10",
+        "id": "",
+        "right": 495,
+        "width": 288,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ",
+        "id": "",
+        "scrollWidth": 495,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute top-0 right-0 w-96 h-96 bg-pale-straw/5 rounded-full -mr-32 -mt-16 -z-10",
+        "id": "",
+        "right": 495,
+        "width": 384,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "DIV",
+        "className": "absolute top-0 right-0 w-96 h-96 bg-pale-straw/5 rounded-full -mr-32 -mt-16 -z-10",
+        "id": "",
+        "scrollWidth": 384,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "team",
+    "url": "http://localhost:3000/team",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 3116,
+      "viewportHeight": 667,
+      "bodyHeight": 3116,
+      "scrollRatio": 4.671664167916042
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  },
+  {
+    "page": "bike-rentals",
+    "url": "http://localhost:3000/bike-rentals",
+    "horizontalScroll": {
+      "documentWidth": 398,
+      "viewportWidth": 375,
+      "bodyWidth": 398,
+      "hasHorizontalScroll": true
+    },
+    "verticalScroll": {
+      "documentHeight": 8320,
+      "viewportHeight": 667,
+      "bodyHeight": 8320,
+      "scrollRatio": 12.473763118440779
+    },
+    "overflowElements": [
+      {
+        "tag": "HTML",
+        "className": "__variable_d9af12 __variable_2fd63e scroll-smooth",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "BODY",
+        "className": "",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "FOOTER",
+        "className": "text-pale-straw relative",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "DIV",
+        "className": "container mx-auto px-4 py-16 relative z-10 text-center",
+        "id": "",
+        "scrollWidth": 398,
+        "issue": "excessive_width"
+      },
+      {
+        "tag": "A",
+        "className": "bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+        "id": "",
+        "right": 397.5,
+        "width": 44,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "svg",
+        "className": {},
+        "id": "",
+        "right": 385.5,
+        "width": 20,
+        "issue": "horizontal_overflow"
+      },
+      {
+        "tag": "path",
+        "className": {},
+        "id": "",
+        "right": 384.25,
+        "width": 17.49493408203125,
+        "issue": "horizontal_overflow"
+      }
+    ],
+    "issues": [
+      "HORIZONTAL_SCROLL_DETECTED",
+      "EXCESSIVE_VERTICAL_CONTENT",
+      "ELEMENT_OVERFLOW_DETECTED"
+    ]
+  }
+]

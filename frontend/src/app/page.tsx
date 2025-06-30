@@ -139,12 +139,13 @@ const Home = () => {
       <VideoHero />
       
       {/* Featured Destinations Section */}
-      <div id="destinations">
+      <div id="destinations" className="-mt-2">
         <FeaturedDestinations />
       </div>
       
       {/* Horizontal scrolling text */}
-      <EnhancedMarqueeText 
+      <div className="-mt-4">
+        <EnhancedMarqueeText 
         phrases={[
           { text: "DISCOVER NORTHEAST" },
           { text: "AUTHENTIC EXPERIENCES", isHighlighted: true },
@@ -153,23 +154,26 @@ const Home = () => {
           { text: "EXPLORE WILDLIFE" },
           { text: "CULTURAL IMMERSION", isHighlighted: true }
         ]}
-      />
+        />
+      </div>
       
       {/* About Section */}
-      <AboutSection />
+      <div className="-mt-6">
+        <AboutSection />
+      </div>
       
       {/* Services Section */}
-      <div id="services">
+      <div id="services" className="-mt-4">
         <FeaturedServices />
       </div>
       
       {/* Bike Rentals Section - Full-width section with proper styles */}
-      <div className="relative w-full bg-gray-900">
+      <div className="relative w-full bg-gray-900 -mt-2">
         <BikeRentalsSection />
       </div>
       
       {/* Tour Packages Section */}
-      <div id="packages">
+      <div id="packages" className="-mt-4">
         <TravelPackages />
       </div>
       
@@ -183,19 +187,25 @@ const Home = () => {
       </div> */}
       
       {/* Testimonials Section */}
-      <Testimonial />
+      <div className="-mt-6">
+        <Testimonial />
+      </div>
       
       {/* Call to Action Section */}
-      <CallToAction 
+      <div className="-mt-4">
+        <CallToAction 
         title="Ready to Explore Northeast India?"
         subtitle="Begin your journey with us today and discover the wonders of the Seven Sisters."
         buttonText="Plan Your Adventure"
         buttonLink="/contact"
         backgroundImage="/images/real/pexels-harsh-srivastava-1765262842-30264519-min.jpg"
-      />
+        />
+      </div>
       
       {/* Instagram Feed Section */}
-      <InstagramPlaceholder />
+      <div className="-mt-2">
+        <InstagramPlaceholder />
+      </div>
       
       {/* Video Section - Bottom atmospheric video loop */}
       <section className="w-full bg-deep-forest">

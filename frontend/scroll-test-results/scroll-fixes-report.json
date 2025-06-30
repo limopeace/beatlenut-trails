@@ -1,0 +1,56 @@
+[
+  {
+    "page": "homepage",
+    "url": "http://localhost:3000",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "24.0",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  },
+  {
+    "page": "about",
+    "url": "http://localhost:3000/about",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "17.5",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  },
+  {
+    "page": "bike-rentals",
+    "url": "http://localhost:3000/bike-rentals",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "12.5",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  },
+  {
+    "page": "bike-detail",
+    "url": "http://localhost:3000/bike-rentals/1",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "9.3",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  },
+  {
+    "page": "services",
+    "url": "http://localhost:3000/services",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "22.6",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  },
+  {
+    "page": "contact",
+    "url": "http://localhost:3000/contact",
+    "horizontalScrollFixed": true,
+    "documentWidth": 367,
+    "viewportWidth": 375,
+    "verticalRatio": "9.9",
+    "status": "✅ NO HORIZONTAL SCROLL"
+  }
+]
