@@ -295,12 +295,11 @@ export default function About() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-      */}
 
-        {/* Decorative elements */}
         <div className="absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10"></div>
         <div className="absolute top-1/3 left-10 w-40 h-40 bg-moss-green/10 rounded-full -z-10"></div>
       </SectionContainer>
+      */}
 
       {/* Our Values */}
       <SectionContainer
