@@ -176,10 +176,33 @@ export const getSellers = async (
  */
 export const getSellerById = async (id: string): Promise<Seller> => {
   try {
+    // Handle invalid IDs like 'pending-upload'
+    if (!id || id === 'pending-upload' || id === 'undefined' || id === 'null') {
+      throw new Error(`Invalid seller ID: ${id}`);
+    }
+    
+    // Validate MongoDB ObjectId format (24 hex characters)
+    if (!/^[0-9a-fA-F]{24}$/.test(id)) {
+      throw new Error(`Invalid seller ID format: ${id}`);
+    }
+    
     const response = await adminApiClient.get(`/esm/sellers/${id}`);
     return response.data.seller;
-  } catch (error) {
+  } catch (error: any) {
     console.error(`Error fetching seller ${id}:`, error);
+    
+    // Provide more helpful error messages
+    if (error.message.includes('Invalid seller ID')) {
+      throw new Error(error.message);
+    }
+    
+    // Handle network/API errors
+    if (error.response?.status === 400) {
+      throw new Error(`Invalid seller ID: ${id}. Please check the URL and try again.`);
+    } else if (error.response?.status === 404) {
+      throw new Error(`Seller not found with ID: ${id}`);
+    }
+    
     throw error;
   }
 };

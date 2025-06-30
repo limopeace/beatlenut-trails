@@ -7,9 +7,9 @@ import '../styles/home.css';
 import '../styles/beatlenut-style.css';
 import '../styles/fonts.css';
 import '../styles/esm-portal-style.css';
-import BeatlenutHeader from '@/components/travel/BeatlenutHeader';
+import TravelNavbar from '@/components/travel/TravelNavbar';
 import BeatlenutFooter from '@/components/travel/BeatlenutFooter';
-import ESMHeader from '@/components/marketplace/ESMHeader';
+import ESMNavbar from '@/components/marketplace/ESMNavbar';
 import DemoLinks from '@/components/common/DemoLinks';
 import { CartProvider } from '@/utils/cartContext';
 import { Space_Grotesk, Outfit } from 'next/font/google';
@@ -47,8 +47,8 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable} scroll-smooth`}>
       <body>
         <CartProvider>
-          {!isAdminPage && !isESMPortalPage && <BeatlenutHeader />}
-          {isESMPortalPage && <ESMHeader />}
+          {!isAdminPage && !isESMPortalPage && <TravelNavbar />}
+          {isESMPortalPage && <ESMNavbar />}
           <main>{children}</main>
           {!isAdminPage && !isESMPortalPage && <BeatlenutFooter />}
           {isESMPortalPage && (

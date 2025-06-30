@@ -390,10 +390,21 @@ const SellerDetailsPage: React.FC = () => {
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Verification Document</h3>
                 <div className="flex items-center">
                   <FontAwesomeIcon icon={faFileAlt} className="text-gray-400 mr-2" />
-                  <a href={seller.verificationDocument} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 text-sm">
-                    View Document
-                  </a>
+                  {seller.verificationDocument === 'pending-upload' ? (
+                    <span className="text-yellow-600 text-sm font-medium">
+                      📋 Document upload pending
+                    </span>
+                  ) : (
+                    <a href={seller.verificationDocument} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 text-sm">
+                      View Document
+                    </a>
+                  )}
                 </div>
+                {seller.verificationDocument === 'pending-upload' && (
+                  <p className="text-sm text-gray-500 mt-2">
+                    Seller has not uploaded verification documents yet. They can upload documents through their ESM portal profile.
+                  </p>
+                )}
               </div>
             )}
           </div>

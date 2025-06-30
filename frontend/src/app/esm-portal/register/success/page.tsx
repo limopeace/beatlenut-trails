@@ -6,7 +6,7 @@ export default function RegistrationSuccessPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-deep-forest-green pt-32 pb-12 md:py-32">
+      <section className="bg-deep-forest-green pt-40 pb-16 md:pt-48 md:pb-20">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center text-off-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">

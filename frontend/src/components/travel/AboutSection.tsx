@@ -132,7 +132,7 @@ const AboutSection = () => {
               </div>
 
               {/* Content - 7 columns */}
-              <div className="md:col-span-7 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center">
+              <div className="md:col-span-7 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center mt-96 md:mt-0">
                 <FadeIn direction="left" duration={0.7} delay={0.3}>
                   <p className="text-deep-forest/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg">
                     <span className="font-medium text-forest-green font-clash">Beatlenut Trails</span> was born out of a simple truth: that the most memorable journeys are those that change something within us.

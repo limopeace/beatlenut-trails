@@ -102,11 +102,13 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
       const { token, user } = await AuthService.adminLogin(email, password);
       
       if (token && user) {
-        // Store token in cookie (use secure and httpOnly in production)
+        // Store token in both cookie and localStorage for consistency
         Cookies.set('admin_token', token, { 
           expires: 1, // 1 day
           sameSite: 'strict' 
         });
+        localStorage.setItem('admin_token', token);
+        localStorage.setItem('admin_user', JSON.stringify(user));
         
         setUser(user);
         return { success: true };

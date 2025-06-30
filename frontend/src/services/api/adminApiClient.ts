@@ -19,7 +19,14 @@ export const adminApiClient: AxiosInstance = axios.create({
 // Admin request interceptor for adding JWT token
 adminApiClient.interceptors.request.use(
   (config) => {
-    const token = Cookies.get('admin_token');
+    // Check both cookie and localStorage for token (prioritize cookie)
+    let token = Cookies.get('admin_token');
+    
+    // Fallback to localStorage if cookie not found
+    if (!token && typeof window !== 'undefined') {
+      token = localStorage.getItem('admin_token');
+    }
+    
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -27,6 +34,11 @@ adminApiClient.interceptors.request.use(
     // Log request for debugging (remove in production)
     if (process.env.NODE_ENV === 'development') {
       console.log(`[Admin API] ${config.method?.toUpperCase()} ${config.url}`);
+      if (token) {
+        console.log(`[Admin API] Using token: ${token.substring(0, 20)}...`);
+      } else {
+        console.log(`[Admin API] No token found`);
+      }
     }
     
     return config;
