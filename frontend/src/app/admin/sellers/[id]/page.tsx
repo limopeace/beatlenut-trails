@@ -21,6 +21,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FadeIn } from '@/components/animations';
 import SellersService, { Seller } from '@/services/api/sellersService';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import MediaGallery from '@/components/common/MediaGallery';
 
 const VerificationBadge = ({ isVerified }: { isVerified: boolean }) => {
   return (
@@ -157,9 +159,12 @@ const SellerDetailsPage: React.FC = () => {
   
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <FontAwesomeIcon icon={faSpinner} className="text-gray-400 text-3xl animate-spin" />
-      </div>
+      <LoadingSpinner 
+        message="Loading seller details..." 
+        size="lg" 
+        fullScreen={true}
+        type="gear"
+      />
     );
   }
   
@@ -231,8 +236,12 @@ const SellerDetailsPage: React.FC = () => {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center">
                   <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mr-4">
-                    {seller.profileImg ? (
-                      <img src={seller.profileImg} alt={seller.fullName} className="w-full h-full rounded-full object-cover" />
+                    {(seller as any).profileImage || seller.profileImg ? (
+                      <img 
+                        src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/uploads/${((seller as any).profileImage || seller.profileImg).replace(/^\/?(uploads\/)?/, '')}`} 
+                        alt={seller.fullName} 
+                        className="w-full h-full rounded-full object-cover" 
+                      />
                     ) : (
                       <span className="text-xl font-semibold text-gray-600">
                         {seller.fullName?.split(' ').map(n => n[0]).join('').toUpperCase() || 'N/A'}
@@ -384,29 +393,19 @@ const SellerDetailsPage: React.FC = () => {
               </div>
             </div>
             
-            {/* Documents */}
-            {seller.verificationDocument && (
-              <div className="bg-white shadow rounded-lg p-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Verification Document</h3>
-                <div className="flex items-center">
-                  <FontAwesomeIcon icon={faFileAlt} className="text-gray-400 mr-2" />
-                  {seller.verificationDocument === 'pending-upload' ? (
-                    <span className="text-yellow-600 text-sm font-medium">
-                      📋 Document upload pending
-                    </span>
-                  ) : (
-                    <a href={seller.verificationDocument} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 text-sm">
-                      View Document
-                    </a>
-                  )}
-                </div>
-                {seller.verificationDocument === 'pending-upload' && (
-                  <p className="text-sm text-gray-500 mt-2">
-                    Seller has not uploaded verification documents yet. They can upload documents through their ESM portal profile.
-                  </p>
-                )}
-              </div>
-            )}
+            {/* Media Gallery */}
+            <div className="bg-white shadow rounded-lg p-6">
+              <MediaGallery 
+                files={{
+                  profileImage: (seller as any).profileImage,
+                  logoImage: (seller as any).logoImage,
+                  identityProof: (seller as any).identityProof,
+                  serviceProof: (seller as any).serviceProof,
+                  businessProof: (seller as any).businessProof,
+                  verificationDocument: seller.verificationDocument
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -3,14 +3,28 @@ import Cookies from 'js-cookie';
 
 export interface EsmUser {
   _id: string;
-  name: string;
+  fullName: string;
   email: string;
-  role: 'seller' | 'buyer';
-  phoneNumber?: string;
-  profilePicture?: string;
+  phone: string;
+  location: string;
+  serviceBranch: string;
+  rank: string;
+  serviceNumber: string;
+  serviceYears: {
+    from: number;
+    to: number;
+  };
   businessName?: string;
-  businessDescription?: string;
-  approved?: boolean;
+  sellerType: {
+    products: boolean;
+    services: boolean;
+  };
+  category: string;
+  description: string;
+  isVerified: boolean;
+  status: string;
+  profileImage?: string;
+  logoImage?: string;
 }
 
 export interface LoginData {
@@ -19,13 +33,25 @@ export interface LoginData {
 }
 
 export interface RegisterData {
-  name: string;
+  fullName: string;
   email: string;
   password: string;
-  role: 'seller' | 'buyer';
-  phoneNumber?: string;
+  phone: string;
+  location: string;
+  serviceBranch: string;
+  rank: string;
+  serviceNumber: string;
+  serviceYears: {
+    from: number;
+    to: number;
+  };
   businessName?: string;
-  businessDescription?: string;
+  sellerType: {
+    products: boolean;
+    services: boolean;
+  };
+  category: string;
+  description: string;
 }
 
 export interface AuthResponse {
@@ -36,7 +62,7 @@ export interface AuthResponse {
 class EsmAuthService {
   async login(data: LoginData): Promise<AuthResponse> {
     try {
-      const response = await esmApiClient.post<ApiResponse<AuthResponse>>('/auth/esm-login', data);
+      const response = await esmApiClient.post<ApiResponse<AuthResponse>>('/esm/sellers/login', data);
       
       if (response.data.success && response.data.data) {
         const { token, user } = response.data.data;
@@ -57,7 +83,7 @@ class EsmAuthService {
   
   async register(data: RegisterData): Promise<AuthResponse> {
     try {
-      const response = await esmApiClient.post<ApiResponse<AuthResponse>>('/auth/esm-register', data);
+      const response = await esmApiClient.post<ApiResponse<AuthResponse>>('/esm/sellers/register', data);
       
       if (response.data.success && response.data.data) {
         const { token, user } = response.data.data;
@@ -78,7 +104,8 @@ class EsmAuthService {
   
   async logout(): Promise<void> {
     try {
-      await esmApiClient.post('/auth/esm-logout');
+      // For now, just client-side logout since there's no specific logout endpoint
+      // The backend routes don't have a logout endpoint for ESM sellers
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
@@ -90,7 +117,7 @@ class EsmAuthService {
   
   async getCurrentUser(): Promise<EsmUser | null> {
     try {
-      const response = await esmApiClient.get<ApiResponse<EsmUser>>('/auth/esm-me');
+      const response = await esmApiClient.get<ApiResponse<EsmUser>>('/esm/sellers/profile');
       
       if (response.data.success && response.data.data) {
         return response.data.data;
@@ -105,7 +132,7 @@ class EsmAuthService {
   
   async updateProfile(data: Partial<EsmUser>): Promise<EsmUser> {
     try {
-      const response = await esmApiClient.put<ApiResponse<EsmUser>>('/auth/esm-profile', data);
+      const response = await esmApiClient.put<ApiResponse<EsmUser>>('/esm/sellers/profile', data);
       
       if (response.data.success && response.data.data) {
         // Update stored user data

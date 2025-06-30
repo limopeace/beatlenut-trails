@@ -13,8 +13,33 @@ class ESMSellerController {
    */
   async register(req, res, next) {
     try {
-      // Data transformation is now handled by middleware
-      const result = await esmSellerService.registerSeller(req.body);
+      // Handle uploaded files
+      const files = req.files || {};
+      const sellerData = { ...req.body };
+      
+      // Add file paths to seller data
+      if (files.profileImage && files.profileImage[0]) {
+        sellerData.profileImage = files.profileImage[0].path;
+      }
+      if (files.logoImage && files.logoImage[0]) {
+        sellerData.logoImage = files.logoImage[0].path;
+      }
+      if (files.identityProof && files.identityProof[0]) {
+        sellerData.identityProof = files.identityProof[0].path;
+      }
+      if (files.serviceProof && files.serviceProof[0]) {
+        sellerData.serviceProof = files.serviceProof[0].path;
+      }
+      if (files.businessProof && files.businessProof[0]) {
+        sellerData.businessProof = files.businessProof[0].path;
+      }
+      
+      // Set verificationDocument (can be any of the proof documents)
+      if (!sellerData.verificationDocument) {
+        sellerData.verificationDocument = sellerData.identityProof || sellerData.serviceProof || sellerData.businessProof || '';
+      }
+      
+      const result = await esmSellerService.registerSeller(sellerData);
       res.status(201).json(result);
     } catch (error) {
       next(error);

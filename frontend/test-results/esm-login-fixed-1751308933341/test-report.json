@@ -1,0 +1,90 @@
+{
+  "testId": 1751308933341,
+  "timestamp": "2025-06-30T18:42:18.125Z",
+  "registrationResult": {
+    "status": 201,
+    "data": {
+      "seller": {
+        "fullName": "Test Seller Fixed",
+        "email": "testseller.fixed.1751308933341@example.com",
+        "phone": "+919876543210",
+        "location": "Test City, India",
+        "serviceBranch": "army",
+        "rank": "Captain",
+        "serviceNumber": "TSF1751308933341",
+        "serviceYears": {
+          "from": 2000,
+          "to": 2010
+        },
+        "businessName": "Test Business Fixed",
+        "sellerType": {
+          "products": true,
+          "services": false
+        },
+        "category": "handicrafts",
+        "description": "Test seller for debugging purposes with fixed API",
+        "isVerified": false,
+        "verificationDocument": "test-document.pdf",
+        "status": "pending",
+        "ratings": {
+          "average": 0,
+          "count": 0
+        },
+        "_id": "6862da85c006b08ff0d51de8",
+        "createdAt": "2025-06-30T18:42:13.728Z",
+        "updatedAt": "2025-06-30T18:42:13.728Z",
+        "__v": 0
+      },
+      "message": "Registration successful. Your account is pending verification."
+    }
+  },
+  "directApiResult": {
+    "status": 200,
+    "data": {
+      "seller": {
+        "serviceYears": {
+          "from": 2000,
+          "to": 2010
+        },
+        "sellerType": {
+          "products": true,
+          "services": false
+        },
+        "ratings": {
+          "average": 0,
+          "count": 0
+        },
+        "_id": "6862da85c006b08ff0d51de8",
+        "fullName": "Test Seller Fixed",
+        "email": "testseller.fixed.1751308933341@example.com",
+        "phone": "+919876543210",
+        "location": "Test City, India",
+        "serviceBranch": "army",
+        "rank": "Captain",
+        "serviceNumber": "TSF1751308933341",
+        "businessName": "Test Business Fixed",
+        "category": "handicrafts",
+        "description": "Test seller for debugging purposes with fixed API",
+        "isVerified": false,
+        "verificationDocument": "test-document.pdf",
+        "status": "pending",
+        "createdAt": "2025-06-30T18:42:13.728Z",
+        "updatedAt": "2025-06-30T18:42:13.728Z",
+        "__v": 0
+      },
+      "message": "Your account is pending verification. You can update your profile, but you cannot list products until verification is complete.",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjJkYTg1YzAwNmIwOGZmMGQ1MWRlOCIsImVtYWlsIjoidGVzdHNlbGxlci5maXhlZC4xNzUxMzA4OTMzMzQxQGV4YW1wbGUuY29tIiwiZnVsbE5hbWUiOiJUZXN0IFNlbGxlciBGaXhlZCIsInJvbGUiOiJzZWxsZXIiLCJpc1ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNzUxMzA4OTMzLCJleHAiOjE3NTEzOTUzMzN9.SxykbwnnGw59bfoSe2LFPX_U-YKz9shLMeMaCdWmjAI"
+    },
+    "headers": {
+      "content-length": "1154",
+      "content-type": "application/json; charset=utf-8"
+    }
+  },
+  "finalUrl": "http://localhost:3000/esm-portal/login",
+  "loginSuccessful": false,
+  "testSeller": {
+    "email": "testseller.fixed.1751308933341@example.com",
+    "fullName": "Test Seller Fixed",
+    "businessName": "Test Business Fixed"
+  }
+}

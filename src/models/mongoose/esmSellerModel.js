@@ -104,6 +104,22 @@ const esmSellerSchema = new mongoose.Schema({
     type: String,
     required: true // Path to uploaded document
   },
+  // Uploaded media files
+  profileImage: {
+    type: String // Path to profile image
+  },
+  logoImage: {
+    type: String // Path to logo image
+  },
+  identityProof: {
+    type: String // Path to identity proof document
+  },
+  serviceProof: {
+    type: String // Path to service proof document
+  },
+  businessProof: {
+    type: String // Path to business proof document
+  },
   verificationNotes: {
     type: String
   },
