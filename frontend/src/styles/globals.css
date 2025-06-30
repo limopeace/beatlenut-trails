@@ -125,10 +125,20 @@
     overflow-x: hidden;
   }
 
-  /* Prevent any element from causing horizontal scroll */
-  .container, .container-custom, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+  /* Prevent any element from causing horizontal scroll - but preserve container widths */
+  .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
     max-width: 100vw !important;
     overflow-x: hidden !important;
+  }
+
+  /* Container specific rules - preserve their intended widths */
+  .container {
+    overflow-x: hidden !important;
+  }
+
+  .container-custom {
+    overflow-x: hidden !important;
+    /* Keep the original max-width but prevent overflow */
   }
 
   /* Override any scrollbar colors that might appear */
@@ -184,8 +194,14 @@
       max-width: 100vw;
     }
     
-    .container, .container-custom, .max-w-7xl {
+    .max-w-7xl {
       max-width: 100vw !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    /* Container-custom should maintain its padding on mobile */
+    .container-custom {
       padding-left: 1rem !important;
       padding-right: 1rem !important;
     }
@@ -303,12 +319,13 @@
   }
 
   .container-custom {
-    width: 100%;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
   }
 
   .card {

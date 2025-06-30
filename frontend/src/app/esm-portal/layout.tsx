@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import ESMHeader from '@/components/marketplace/ESMHeader';
-import { BeatlenutFooter } from '@/components/travel';
 import { SocketProvider } from '@/contexts/SocketContext';
 
 export default function ESMPortalLayout({
@@ -12,9 +10,7 @@ export default function ESMPortalLayout({
 }) {
   return (
     <SocketProvider>
-      <ESMHeader />
       {children}
-      <BeatlenutFooter />
     </SocketProvider>
   );
 }
