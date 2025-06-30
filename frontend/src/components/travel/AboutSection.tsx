@@ -78,7 +78,7 @@ const AboutSection = () => {
   return (
     <SectionContainer
       background="moss-green"
-      className="relative overflow-hidden py-10 sm:py-12 md:py-16"
+      className="relative overflow-hidden py-8 sm:py-12 md:py-16"
       id="about"
     >
       {/* Decorative elements - adjusted for better mobile appearance */}
@@ -132,12 +132,12 @@ const AboutSection = () => {
               </div>
 
               {/* Content - 7 columns */}
-              <div className="md:col-span-7 p-5 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-center">
+              <div className="md:col-span-7 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center">
                 <FadeIn direction="left" duration={0.7} delay={0.3}>
-                  <p className="text-deep-forest/90 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base md:text-lg">
+                  <p className="text-deep-forest/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg">
                     <span className="font-medium text-forest-green font-clash">Beatlenut Trails</span> was born out of a simple truth: that the most memorable journeys are those that change something within us.
                   </p>
-                  <p className="text-deep-forest/90 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base md:text-lg">
+                  <p className="text-deep-forest/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg">
                     We are <strong>an adventure travel company founded by a retired Indian Army Veteran</strong> and <strong>Hame Kurbah</strong>, a hospitality expert and native of the Northeast. With decades of discipline, grit, and wanderlust between us, we left conventional careers behind to build something far more personal — a soulful, high-touch travel outfit that curates <strong>luxury expeditions, long-distance cycling and biking tours, forest immersions, and sacred trails</strong> across India and beyond.
                   </p>
                 </FadeIn>

@@ -94,7 +94,7 @@ const VideoHero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen h-screen overflow-hidden pt-0">
+    <section className="relative min-h-screen h-auto sm:h-screen overflow-hidden pt-0">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -115,7 +115,7 @@ const VideoHero = () => {
       </div>
       
       {/* Content Container */}
-      <div className="relative z-10 h-full w-full flex flex-col justify-center items-center px-4 sm:px-6 pb-24 sm:pb-28 md:pb-32">
+      <div className="relative z-10 min-h-screen w-full flex flex-col justify-center items-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-20 pb-28 sm:pb-32 md:pb-36">
         <div className="container mx-auto max-w-7xl text-center">
           {slideTexts.map((text, index) => (
             <div 
@@ -126,7 +126,7 @@ const VideoHero = () => {
             >
               {/* Subtitle */}
               <span
-                className={`inline-block text-pale-straw text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 font-serif italic transition-all duration-700 ${
+                className={`inline-block text-pale-straw text-base sm:text-lg md:text-xl mb-2 sm:mb-3 font-serif italic transition-all duration-700 ${
                   animationPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -135,7 +135,7 @@ const VideoHero = () => {
               
               {/* Main Heading */}
               <h1 
-                className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-clash font-bold text-pale-straw mb-4 sm:mb-6 md:mb-8 leading-tight transition-all duration-700 uppercase ${
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-clash font-bold text-pale-straw mb-3 sm:mb-4 md:mb-6 leading-tight transition-all duration-700 uppercase ${
                   animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -144,7 +144,7 @@ const VideoHero = () => {
               
               {/* Description */}
               <p 
-                className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-pale-straw mb-8 md:mb-10 lg:mb-12 font-light leading-relaxed transition-all duration-700 max-w-3xl mx-auto ${
+                className={`text-base sm:text-lg md:text-xl lg:text-2xl text-pale-straw mb-6 sm:mb-8 md:mb-10 font-light leading-relaxed transition-all duration-700 max-w-3xl mx-auto ${
                   animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
