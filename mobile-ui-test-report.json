@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-06-30T10:28:12.981Z",
+  "testUrl": "http://localhost:3000",
+  "viewport": {
+    "width": 375,
+    "height": 667
+  },
+  "workingFeatures": [],
+  "issues": [
+    "Test execution failed: page.waitForTimeout is not a function"
+  ],
+  "screenshots": [],
+  "summary": {
+    "testsRun": 6,
+    "workingFeatures": 0,
+    "issuesFound": 1,
+    "screenshotsTaken": 0
+  }
+}

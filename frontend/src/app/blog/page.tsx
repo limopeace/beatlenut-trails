@@ -337,9 +337,13 @@ function BlogPageContent() {
                 <h2 className="font-bold text-xl text-deep-forest-green mb-4">Featured Post</h2>
                 <div className="space-y-4">
                   <div className="aspect-video relative rounded overflow-hidden">
-                    <div className="bg-gray-200 absolute inset-0">
-                      {/* Placeholder for image */}
-                    </div>
+                    <Image
+                      src="/images/hero-placeholder.jpg"
+                      alt="ESM Success Stories"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 25vw"
+                    />
                   </div>
                   <h3 className="font-semibold text-deep-forest-green">
                     <Link href="/blog/esm-success-stories-service-entrepreneurship" className="hover:text-sunrise-orange transition-colors">
@@ -406,10 +410,14 @@ function BlogPageContent() {
                       {posts.map((post) => (
                         <article key={post.id} className="bg-white rounded-lg shadow-sm overflow-hidden transition-shadow hover:shadow-md">
                           {/* Post Image */}
-                          <Link href={`/blog/${post.slug}`} className="block aspect-video relative">
-                            <div className="absolute inset-0 bg-gray-200">
-                              {/* Placeholder for image - would use Next.js Image in production */}
-                            </div>
+                          <Link href={`/blog/${post.slug}`} className="block aspect-video relative overflow-hidden">
+                            <Image
+                              src={post.featuredImage.url}
+                              alt={post.featuredImage.alt}
+                              fill
+                              className="object-cover hover:scale-105 transition-transform duration-300"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            />
                           </Link>
                           
                           {/* Post Content */}

@@ -164,27 +164,12 @@ const BeatlenutFooter = () => {
         {/* Enhanced Social Media Section */}
         <div className="mb-10">
           <h3 className="font-clash font-bold text-lg mb-4 text-pale-straw uppercase">Connect With Us</h3>
-          <div className="flex justify-center space-x-5">
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+          <div className="flex justify-center space-x-6">
+            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
               <FontAwesomeIcon icon={faFacebookF} className="w-5 h-5" />
             </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-              <FontAwesomeIcon icon={faTwitter} className="w-5 h-5" />
-            </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
               <FontAwesomeIcon icon={faInstagram} className="w-5 h-5" />
-            </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-              <FontAwesomeIcon icon={faYoutube} className="w-5 h-5" />
-            </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-              <FontAwesomeIcon icon={faLinkedinIn} className="w-5 h-5" />
-            </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-              <FontAwesomeIcon icon={faPinterestP} className="w-5 h-5" />
-            </a>
-            <a href="#" className="bg-forest-green/50 hover:bg-forest-green backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-              <FontAwesomeIcon icon={faTiktok} className="w-5 h-5" />
             </a>
           </div>
         </div>
@@ -193,9 +178,14 @@ const BeatlenutFooter = () => {
         <div className="text-center border-t border-moss-green/30 pt-6">
           <p className="text-pale-straw font-clash text-sm mb-2">© {new Date().getFullYear()} ALL RIGHTS RESERVED.</p>
           <p className="text-moss-green text-xs mb-4">Curated travel experiences in Northeast India by Army veterans.</p>
-          <p className="text-xs text-moss-green flex items-center justify-center">
+          <p className="text-xs text-moss-green flex items-center justify-center flex-wrap">
             Made with <FontAwesomeIcon icon={faHeart} className="w-3 h-3 text-red-400 mx-1" /> by 
-            <a href="https://www.betafactory.io" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-pale-straw transition-colors">
+            <a 
+              href="https://www.betafactory.io" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="ml-1 text-pale-straw underline hover:text-moss-green hover:no-underline transition-all duration-300 font-medium md:hover:scale-105"
+            >
               Beta Factory
             </a>
           </p>

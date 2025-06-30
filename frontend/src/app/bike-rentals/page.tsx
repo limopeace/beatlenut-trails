@@ -491,7 +491,7 @@ const BikeRentalsPage = () => {
                     <div className="flex flex-col gap-2">
                       <Link 
                         href={`/bike-rentals/${bike.id}`}
-                        className="w-full py-2 sm:py-3 rounded-full font-medium bg-forest-green hover:bg-moss-green text-pale-straw text-center transition-colors text-xs sm:text-sm"
+                        className="w-full py-2 sm:py-3 rounded-full font-medium bg-forest-green hover:bg-moss-green text-pale-straw text-center transition-colors text-xs sm:text-sm flex items-center justify-center min-h-[36px] sm:min-h-[40px]"
                       >
                         View Details
                       </Link>

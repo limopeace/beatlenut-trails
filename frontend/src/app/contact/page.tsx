@@ -428,6 +428,26 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Spacer section to show background before footer */}
+      <section className="bg-gradient-to-b from-pale-straw via-moss-green/20 to-deep-forest/80 py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-deep-forest mb-4 font-clash">
+              Ready to Start Your Adventure?
+            </h3>
+            <p className="text-deep-forest/80 mb-8">
+              Let us help you create unforgettable memories in Northeast India
+            </p>
+            <a 
+              href="/travel-listings" 
+              className="inline-block px-8 py-3 bg-forest-green text-pale-straw font-medium rounded-md hover:bg-moss-green transition-colors duration-300"
+            >
+              Explore Our Tours
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <SectionContainer
         background="moss-green"

@@ -250,7 +250,8 @@ export default function About() {
         </div>
       </SectionContainer>
 
-      {/* Our Team Section */}
+      {/* Our Team Section - Commented out as requested */}
+      {/* 
       <SectionContainer
         background="pale-straw"
         className="relative overflow-hidden py-16 md:py-24"
@@ -268,7 +269,6 @@ export default function About() {
             <StaggerItem key={member.id}>
               <div className="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl border border-moss-green/10 p-6 sm:p-8 text-center h-full flex flex-col">
                 <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 sm:mb-6 border-4 border-moss-green/20">
-                  {/* Using the new TeamAvatar component */}
                   <TeamAvatar name={member.name} imagePath={member.image} />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-deep-forest mb-1 sm:mb-2 font-clash">{member.name}</h3>
@@ -295,6 +295,7 @@ export default function About() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+      */}
 
         {/* Decorative elements */}
         <div className="absolute bottom-0 right-0 w-72 h-72 bg-moss-green/20 rounded-full -mr-32 -mb-16 -z-10"></div>

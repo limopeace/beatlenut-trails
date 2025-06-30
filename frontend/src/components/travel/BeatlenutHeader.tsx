@@ -2,12 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const BeatlenutHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Helper function to check if a path is active
+  const isActivePath = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname?.startsWith(path);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +30,7 @@ const BeatlenutHeader = () => {
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-deep-forest shadow-md py-2' : 'bg-transparent py-4'
+      isScrolled ? 'bg-deep-forest shadow-md py-2' : 'bg-transparent md:bg-transparent bg-deep-forest py-4'
     }`}>
       {/* Top Bar */}
       <div className={`hidden md:block border-b ${isScrolled ? 'border-pale-straw/20' : 'border-pale-straw/20'} pb-2 mb-2`}>
@@ -70,7 +80,11 @@ const BeatlenutHeader = () => {
               <Link 
                 key={item.name} 
                 href={item.path}
-                className="text-sm font-medium text-pale-straw hover:text-moss-green transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  isActivePath(item.path) 
+                    ? 'text-moss-green border-b-2 border-moss-green' 
+                    : 'text-pale-straw hover:text-moss-green'
+                }`}
               >
                 {item.name}
               </Link>
@@ -117,9 +131,9 @@ const BeatlenutHeader = () => {
 
         {/* Mobile Menu */}
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-[90vh] opacity-100 mt-4' : 'max-h-0 opacity-0'
         }`}>
-          <div className="bg-pale-straw rounded-lg shadow-lg p-4">
+          <div className="bg-pale-straw rounded-lg shadow-lg p-4 max-h-[80vh] overflow-y-auto">
             <nav className="flex flex-col space-y-4">
               {[
                 { name: 'Home', path: '/' },
@@ -127,30 +141,45 @@ const BeatlenutHeader = () => {
                 { name: 'Activities', path: '/activities' },
                 { name: 'About Us', path: '/about' },
                 { name: 'Contact', path: '/contact' },
+                { name: 'Blog', path: '/blog' },
+                { name: 'Bike Rentals', path: '/bike-rentals' },
               ].map(item => (
                 <Link 
                   key={item.name} 
                   href={item.path}
-                  className="text-deep-forest hover:text-forest-green transition-colors text-sm font-medium"
+                  className={`transition-colors text-sm font-medium py-2 px-2 rounded ${
+                    isActivePath(item.path) 
+                      ? 'text-forest-green bg-forest-green/10 border-l-4 border-forest-green font-semibold' 
+                      : 'text-deep-forest hover:text-forest-green hover:bg-forest-green/5'
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Link 
-                href="/esm-portal"
-                className="text-forest-green border border-forest-green px-4 py-2 rounded text-center transition-colors text-sm font-medium hover:bg-forest-green hover:text-pale-straw"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                ESM Portal
-              </Link>
-              <Link 
-                href="/travel-listings"
-                className="bg-forest-green hover:bg-moss-green text-pale-straw px-4 py-2 rounded-full text-center transition-colors duration-300 text-sm font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                BOOK NOW
-              </Link>
+              <div className="border-t border-deep-forest/20 pt-4 mt-4">
+                <Link 
+                  href="/esm-portal"
+                  className="text-forest-green border border-forest-green px-4 py-2 rounded text-center transition-colors text-sm font-medium hover:bg-forest-green hover:text-pale-straw block mb-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  ESM Portal
+                </Link>
+                <Link 
+                  href="/admin/login"
+                  className="text-forest-green border border-forest-green px-4 py-2 rounded text-center transition-colors text-sm font-medium hover:bg-forest-green hover:text-pale-straw block mb-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Admin Panel
+                </Link>
+                <Link 
+                  href="/travel-listings"
+                  className="bg-forest-green hover:bg-moss-green text-pale-straw px-4 py-2 rounded-full text-center transition-colors duration-300 text-sm font-medium block"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  BOOK NOW
+                </Link>
+              </div>
             </nav>
           </div>
         </div>
