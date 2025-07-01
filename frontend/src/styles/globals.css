@@ -146,6 +146,33 @@
     scrollbar-color: transparent transparent !important;
   }
 
+  /* FIX: Prevent containers from having auto overflow */
+  .container {
+    overflow: visible !important;
+  }
+
+  /* FIX: Override Tailwind's default container auto overflow */
+  @media (min-width: 640px) {
+    .container {
+      overflow: visible !important;
+    }
+  }
+
+  /* FIX: Ensure all divs with container classes don't create scroll */
+  div.container,
+  div[class*="container"],
+  div[class*="max-w-8xl"],
+  div[class*="max-w-7xl"] {
+    overflow: visible !important;
+    min-height: fit-content !important;
+  }
+
+  /* FIX: Prevent sections from clipping content */
+  section {
+    overflow: visible !important;
+    min-height: fit-content !important;
+  }
+
   /* Specifically target any remaining scrollbars and make them invisible */
   ::-webkit-scrollbar-track {
     background: transparent !important;

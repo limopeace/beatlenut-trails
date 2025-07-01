@@ -81,5 +81,35 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    function({ addUtilities }) {
+      addUtilities({
+        '.container': {
+          'max-width': '100%',
+          'margin-left': 'auto',
+          'margin-right': 'auto',
+          'overflow': 'visible',
+          '@screen sm': {
+            'max-width': '640px',
+            'overflow': 'visible',
+          },
+          '@screen md': {
+            'max-width': '768px', 
+            'overflow': 'visible',
+          },
+          '@screen lg': {
+            'max-width': '1024px',
+            'overflow': 'visible',
+          },
+          '@screen xl': {
+            'max-width': '1280px',
+            'overflow': 'visible',
+          },
+          '@screen 2xl': {
+            'max-width': '1536px',
+            'overflow': 'visible',
+          },
+        }
+      })
+    }
   ],
 }
