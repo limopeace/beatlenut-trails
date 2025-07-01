@@ -116,7 +116,7 @@ const VideoHero = () => {
       
       {/* Content Container */}
       <div className="relative z-10 min-h-[100vh] w-full flex flex-col justify-center items-center px-4 sm:px-6 py-20 sm:py-24 md:py-28">
-        <div className="container mx-auto max-w-7xl text-center">
+        <div className="container mx-auto max-w-8xl text-center">
           {slideTexts.map((text, index) => (
             <div 
               key={index}

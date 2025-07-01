@@ -71,12 +71,12 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ${containerClassName}`}
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-8xl ${containerClassName}`}
         >
           {children}
         </motion.div>
       ) : (
-        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ${containerClassName}`}>{children}</div>
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-8xl ${containerClassName}`}>{children}</div>
       )}
     </section>
   );

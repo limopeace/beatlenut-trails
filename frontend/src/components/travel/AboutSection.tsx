@@ -88,8 +88,7 @@ const AboutSection = () => {
         </svg>
       </div>
 
-      <div className="px-4 sm:px-6 md:px-8">
-        <FadeIn direction="up" duration={0.8} className="flex flex-col items-center mb-12 sm:mb-16 md:mb-20 relative">
+      <FadeIn direction="up" duration={0.8} className="flex flex-col items-center mb-12 sm:mb-16 md:mb-20 relative">
           {/* Decorative script heading */}
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 -rotate-6 hidden md:block">
             <span className="font-serif italic text-deep-forest text-4xl opacity-40">About Us</span>
@@ -259,7 +258,6 @@ const AboutSection = () => {
             </div>
           </div>
         </FadeIn>
-      </div>
     </SectionContainer>
   );
 };
