@@ -109,9 +109,9 @@ const AboutSection = () => {
         {/* Main content with overlap - improved for mobile */}
         <div className="relative">
           <FadeIn direction="up" duration={0.8} delay={0.2} className="bg-white rounded-lg shadow-2xl overflow-hidden relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-12">
+            <div className="flex flex-col md:grid md:grid-cols-12">
               {/* Image for mobile (top position) */}
-              <div className="md:col-span-5 h-48 sm:h-56 md:h-auto block md:hidden relative">
+              <div className="w-full h-48 sm:h-56 md:col-span-5 md:h-auto block md:hidden relative">
                 <FadeIn direction="right" duration={0.8} delay={0.4}>
                   <div className="w-full h-full relative overflow-hidden">
                     {/* Color overlay and effects */}
@@ -132,7 +132,7 @@ const AboutSection = () => {
               </div>
 
               {/* Content - 7 columns */}
-              <div className="md:col-span-7 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center mt-96 md:mt-0">
+              <div className="flex-1 md:col-span-7 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center">
                 <FadeIn direction="left" duration={0.7} delay={0.3}>
                   <p className="text-deep-forest/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg">
                     <span className="font-medium text-forest-green font-clash">Beatlenut Trails</span> was born out of a simple truth: that the most memorable journeys are those that change something within us.
@@ -174,7 +174,7 @@ const AboutSection = () => {
               </div>
               
               {/* Image - 5 columns - hidden on mobile, shown on desktop */}
-              <div className="md:col-span-5 order-first md:order-last md:h-auto relative hidden md:block">
+              <div className="hidden md:block md:col-span-5 order-first md:order-last md:h-auto relative">
                 <FadeIn direction="right" duration={0.8} delay={0.4}>
                   <div className="w-full h-full relative overflow-hidden">
                     {/* Color overlay and effects */}

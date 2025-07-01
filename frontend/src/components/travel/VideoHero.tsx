@@ -94,7 +94,7 @@ const VideoHero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen h-auto sm:h-screen overflow-hidden pt-0">
+    <section className="relative min-h-[100vh] h-auto sm:h-screen overflow-hidden pt-0">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -115,7 +115,7 @@ const VideoHero = () => {
       </div>
       
       {/* Content Container */}
-      <div className="relative z-10 min-h-screen w-full flex flex-col justify-center items-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-20 pb-28 sm:pb-32 md:pb-36">
+      <div className="relative z-10 min-h-[100vh] w-full flex flex-col justify-center items-center px-4 sm:px-6 py-20 sm:py-24 md:py-28">
         <div className="container mx-auto max-w-7xl text-center">
           {slideTexts.map((text, index) => (
             <div 
@@ -144,7 +144,7 @@ const VideoHero = () => {
               
               {/* Description */}
               <p 
-                className={`text-base sm:text-lg md:text-xl lg:text-2xl text-pale-straw mb-6 sm:mb-8 md:mb-10 font-light leading-relaxed transition-all duration-700 max-w-3xl mx-auto ${
+                className={`text-base sm:text-lg md:text-xl lg:text-2xl text-pale-straw mb-8 sm:mb-10 md:mb-12 font-light leading-relaxed transition-all duration-700 max-w-3xl mx-auto ${
                   animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -153,7 +153,7 @@ const VideoHero = () => {
               
               {/* Action Buttons - Mobile optimized with better spacing */}
               <div 
-                className={`flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 transition-all duration-700 w-full max-w-2xl mx-auto mb-4 sm:mb-6 ${
+                className={`flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 transition-all duration-700 w-full max-w-2xl mx-auto mb-8 sm:mb-10 ${
                   animationPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
