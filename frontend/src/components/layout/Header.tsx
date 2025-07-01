@@ -44,7 +44,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden md:flex space-x-6 items-center">
           <Link
             href="/"
             className="font-clash font-medium hover:text-forest-green transition-colors"
@@ -95,7 +95,7 @@ const Header = () => {
           </Link>
           <Link
             href="/esm-portal"
-            className="font-clash font-medium bg-forest-green text-pale-straw px-4 py-2 rounded-md hover:bg-moss-green transition-colors"
+            className="font-clash font-medium bg-forest-green text-pale-straw px-4 py-2 rounded-md hover:bg-moss-green transition-colors flex items-center"
           >
             ESM Portal
           </Link>
