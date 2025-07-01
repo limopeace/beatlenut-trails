@@ -29,7 +29,7 @@ const Header = () => {
           : 'bg-deep-forest/90 text-pale-straw py-3'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-8xl flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <span className="sr-only">BeatlenutTrails</span>
           <div className="w-10 h-10 sm:w-12 sm:h-12 relative mr-2">
@@ -125,7 +125,7 @@ const Header = () => {
           mobileMenuOpen ? 'max-h-[90vh] border-t border-pale-straw/20' : 'max-h-0'
         }`}
       >
-        <div className="container mx-auto px-4 py-5 flex flex-col space-y-5">
+        <div className="container mx-auto px-4 py-5 max-w-8xl flex flex-col space-y-5">
           <Link
             href="/"
             className="font-clash font-medium hover:text-forest-green transition-colors py-3 block"

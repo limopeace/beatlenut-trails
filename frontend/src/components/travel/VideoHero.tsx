@@ -180,7 +180,7 @@ const VideoHero = () => {
       
       {/* Feature Icons at Bottom */}
       <div className="absolute bottom-0 left-0 right-0 bg-deep-forest/95 backdrop-blur-sm z-20 py-3 sm:py-4 md:py-6 border-t border-pale-straw/20">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container mx-auto max-w-8xl px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             <div className="flex flex-col items-center text-pale-straw text-center">
               <div className="bg-forest-green p-2 sm:p-3 rounded-full mb-1 sm:mb-2 shadow-lg">

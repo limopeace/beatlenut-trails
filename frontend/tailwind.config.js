@@ -13,8 +13,8 @@ module.exports = {
         '4xl': '2560px',
       },
       maxWidth: {
-        '8xl': '1920px',
-        '9xl': '2560px',
+        '8xl': '1280px', // Standard container max-width for content
+        '9xl': '1920px', // For special cases that need wider container
       },
       fontFamily: {
         'clash': ['Clash Display', 'sans-serif'],

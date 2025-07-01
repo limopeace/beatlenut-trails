@@ -81,7 +81,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
         ></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-20">
+      <div className="container mx-auto max-w-8xl px-4 sm:px-6 md:px-8 relative z-20">
         <FadeIn direction="up">
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo - scaled for mobile */}
